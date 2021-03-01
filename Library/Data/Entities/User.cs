@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Contracts.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Library.Data.Entities
 {
-    public class User
+    public class User : IDto<UserDto>
     {
         public Guid Id { get; set; }
         public string Login { get; set; }
@@ -25,6 +26,11 @@ namespace Library.Data.Entities
         {
             Login = login;
             Password = password;
+        }
+
+        public UserDto ToDto()
+        {
+            return new UserDto(Id, Login);
         }
     }
 }

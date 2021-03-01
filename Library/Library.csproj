@@ -55,6 +55,11 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\DTO\IDto.cs" />
+    <Compile Include="Contracts\DTO\MessageDto.cs" />
+    <Compile Include="Contracts\DTO\UserDto.cs" />
+    <Compile Include="Contracts\Load\Requests\LoadMessagesRequsts.cs" />
+    <Compile Include="Contracts\Load\Responses\LoadMessagesResponse.cs" />
     <Compile Include="Data\Entities\Message.cs" />
     <Compile Include="Data\Entities\User.cs" />
     <Compile Include="Contracts\Auth\Events\UserConnectedEventArgs.cs" />
@@ -83,8 +88,10 @@
     <Compile Include="Contracts\Result.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\Interfaces\IAuthService.cs" />
+    <Compile Include="Services\Interfaces\ILoadService.cs" />
     <Compile Include="Services\Interfaces\IMessagingService.cs" />
     <Compile Include="Services\Interfaces\IService.cs" />
+    <Compile Include="Services\LoadService.cs" />
     <Compile Include="Services\MessagingService.cs" />
     <Compile Include="Services\Service.cs" />
   </ItemGroup>
