@@ -19,7 +19,7 @@ namespace Library.Server
         }
 
         public ServerUser(Guid id, OperationContext context)
-            : this(new ConnectionId(id, true), context)
+            : this(new ConnectionId(id, false), context)
         { }
     }
 }

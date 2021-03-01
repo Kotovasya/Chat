@@ -8,10 +8,15 @@ using System.Threading.Tasks;
 
 namespace Library.Events
 {
+    /// <summary>
+    /// Представляет базовый класс для классов, содержащих данные серверных событий
+    /// </summary>
     [DataContract]
-    [KnownType(typeof(UserConnectedEventArgs))]
     public class ServerEventArgs : EventArgs 
     {
+        /// <summary>
+        /// ID клиента, вызвавшего событие
+        /// </summary>
         [DataMember]
         public Guid Id { get; set; }
 

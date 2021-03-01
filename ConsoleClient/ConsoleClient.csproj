@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Callbacks\CallbackService.cs" />
+    <Compile Include="Callbacks\MessagingCallback.cs" />
     <Compile Include="Connected Services\ServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -64,10 +65,19 @@
     <None Include="Connected Services\ServiceReference\ConsoleClient.ServiceReference.RegistrationResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ServiceReference\ConsoleClient.ServiceReference.SendMessageResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServiceReference\item.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference\item10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference\item101.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference\item2.xsd">
@@ -89,6 +99,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference\item8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceReference\item9.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServiceReference\Service.wsdl" />

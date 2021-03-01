@@ -14,7 +14,9 @@ namespace ConsoleClient
         {
             CallbackService service = new CallbackService();
             service.model.Id = service.authService.Connect();
-            var response = service.authService.Authorization(new AuthRequest() { Id = service.model.Id, Login = "Test", Password = "Test" });
+            string line = Console.ReadLine();
+            service.authService.Authorization(new AuthRequest() { Id = service.model.Id, Login = line, Password = line });
+            var response = service.messagingService.SendMessage(new SendMessageRequest() { Id = service.model.Id, Text = "Hello!" });
             Console.WriteLine(response.Result);
             Console.ReadLine();
         }

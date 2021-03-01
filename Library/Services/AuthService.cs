@@ -15,25 +15,12 @@ using System.Threading.Tasks;
 namespace Library.Services
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
-    public partial class Service : IAuthService
+    public partial class Service
     {
-        public Guid Connect()
-        {
-            ConnectionId connection = new ConnectionId(true);
-            try
-            {
-                connections.Add(connection.Id, null);
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);          
-            }
-            return connection.Id;
-        }
-
         public AuthResponse Authorization(AuthRequest request)
         {
-            return Preform(() => {
+            return Preform(() => 
+            {
                 var user = context.Users.SingleOrDefault(u => u.Login.ToLower() == request.Login.ToLower());
                 if (user == null)
                     return new AuthResponse() { Result = Responses.Result.WrongLogin };
@@ -42,8 +29,8 @@ namespace Library.Services
                 else
                 {
                     connections[user.Id] = new ServerUser(user.Id, connections[request.Id].Context);
-                    connections[request.Id] = null;
-                    SendEvent<IAuthCallback>("OnUserConnected", new UserConnectedEventArgs(user.Id, request.Login));
+                    connections.Remove(request.Id);
+                    SendBroadcastEvent(new UserConnectedEventArgs(user.Id, request.Login));
                     return new AuthResponse() { Result = Responses.Result.Succesfully, Id = user.Id };
                 }
             });
@@ -51,7 +38,8 @@ namespace Library.Services
 
         public RegistrationResponse Registration(RegistrationRequest request)
         {
-            return Preform(() => {
+            return Preform(() => 
+            {
                 if (context.Users.Any(u => u.Login.ToLower() == request.Login.ToLower()))
                     return new RegistrationResponse() { Result = Responses.Result.AlreadyRegister };
 
@@ -59,8 +47,8 @@ namespace Library.Services
                 context.SaveChanges();
 
                 connections[user.Id] = new ServerUser(user.Id, connections[request.Id].Context);
-                connections[request.Id] = null;
-                SendEvent<IAuthCallback>("OnUserConnected", new UserConnectedEventArgs(user.Id, request.Login));
+                connections.Remove(request.Id);
+                SendBroadcastEvent(new UserConnectedEventArgs(user.Id, request.Login));
                 return new RegistrationResponse() { Result = Responses.Result.Succesfully, Id = user.Id };
             });
         }

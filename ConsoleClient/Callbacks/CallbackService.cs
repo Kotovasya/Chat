@@ -11,11 +11,13 @@ namespace ConsoleClient.Callbacks
     {
         internal Model model;
         public AuthServiceClient authService;
+        public MessagingServiceClient messagingService;
 
         public CallbackService()
         {
             model = new Model();
             authService = new AuthServiceClient(new System.ServiceModel.InstanceContext(this));
+            messagingService = new MessagingServiceClient(new System.ServiceModel.InstanceContext(this));
         }
     }
 }

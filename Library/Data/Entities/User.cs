@@ -12,14 +12,17 @@ namespace Library.Data.Entities
         public string Login { get; set; }
         public string Password { get; set; }
 
+        public virtual ICollection<Message> Messages { get; set; }
+
         public User()
         {
             Id = Guid.NewGuid();
+            Messages = new List<Message>();
         }
 
         public User(string login, string password)
+            : this()
         {
-            Id = Guid.NewGuid();
             Login = login;
             Password = password;
         }
