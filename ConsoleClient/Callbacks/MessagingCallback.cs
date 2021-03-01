@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleClient.Callbacks
 {
-    public partial class CallbackService : IMessagingServiceCallback
+    public partial class CallbackService
     {
         public void OnMessageSend(MessageSendEventArgs args)
         {

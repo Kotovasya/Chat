@@ -5,10 +5,10 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Requests.Auth
+namespace Library.Contracts.Auth
 {
     [DataContract]
-    public class AuthRequest : Request
+    public class RegistrationRequest : Request
     {
         [DataMember]
         public string Login { get; set; }

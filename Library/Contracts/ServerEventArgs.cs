@@ -1,4 +1,4 @@
-﻿using Library.Events.Auth;
+﻿using Library.Contracts.Auth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Events
+namespace Library.Contracts
 {
     /// <summary>
     /// Представляет базовый класс для классов, содержащих данные серверных событий

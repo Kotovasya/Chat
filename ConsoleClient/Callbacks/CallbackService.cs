@@ -7,17 +7,15 @@ using ConsoleClient.ServiceReference;
 
 namespace ConsoleClient.Callbacks
 {
-    public partial class CallbackService
+    public partial class CallbackService : IServiceCallback
     {
         internal Model model;
-        public AuthServiceClient authService;
-        public MessagingServiceClient messagingService;
+        internal ServiceClient service;
 
         public CallbackService()
         {
+            service = new ServiceClient(new System.ServiceModel.InstanceContext(this));
             model = new Model();
-            authService = new AuthServiceClient(new System.ServiceModel.InstanceContext(this));
-            messagingService = new MessagingServiceClient(new System.ServiceModel.InstanceContext(this));
         }
     }
 }

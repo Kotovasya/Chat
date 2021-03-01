@@ -1,6 +1,4 @@
-﻿using Library.Events.Auth;
-using Library.Requests.Auth;
-using Library.Responses.Auth;
+﻿using Library.Contracts.Auth;
 using System;
 using System.ServiceModel;
 

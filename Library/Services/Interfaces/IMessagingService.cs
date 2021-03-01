@@ -1,6 +1,4 @@
-﻿using Library.Events.Messaging;
-using Library.Requests.Messaging;
-using Library.Responses.Messaging;
+﻿using Library.Contracts.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;

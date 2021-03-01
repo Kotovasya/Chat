@@ -1,6 +1,5 @@
 ﻿using Library.Data;
-using Library.Events;
-using Library.Server;
+using Library.Contracts;
 using Library.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -15,31 +14,31 @@ namespace Library.Services
     public partial class Service : IService
     {
         private readonly DatabaseContext context;
-        private readonly Dictionary<Guid, ServerUser> connections;
+        private readonly Dictionary<Guid, Connection> connections;
 
 
         public Service()
         {
             context = new DatabaseContext();
-            connections = new Dictionary<Guid, ServerUser>();
+            connections = new Dictionary<Guid, Connection>();
         }
 
         public Guid Connect()
         {
-            ConnectionId connection = new ConnectionId(true);
+            Connection connection = new Connection();
             try
             {
-                connections.Add(connection.Id, new ServerUser(connection, OperationContext.Current));
+                connections.Add(connection.Id, connection);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(ex);
             }
             return connection.Id;
         }
 
         private T Preform<T>(Func<T> method)
-            where T : Responses.Response, new()
+            where T : Contracts.Response, new()
         {
             try
             {
@@ -48,7 +47,7 @@ namespace Library.Services
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return new T() { Result = Responses.Result.ServerException };
+                return new T() { Result = Contracts.Result.ServerException };
                 throw;
             }
         }
@@ -94,7 +93,7 @@ namespace Library.Services
         private void SendBroadcastEvent(ServerEventArgs args, bool isTemporary = false)
         {
             SendEvent(connections
-                .Where(k => isTemporary || !k.Value.Id.IsTemporary)
+                .Where(k => isTemporary || !k.Value.IsTemporary)
                 .Select(k => k.Key)
                 , args);
         }

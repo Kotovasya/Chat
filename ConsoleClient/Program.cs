@@ -12,11 +12,13 @@ namespace ConsoleClient
     {
         static void Main(string[] args)
         {
-            CallbackService service = new CallbackService();
-            service.model.Id = service.authService.Connect();
+            CallbackService callbackService = new CallbackService();
+            callbackService.model.Id = callbackService.service.Connect();
             string line = Console.ReadLine();
-            service.authService.Authorization(new AuthRequest() { Id = service.model.Id, Login = line, Password = line });
-            var response = service.messagingService.SendMessage(new SendMessageRequest() { Id = service.model.Id, Text = "Hello!" });
+            var authRsponse = callbackService.service.Authorization(new AuthRequest() { Id = callbackService.model.Id, Login = line, Password = line });
+            if (authRsponse.Result == Result.Succesfully)
+                callbackService.model.Id = authRsponse.Id;
+            var response = callbackService.service.SendMessage(new SendMessageRequest() { Id = callbackService.model.Id, Text = "Hello!" });
             Console.WriteLine(response.Result);
             Console.ReadLine();
         }

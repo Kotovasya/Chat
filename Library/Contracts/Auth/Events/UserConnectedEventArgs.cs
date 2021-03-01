@@ -5,18 +5,18 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Events.Messaging
+namespace Library.Contracts.Auth
 {
     [DataContract]
-    public class MessageSendEventArgs : ServerEventArgs
+    public class UserConnectedEventArgs : ServerEventArgs
     {
         [DataMember]
-        public string Text { get; set; }
+        public string Login { get; set; }
 
-        public MessageSendEventArgs(Guid id, string text) 
+        public UserConnectedEventArgs(Guid id, string login) 
             : base(id)
         {
-            Text = text;
+            Login = login;
         }
     }
 }

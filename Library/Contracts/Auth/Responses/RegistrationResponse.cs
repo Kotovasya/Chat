@@ -5,14 +5,12 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Requests.Auth
+namespace Library.Contracts.Auth
 {
     [DataContract]
-    public class RegistrationRequest : Request
+    public class RegistrationResponse : Response
     {
         [DataMember]
-        public string Login { get; set; }
-        [DataMember]
-        public string Password { get; set; }
+        public Guid Id { get; set; }
     }
 }

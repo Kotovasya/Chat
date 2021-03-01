@@ -57,9 +57,9 @@
   <ItemGroup>
     <Compile Include="Data\Entities\Message.cs" />
     <Compile Include="Data\Entities\User.cs" />
-    <Compile Include="Events\Auth\UserConnectedEventArgs.cs" />
-    <Compile Include="Events\Messaging\MessageSendEventArgs.cs" />
-    <Compile Include="Events\ServerEventArgs.cs" />
+    <Compile Include="Contracts\Auth\Events\UserConnectedEventArgs.cs" />
+    <Compile Include="Contracts\Messaging\Events\MessageSendEventArgs.cs" />
+    <Compile Include="Contracts\ServerEventArgs.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Migrations\202102220904061_InitialCreate.cs" />
     <Compile Include="Migrations\202102220904061_InitialCreate.designer.cs">
@@ -70,19 +70,17 @@
       <DependentUpon>202102262000318_AddMessagingMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Requests\Messaging\SendMessageRequest.cs" />
-    <Compile Include="Responses\Messaging\SendMessageResponse.cs" />
-    <Compile Include="Server\ConnectionId.cs" />
-    <Compile Include="Server\ServerModel.cs" />
-    <Compile Include="Server\ServerUser.cs" />
+    <Compile Include="Contracts\Messaging\Requests\SendMessageRequest.cs" />
+    <Compile Include="Contracts\Messaging\Responses\SendMessageResponse.cs" />
+    <Compile Include="Connection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\Auth\AuthRequest.cs" />
-    <Compile Include="Requests\Auth\RegistrationRequest.cs" />
-    <Compile Include="Requests\Request.cs" />
-    <Compile Include="Responses\Auth\AuthResponse.cs" />
-    <Compile Include="Responses\Auth\RegistrationResponse.cs" />
-    <Compile Include="Responses\Response.cs" />
-    <Compile Include="Responses\Result.cs" />
+    <Compile Include="Contracts\Auth\Requests\AuthRequest.cs" />
+    <Compile Include="Contracts\Auth\Requests\RegistrationRequest.cs" />
+    <Compile Include="Contracts\Request.cs" />
+    <Compile Include="Contracts\Auth\Responses\AuthResponse.cs" />
+    <Compile Include="Contracts\Auth\Responses\RegistrationResponse.cs" />
+    <Compile Include="Contracts\Response.cs" />
+    <Compile Include="Contracts\Result.cs" />
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\Interfaces\IAuthService.cs" />
     <Compile Include="Services\Interfaces\IMessagingService.cs" />
@@ -102,6 +100,7 @@
       <DependentUpon>202102262000318_AddMessagingMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

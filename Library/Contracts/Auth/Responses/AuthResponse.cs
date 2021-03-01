@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Responses.Auth
+namespace Library.Contracts.Auth
 {
     [DataContract]
     public class AuthResponse : Response

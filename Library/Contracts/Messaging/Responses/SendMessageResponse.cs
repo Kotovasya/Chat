@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Responses.Messaging
+namespace Library.Contracts.Messaging
 {
     [DataContract]
     public class SendMessageResponse : Response

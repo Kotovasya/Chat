@@ -5,12 +5,12 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Responses
+namespace Library.Contracts
 {
     [DataContract]
-    public abstract class Response
+    public abstract class Request
     {
         [DataMember]
-        public Result Result { get; set; }
+        public Guid Id { get; set; }
     }
 }
