@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Library.Contracts.Load
 {
     [DataContract]
-    public class LoadMessagesRequsts : Request
+    public class LoadMessagesRequest : Request
     {
         [DataMember]
         public long LastMessageId { get; set; }

@@ -11,6 +11,6 @@ namespace Library.Services.Interfaces
     public partial interface IService
     {
         [OperationContract]
-        LoadMessagesResponse LoadMessages(LoadMessagesRequsts request);
+        LoadMessagesResponse LoadMessages(LoadMessagesRequest request);
     }
 }

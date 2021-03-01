@@ -58,7 +58,7 @@
     <Compile Include="Contracts\DTO\IDto.cs" />
     <Compile Include="Contracts\DTO\MessageDto.cs" />
     <Compile Include="Contracts\DTO\UserDto.cs" />
-    <Compile Include="Contracts\Load\Requests\LoadMessagesRequsts.cs" />
+    <Compile Include="Contracts\Load\Requests\LoadMessagesRequest.cs" />
     <Compile Include="Contracts\Load\Responses\LoadMessagesResponse.cs" />
     <Compile Include="Data\Entities\Message.cs" />
     <Compile Include="Data\Entities\User.cs" />

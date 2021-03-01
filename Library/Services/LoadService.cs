@@ -9,7 +9,7 @@ namespace Library.Services
 {
     public partial class Service
     {
-        public LoadMessagesResponse LoadMessages(LoadMessagesRequsts request)
+        public LoadMessagesResponse LoadMessages(LoadMessagesRequest request)
         {
             return Preform(() =>
             {
