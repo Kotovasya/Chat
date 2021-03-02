@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Library.Requests.Auth" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Library.Responses.Auth" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Library.Requests.Messaging" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Library.Responses.Messaging" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Library.Events.Auth" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/Library.Events.Messaging" />
+  <xs:element name="Registration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Library.Requests.Auth" minOccurs="0" name="request" nillable="true" type="q1:RegistrationRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Library.Responses.Auth" minOccurs="0" name="RegistrationResult" nillable="true" type="q2:RegistrationResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Authorization">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Library.Requests.Auth" minOccurs="0" name="request" nillable="true" type="q3:AuthRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AuthorizationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Library.Responses.Auth" minOccurs="0" name="AuthorizationResult" nillable="true" type="q4:AuthResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Library.Requests.Messaging" minOccurs="0" name="request" nillable="true" type="q5:SendMessageRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessageResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Library.Responses.Messaging" minOccurs="0" name="SendMessageResult" nillable="true" type="q6:SendMessageResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Connect">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConnectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ConnectResult" type="q7:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnUserConnected">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Library.Events.Auth" minOccurs="0" name="args" nillable="true" type="q8:UserConnectedEventArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnMessageSend">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Library.Events.Messaging" minOccurs="0" name="args" nillable="true" type="q9:MessageSendEventArgs" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

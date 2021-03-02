@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Library.Contracts.DTO
 {
+    /// <summary>
+    /// Класс, хранящий информацию о сообщении и служащий для передачи этой информации клиентам сервиса
+    /// </summary>
     [DataContract]
     public class MessageDto
     {

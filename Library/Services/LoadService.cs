@@ -9,6 +9,11 @@ namespace Library.Services
 {
     public partial class Service
     {
+        /// <summary>
+        /// Запрашивает сообщения из базы данных и возвращает результат запроса
+        /// </summary>
+        /// <param name="request">Запрос на загрузку</param>
+        /// <returns>Ответ на загрузку</returns>
         public LoadMessagesResponse LoadMessages(LoadMessagesRequest request)
         {
             return Preform(() =>

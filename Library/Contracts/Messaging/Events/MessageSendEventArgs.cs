@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Contracts.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -7,16 +8,22 @@ using System.Threading.Tasks;
 
 namespace Library.Contracts.Messaging
 {
+    /// <summary>
+    /// Представляет данные для события отправки сообщения
+    /// </summary>
     [DataContract]
     public class MessageSendEventArgs : ServerEventArgs
     {
+        /// <summary>
+        /// Отправленное сообщение
+        /// </summary>
         [DataMember]
-        public string Text { get; set; }
-
-        public MessageSendEventArgs(Guid id, string text) 
+        public MessageDto Message { get; set; }
+        
+        public MessageSendEventArgs(Guid id, MessageDto message) 
             : base(id)
         {
-            Text = text;
+            Message = message;
         }
     }
 }

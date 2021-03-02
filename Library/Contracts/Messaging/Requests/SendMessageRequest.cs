@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace Library.Contracts.Messaging
 {
+    /// <summary>
+    /// Класс для отправки запроса на отправку сообщения
+    /// </summary>
     [DataContract]
     public class SendMessageRequest : Request
     {
+        /// <summary>
+        /// Текст сообщения
+        /// </summary>
         [DataMember]
         public string Text { get; set; }
     }

@@ -10,13 +10,18 @@ namespace Library.Services
 {
     public partial class Service
     {
+        /// <summary>
+        /// Отправляет сообщение, добавляет в базу данных и возвращает результат отправки
+        /// </summary>
+        /// <param name="request">Запрос на отправку сообщения</param>
+        /// <returns>Результат отправки сообщения</returns>
         public SendMessageResponse SendMessage(SendMessageRequest request)
         {
             return Preform(() =>
             {
                 User user = context.Users.Find(request.Id);
-                context.Messages.Add(new Message() { Id = context.Messages.LongCount(), Text = request.Text, UserId = request.Id });
-                SendBroadcastEvent(new MessageSendEventArgs(request.Id, string.Format("{0} said: {1}", user?.Login, request.Text)));
+                var message = context.Messages.Add(new Message() { Id = context.Messages.LongCount(), Text = request.Text, UserId = request.Id });
+                SendBroadcastEvent(new MessageSendEventArgs(request.Id, message.ToDto()));
                 return new SendMessageResponse() { Result = Contracts.Result.Succesfully };
             });
         }

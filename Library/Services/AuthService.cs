@@ -9,9 +9,13 @@ using System.Threading.Tasks;
 
 namespace Library.Services
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public partial class Service
     {
+        /// <summary>
+        /// Авторизовывает клиента, как пользователя и возвращает результат авторизации
+        /// </summary>
+        /// <param name="request">Запрос на атворизацию</param>
+        /// <returns>Ответ на авторизацию</returns>
         public AuthResponse Authorization(AuthRequest request)
         {
             return Preform(() => 
@@ -25,12 +29,17 @@ namespace Library.Services
                 {
                     connections[user.Id] = new Connection(user.Id, connections[request.Id].Context);
                     connections.Remove(request.Id);
-                    SendBroadcastEvent(new UserConnectedEventArgs(user.Id, request.Login));
+                    SendBroadcastEvent(new UserConnectedEventArgs(user.Id, user.ToDto());
                     return new AuthResponse() { Result = Contracts.Result.Succesfully, Id = user.Id };
                 }
             });
         }
 
+        /// <summary>
+        /// Регистрирует клиента как пользователя в базе данных и возвращает результат регистрации
+        /// </summary>
+        /// <param name="request">Запрос на регистрацию</param>
+        /// <returns>Ответ на регистрацию</returns>
         public RegistrationResponse Registration(RegistrationRequest request)
         {
             return Preform(() => 
@@ -43,7 +52,7 @@ namespace Library.Services
 
                 connections[user.Id] = new Connection(user.Id, connections[request.Id].Context);
                 connections.Remove(request.Id);
-                SendBroadcastEvent(new UserConnectedEventArgs(user.Id, request.Login));
+                SendBroadcastEvent(new UserConnectedEventArgs(user.Id, user.ToDto());
                 return new RegistrationResponse() { Result = Contracts.Result.Succesfully, Id = user.Id };
             });
         }

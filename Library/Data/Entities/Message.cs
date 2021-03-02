@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Library.Data.Entities
 {
+    /// <summary>
+    /// Сущность базы данных, хранящая информацию о сообщениях
+    /// </summary>
     public class Message : IDto<MessageDto>
     {
         public long Id { get; set; }

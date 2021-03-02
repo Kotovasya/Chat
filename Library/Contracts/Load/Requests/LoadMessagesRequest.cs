@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace Library.Contracts.Load
 {
+    /// <summary>
+    /// Класс запроса для загрузки сообщений
+    /// </summary>
     [DataContract]
     public class LoadMessagesRequest : Request
     {
+        /// <summary>
+        /// Последнее сообщение, загруженное у пользователя
+        /// </summary>
         [DataMember]
         public long LastMessageId { get; set; }
     }

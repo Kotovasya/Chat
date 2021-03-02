@@ -7,9 +7,15 @@ using System.Threading.Tasks;
 
 namespace Library.Contracts.Auth
 {
+    /// <summary>
+    /// Класс, хранящий результат выполнения регистрации нового пользователя
+    /// </summary>
     [DataContract]
     public class RegistrationResponse : Response
     {
+        /// <summary>
+        /// ID нового пользователя
+        /// </summary>
         [DataMember]
         public Guid Id { get; set; }
     }

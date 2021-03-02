@@ -11,9 +11,19 @@ using System.Threading.Tasks;
 
 namespace Library.Services
 {
+    /// <summary>
+    /// Сервис, принимающий запросы и возвращающий ответы клиентам этого сервиса
+    /// </summary>
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public partial class Service : IService
     {
+        /// <summary>
+        /// Контекст базы данных
+        /// </summary>
         private readonly DatabaseContext context;
+        /// <summary>
+        /// Словарь, хранящий созданные и активные подключения в данный момент
+        /// </summary>
         private readonly Dictionary<Guid, Connection> connections;
 
 
@@ -23,6 +33,10 @@ namespace Library.Services
             connections = new Dictionary<Guid, Connection>();
         }
 
+        /// <summary>
+        /// Создает подключение нового временного клиента сервиса
+        /// </summary>
+        /// <returns>ID клиента</returns>
         public Guid Connect()
         {
             Connection connection = new Connection();
@@ -37,8 +51,14 @@ namespace Library.Services
             return connection.Id;
         }
 
+        /// <summary>
+        /// Выполняет операцию, передеваемую в метод и, в случае неудачного ее выполнения, возвращает ошибку операции
+        /// </summary>
+        /// <typeparam name="T">Класс ответа</typeparam>
+        /// <param name="method">Операция, которую необходимо выполнить</param>
+        /// <returns>Возвращает результат выполнения операции клиенту</returns>
         private T Preform<T>(Func<T> method)
-            where T : Contracts.Response, new()
+            where T : Response, new()
         {
             try
             {
@@ -47,7 +67,7 @@ namespace Library.Services
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
-                return new T() { Result = Contracts.Result.ServerException };
+                return new T() { Result = Result.ServerException };
                 throw;
             }
         }

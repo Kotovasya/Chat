@@ -7,12 +7,20 @@ using System.Threading.Tasks;
 
 namespace Library
 {
+    /// <summary>
+    /// Класс, хранящий информацию о подключенном клиенте к сервису
+    /// </summary>
     public class Connection
     {
         public Guid Id { get; set; }
         public bool IsTemporary { get; set; }
         public OperationContext Context { get; set; }
 
+        /// <summary>
+        /// Инициализирует подключение к сервису авторизованного клиента
+        /// </summary>
+        /// <param name="id">ID пользователя</param>
+        /// <param name="context">Контекст обратного вызова клиента</param>
         public Connection(Guid id, OperationContext context)
         {
             Id = id;
@@ -20,6 +28,9 @@ namespace Library
             Context = context;
         }
         
+        /// <summary>
+        /// Инициализирует экземпляр временного подключения клиента к сервису
+        /// </summary>
         public Connection()
         {
             Id = Guid.NewGuid();

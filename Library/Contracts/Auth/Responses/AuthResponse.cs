@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 
 namespace Library.Contracts.Auth
 {
+    /// <summary>
+    /// Класс хранящий результат выполнения авторизации
+    /// </summary>
     [DataContract]
     public class AuthResponse : Response
     {
-         [DataMember]
-         public Guid Id { get; set; }
+        /// <summary>
+        /// ID пользователя, полученный из базы данных
+        /// </summary>
+        [DataMember]
+        public Guid Id { get; set; }
     }
 }

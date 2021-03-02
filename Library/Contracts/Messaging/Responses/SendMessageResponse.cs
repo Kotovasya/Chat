@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Library.Contracts.Messaging
 {
+    /// <summary>
+    /// Класс, хранящий результат отправки сообщения
+    /// </summary>
     [DataContract]
     public class SendMessageResponse : Response
     {
