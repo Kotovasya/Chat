@@ -40,6 +40,7 @@ namespace Library.Services
         public Guid Connect()
         {
             Connection connection = new Connection();
+            connections.Add(connection.Id, connection);
             try
             {
                 connections.Add(connection.Id, connection);
@@ -49,6 +50,15 @@ namespace Library.Services
                 Console.WriteLine(ex);
             }
             return connection.Id;
+        }
+
+        /// <summary>
+        /// Вызывается для обозначения, что клиент отключился от сервера
+        /// </summary>
+        /// <param name="id">ID отключившегося клиента</param>
+        public void Disconnect(Guid id)
+        {
+            connections.Remove(id);
         }
 
         /// <summary>

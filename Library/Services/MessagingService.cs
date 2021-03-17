@@ -19,9 +19,11 @@ namespace Library.Services
         {
             return Preform(() =>
             {
-                User user = context.Users.Find(request.Id);
+                var user = context.Users.Find(request.Id);
                 var message = context.Messages.Add(new Message() { Id = context.Messages.LongCount(), Text = request.Text, UserId = request.Id });
-                SendBroadcastEvent(new MessageSendEventArgs(request.Id, message.ToDto()));
+                user.Messages.Add(message);
+                context.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
                 return new SendMessageResponse() { Result = Contracts.Result.Succesfully };
             });
         }

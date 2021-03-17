@@ -14,6 +14,8 @@ namespace Library.Contracts.DTO
     public class MessageDto
     {
         [DataMember]
+        public long Id { get; set; }
+        [DataMember]
         public UserDto Author { get; set; }
         [DataMember]
         public string Text { get; set; }
@@ -23,6 +25,11 @@ namespace Library.Contracts.DTO
         /// </summary>
         /// <param name="author">Автор сообщения</param>
         /// <param name="text">Текст сообщения</param>
+        public MessageDto(long id, UserDto author, string text)
+        {
+            Id = id;
+        }
+
         public MessageDto(UserDto author, string text)
         {
             Author = author;

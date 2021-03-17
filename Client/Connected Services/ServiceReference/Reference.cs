@@ -15,11 +15,11 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Request", Namespace="http://schemas.datacontract.org/2004/07/Library.Requests")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Request", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.SendMessageRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadMessagesRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.AuthRequest))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.RegistrationRequest))]
     public partial class Request : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -63,7 +63,7 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SendMessageRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Requests.Messaging")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SendMessageRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging")]
     [System.SerializableAttribute()]
     public partial class SendMessageRequest : Client.ServiceReference.Request {
         
@@ -86,7 +86,30 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AuthRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Requests.Auth")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadMessagesRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
+    [System.SerializableAttribute()]
+    public partial class LoadMessagesRequest : Client.ServiceReference.Request {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long LastMessageIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long LastMessageId {
+            get {
+                return this.LastMessageIdField;
+            }
+            set {
+                if ((this.LastMessageIdField.Equals(value) != true)) {
+                    this.LastMessageIdField = value;
+                    this.RaisePropertyChanged("LastMessageId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AuthRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth")]
     [System.SerializableAttribute()]
     public partial class AuthRequest : Client.ServiceReference.Request {
         
@@ -125,50 +148,11 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RegistrationRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Requests.Auth")]
-    [System.SerializableAttribute()]
-    public partial class RegistrationRequest : Client.ServiceReference.Request {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LoginField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Login {
-            get {
-                return this.LoginField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
-                    this.LoginField = value;
-                    this.RaisePropertyChanged("Login");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
-            get {
-                return this.PasswordField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/Library.Responses")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.SendMessageResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadMessagesResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.AuthResponse))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.RegistrationResponse))]
     public partial class Response : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -212,14 +196,37 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SendMessageResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Responses.Messaging")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SendMessageResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging")]
     [System.SerializableAttribute()]
     public partial class SendMessageResponse : Client.ServiceReference.Response {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AuthResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Responses.Auth")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadMessagesResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
+    [System.SerializableAttribute()]
+    public partial class LoadMessagesResponse : Client.ServiceReference.Response {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.ServiceReference.MessageDto[] MessagesField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.ServiceReference.MessageDto[] Messages {
+            get {
+                return this.MessagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
+                    this.MessagesField = value;
+                    this.RaisePropertyChanged("Messages");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AuthResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth")]
     [System.SerializableAttribute()]
     public partial class AuthResponse : Client.ServiceReference.Response {
         
@@ -240,31 +247,8 @@ namespace Client.ServiceReference {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RegistrationResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Responses.Auth")]
-    [System.SerializableAttribute()]
-    public partial class RegistrationResponse : Client.ServiceReference.Response {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid IdField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Result", Namespace="http://schemas.datacontract.org/2004/07/Library.Responses")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Result", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts")]
     public enum Result : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -288,7 +272,145 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ServerEventArgs", Namespace="http://schemas.datacontract.org/2004/07/Library.Events")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MessageDto", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO")]
+    [System.SerializableAttribute()]
+    public partial class MessageDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.ServiceReference.UserDto AuthorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TextField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.ServiceReference.UserDto Author {
+            get {
+                return this.AuthorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AuthorField, value) != true)) {
+                    this.AuthorField = value;
+                    this.RaisePropertyChanged("Author");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Text {
+            get {
+                return this.TextField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TextField, value) != true)) {
+                    this.TextField = value;
+                    this.RaisePropertyChanged("Text");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserDto", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO")]
+    [System.SerializableAttribute()]
+    public partial class UserDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServerEventArgs", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts")]
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.MessageSendEventArgs))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.UserConnectedEventArgs))]
@@ -335,22 +457,22 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MessageSendEventArgs", Namespace="http://schemas.datacontract.org/2004/07/Library.Events.Messaging")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MessageSendEventArgs", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging")]
     [System.SerializableAttribute()]
     public partial class MessageSendEventArgs : Client.ServiceReference.ServerEventArgs {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TextField;
+        private Client.ServiceReference.MessageDto MessageField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Text {
+        public Client.ServiceReference.MessageDto Message {
             get {
-                return this.TextField;
+                return this.MessageField;
             }
             set {
-                if ((object.ReferenceEquals(this.TextField, value) != true)) {
-                    this.TextField = value;
-                    this.RaisePropertyChanged("Text");
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
                 }
             }
         }
@@ -358,22 +480,22 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="UserConnectedEventArgs", Namespace="http://schemas.datacontract.org/2004/07/Library.Events.Auth")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserConnectedEventArgs", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth")]
     [System.SerializableAttribute()]
     public partial class UserConnectedEventArgs : Client.ServiceReference.ServerEventArgs {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LoginField;
+        private Client.ServiceReference.UserDto UserField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Login {
+        public Client.ServiceReference.UserDto User {
             get {
-                return this.LoginField;
+                return this.UserField;
             }
             set {
-                if ((object.ReferenceEquals(this.LoginField, value) != true)) {
-                    this.LoginField = value;
-                    this.RaisePropertyChanged("Login");
+                if ((object.ReferenceEquals(this.UserField, value) != true)) {
+                    this.UserField = value;
+                    this.RaisePropertyChanged("User");
                 }
             }
         }
@@ -384,16 +506,22 @@ namespace Client.ServiceReference {
     public interface IService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Registration", ReplyAction="http://tempuri.org/IService/RegistrationResponse")]
-        Client.ServiceReference.RegistrationResponse Registration(Client.ServiceReference.RegistrationRequest request);
+        Client.ServiceReference.AuthResponse Registration(Client.ServiceReference.AuthRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Registration", ReplyAction="http://tempuri.org/IService/RegistrationResponse")]
-        System.Threading.Tasks.Task<Client.ServiceReference.RegistrationResponse> RegistrationAsync(Client.ServiceReference.RegistrationRequest request);
+        System.Threading.Tasks.Task<Client.ServiceReference.AuthResponse> RegistrationAsync(Client.ServiceReference.AuthRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Authorization", ReplyAction="http://tempuri.org/IService/AuthorizationResponse")]
         Client.ServiceReference.AuthResponse Authorization(Client.ServiceReference.AuthRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Authorization", ReplyAction="http://tempuri.org/IService/AuthorizationResponse")]
         System.Threading.Tasks.Task<Client.ServiceReference.AuthResponse> AuthorizationAsync(Client.ServiceReference.AuthRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoadMessages", ReplyAction="http://tempuri.org/IService/LoadMessagesResponse")]
+        Client.ServiceReference.LoadMessagesResponse LoadMessages(Client.ServiceReference.LoadMessagesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoadMessages", ReplyAction="http://tempuri.org/IService/LoadMessagesResponse")]
+        System.Threading.Tasks.Task<Client.ServiceReference.LoadMessagesResponse> LoadMessagesAsync(Client.ServiceReference.LoadMessagesRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendMessage", ReplyAction="http://tempuri.org/IService/SendMessageResponse")]
         Client.ServiceReference.SendMessageResponse SendMessage(Client.ServiceReference.SendMessageRequest request);
@@ -406,6 +534,12 @@ namespace Client.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Connect", ReplyAction="http://tempuri.org/IService/ConnectResponse")]
         System.Threading.Tasks.Task<System.Guid> ConnectAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Disconnect", ReplyAction="http://tempuri.org/IService/DisconnectResponse")]
+        void Disconnect(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Disconnect", ReplyAction="http://tempuri.org/IService/DisconnectResponse")]
+        System.Threading.Tasks.Task DisconnectAsync(System.Guid id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -416,6 +550,9 @@ namespace Client.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/OnMessageSend")]
         void OnMessageSend(Client.ServiceReference.MessageSendEventArgs args);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/OnUserDiconnected")]
+        void OnUserDiconnected(Client.ServiceReference.ServerEventArgs args);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -446,11 +583,11 @@ namespace Client.ServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public Client.ServiceReference.RegistrationResponse Registration(Client.ServiceReference.RegistrationRequest request) {
+        public Client.ServiceReference.AuthResponse Registration(Client.ServiceReference.AuthRequest request) {
             return base.Channel.Registration(request);
         }
         
-        public System.Threading.Tasks.Task<Client.ServiceReference.RegistrationResponse> RegistrationAsync(Client.ServiceReference.RegistrationRequest request) {
+        public System.Threading.Tasks.Task<Client.ServiceReference.AuthResponse> RegistrationAsync(Client.ServiceReference.AuthRequest request) {
             return base.Channel.RegistrationAsync(request);
         }
         
@@ -460,6 +597,14 @@ namespace Client.ServiceReference {
         
         public System.Threading.Tasks.Task<Client.ServiceReference.AuthResponse> AuthorizationAsync(Client.ServiceReference.AuthRequest request) {
             return base.Channel.AuthorizationAsync(request);
+        }
+        
+        public Client.ServiceReference.LoadMessagesResponse LoadMessages(Client.ServiceReference.LoadMessagesRequest request) {
+            return base.Channel.LoadMessages(request);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ServiceReference.LoadMessagesResponse> LoadMessagesAsync(Client.ServiceReference.LoadMessagesRequest request) {
+            return base.Channel.LoadMessagesAsync(request);
         }
         
         public Client.ServiceReference.SendMessageResponse SendMessage(Client.ServiceReference.SendMessageRequest request) {
@@ -476,6 +621,14 @@ namespace Client.ServiceReference {
         
         public System.Threading.Tasks.Task<System.Guid> ConnectAsync() {
             return base.Channel.ConnectAsync();
+        }
+        
+        public void Disconnect(System.Guid id) {
+            base.Channel.Disconnect(id);
+        }
+        
+        public System.Threading.Tasks.Task DisconnectAsync(System.Guid id) {
+            return base.Channel.DisconnectAsync(id);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Library.Data.Entities
 
         public MessageDto ToDto()
         {
-            return new MessageDto(User.ToDto(), Text);
+            return new MessageDto(Id, User.ToDto(), Text);
         }
     }
 }

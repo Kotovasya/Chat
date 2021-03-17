@@ -7,7 +7,7 @@ namespace Library.Services.Interfaces
     public partial interface IService
     {
         [OperationContract]
-        RegistrationResponse Registration(RegistrationRequest request);
+        AuthResponse Registration(AuthRequest request);
 
         [OperationContract]
         AuthResponse Authorization(AuthRequest request);

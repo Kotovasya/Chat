@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
@@ -12,10 +13,14 @@ namespace Library.Services.Interfaces
     {
         [OperationContract]
         Guid Connect();
+
+        [OperationContract]
+        void Disconnect(Guid id);
     }
 
     public partial interface IServiceCallback
     {
-
+        [OperationContract(IsOneWay = true)]
+        void OnUserDiconnected(ServerEventArgs args);
     }
 }
