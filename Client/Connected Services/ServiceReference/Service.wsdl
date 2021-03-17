@@ -33,16 +33,12 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Library.Requests.Auth" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Library.Requests" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Library.Responses.Auth" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Library.Responses" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Library.Requests.Messaging" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Library.Responses.Messaging" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Library.Events.Auth" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Library.Events" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/System" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/Library.Events.Messaging" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_Registration_InputMessage">
@@ -57,6 +53,12 @@
   <wsdl:message name="IService_Authorization_OutputMessage">
     <wsdl:part name="parameters" element="tns:AuthorizationResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_LoadMessages_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMessages" />
+  </wsdl:message>
+  <wsdl:message name="IService_LoadMessages_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadMessagesResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
   </wsdl:message>
@@ -69,11 +71,20 @@
   <wsdl:message name="IService_Connect_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConnectResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_Disconnect_InputMessage">
+    <wsdl:part name="parameters" element="tns:Disconnect" />
+  </wsdl:message>
+  <wsdl:message name="IService_Disconnect_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_OnUserConnected_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnUserConnected" />
   </wsdl:message>
   <wsdl:message name="IService_OnMessageSend_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnMessageSend" />
+  </wsdl:message>
+  <wsdl:message name="IService_OnUserDiconnected_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnUserDiconnected" />
   </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="Registration">
@@ -84,6 +95,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/Authorization" message="tns:IService_Authorization_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/AuthorizationResponse" message="tns:IService_Authorization_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="LoadMessages">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/LoadMessages" message="tns:IService_LoadMessages_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/LoadMessagesResponse" message="tns:IService_LoadMessages_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/SendMessage" message="tns:IService_SendMessage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/SendMessageResponse" message="tns:IService_SendMessage_OutputMessage" />
@@ -92,11 +107,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/Connect" message="tns:IService_Connect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/ConnectResponse" message="tns:IService_Connect_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Disconnect" message="tns:IService_Disconnect_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DisconnectResponse" message="tns:IService_Disconnect_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="OnUserConnected">
       <wsdl:output wsaw:Action="http://tempuri.org/IService/OnUserConnected" message="tns:IService_OnUserConnected_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="OnMessageSend">
       <wsdl:output wsaw:Action="http://tempuri.org/IService/OnMessageSend" message="tns:IService_OnMessageSend_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnUserDiconnected">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OnUserDiconnected" message="tns:IService_OnUserDiconnected_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IService" type="tns:IService">
@@ -113,6 +135,15 @@
     </wsdl:operation>
     <wsdl:operation name="Authorization">
       <soap12:operation soapAction="http://tempuri.org/IService/Authorization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadMessages">
+      <soap12:operation soapAction="http://tempuri.org/IService/LoadMessages" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -138,6 +169,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="Disconnect">
+      <soap12:operation soapAction="http://tempuri.org/IService/Disconnect" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="OnUserConnected">
       <soap12:operation soapAction="http://tempuri.org/IService/OnUserConnected" style="document" />
       <wsdl:output>
@@ -146,6 +186,12 @@
     </wsdl:operation>
     <wsdl:operation name="OnMessageSend">
       <soap12:operation soapAction="http://tempuri.org/IService/OnMessageSend" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnUserDiconnected">
+      <soap12:operation soapAction="http://tempuri.org/IService/OnUserDiconnected" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

@@ -24,6 +24,7 @@ namespace Library.Data.Entities
         public User()
         {
             Id = Guid.NewGuid();
+            Messages = new HashSet<Message>();
             Messages = new List<Message>();
         }
 

@@ -18,12 +18,17 @@ namespace Library.Services
         {
             return Preform(() =>
             {
-                var messages = context.Messages.Reverse()
+                var messages = request.LastMessageId == -1 ?
+                    context.Messages.OrderByDescending(m => m.Id)
+                    .Take(50)
+                    .AsEnumerable()
+                    .Select(m => m.ToDto())
+                    : context.Messages.OrderByDescending(m => m.Id)
                     .SkipWhile((m, i) => m.Id > request.LastMessageId && i != 0)
                     .Take(50)
-                    .Select(m => m.ToDto())
-                    .ToList();
-                return new LoadMessagesResponse() { Result = Contracts.Result.Succesfully, Messages = messages };
+                    .AsEnumerable()
+                    .Select(m => m.ToDto());
+                return new LoadMessagesResponse() { Result = Contracts.Result.Succesfully, Messages = messages.ToList() };
             });
         }
     }
