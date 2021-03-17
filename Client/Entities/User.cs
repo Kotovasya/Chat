@@ -14,6 +14,7 @@ namespace Client.Entities
     {
         private Guid id;
         private string name;
+        private bool online;
 
         public Guid Id
         {
@@ -35,14 +36,29 @@ namespace Client.Entities
             }
         }
 
+        public bool Online
+        {
+            get { return online; }
+            set
+            {
+                online = value;
+                OnPropertyChanged("Online");
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ClientControl Control { get; set; }
 
         public User(ServiceReference.UserDto user)
+            : this(user.Id, user.Name, true)
+        { }
+
+        public User(Guid id, string name, bool isOnline)
         {
-            id = user.Id;
-            name = user.Name;
+            this.id = id;
+            this.name = name;
+            online = isOnline;
         }
 
         public ClientControl ToControl()

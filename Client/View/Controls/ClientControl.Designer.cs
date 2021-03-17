@@ -30,26 +30,39 @@ namespace Client.View.Controls
         private void InitializeComponent()
         {
             this.userNameLabel = new System.Windows.Forms.Label();
+            this.onlinePicture = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.onlinePicture)).BeginInit();
             this.SuspendLayout();
             // 
             // userNameLabel
             // 
             this.userNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.userNameLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.userNameLabel.Location = new System.Drawing.Point(0, 5);
+            this.userNameLabel.Location = new System.Drawing.Point(32, 5);
             this.userNameLabel.Name = "userNameLabel";
-            this.userNameLabel.Size = new System.Drawing.Size(135, 23);
+            this.userNameLabel.Size = new System.Drawing.Size(103, 23);
             this.userNameLabel.TabIndex = 0;
             this.userNameLabel.Text = "Kotovasya";
             this.userNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // onlinePicture
+            // 
+            this.onlinePicture.Image = global::Client.Properties.Resources.offline;
+            this.onlinePicture.Location = new System.Drawing.Point(7, 8);
+            this.onlinePicture.Name = "onlinePicture";
+            this.onlinePicture.Size = new System.Drawing.Size(16, 16);
+            this.onlinePicture.TabIndex = 1;
+            this.onlinePicture.TabStop = false;
             // 
             // ClientControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.onlinePicture);
             this.Controls.Add(this.userNameLabel);
             this.Name = "ClientControl";
             this.Size = new System.Drawing.Size(138, 32);
+            ((System.ComponentModel.ISupportInitialize)(this.onlinePicture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -57,5 +70,6 @@ namespace Client.View.Controls
         #endregion
 
         private System.Windows.Forms.Label userNameLabel;
+        private System.Windows.Forms.PictureBox onlinePicture;
     }
 }

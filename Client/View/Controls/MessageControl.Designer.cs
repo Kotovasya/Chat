@@ -29,24 +29,24 @@ namespace Client.View.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.timeLabel = new System.Windows.Forms.Label();
+            this.dateLabel = new System.Windows.Forms.Label();
             this.textLabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.authorLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // timeLabel
+            // dateLabel
             // 
-            this.timeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.timeLabel.AutoSize = true;
-            this.timeLabel.BackColor = System.Drawing.SystemColors.Control;
-            this.timeLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.timeLabel.Location = new System.Drawing.Point(64, 1);
-            this.timeLabel.Name = "timeLabel";
-            this.timeLabel.Size = new System.Drawing.Size(34, 15);
-            this.timeLabel.TabIndex = 0;
-            this.timeLabel.Text = "20:20";
+            this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateLabel.AutoSize = true;
+            this.dateLabel.BackColor = System.Drawing.SystemColors.Control;
+            this.dateLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dateLabel.Location = new System.Drawing.Point(64, 1);
+            this.dateLabel.Name = "dateLabel";
+            this.dateLabel.Size = new System.Drawing.Size(34, 15);
+            this.dateLabel.TabIndex = 0;
+            this.dateLabel.Text = "20:20";
             // 
             // textLabel
             // 
@@ -64,7 +64,7 @@ namespace Client.View.Controls
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
             this.panel1.Controls.Add(this.authorLabel);
-            this.panel1.Controls.Add(this.timeLabel);
+            this.panel1.Controls.Add(this.dateLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -100,7 +100,7 @@ namespace Client.View.Controls
 
         #endregion
 
-        private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.Label dateLabel;
         private System.Windows.Forms.Label textLabel;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label authorLabel;

@@ -14,12 +14,20 @@ namespace Client.Model
 
         public void OnMessageSend(MessageSendEventArgs args)
         {
-            Model.Messages?.Add(args.Message.Id, new Message(args.Message));
+            Message message = new Message(args.Message);
+            if (!Model.Users.ContainsKey(args.Id))
+                Model.Users.Add(args.Id, new User(args.Id, args.Message.Author.Name, false));
+
+            message.Author = Model.Users[args.Id];
+            Model.Messages.Add(args.Message.Id, message);
         }
 
         public void OnUserConnected(UserConnectedEventArgs args)
         {
-            Model.Users?.Add(args.Id, new User(args.User));
+            if (Model.Users.ContainsKey(args.Id))
+                Model.Users[args.Id].Online = true;
+            else
+                Model.Users.Add(args.Id, new User(args.User));
         }
 
         public void OnUserDiconnected(ServerEventArgs args)

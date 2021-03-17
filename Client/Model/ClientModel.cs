@@ -14,8 +14,8 @@ namespace Client.Model
     public class ClientModel : ServiceClient
     {
         private static readonly ClientCallbacks instance = new ClientCallbacks();
-        public SourceList<long, Entities.Message> Messages { get; set; }
-        public SourceList<Guid, User> Users { get; set; }
+        public SourceList<long, Entities.Message> Messages { get; private set; }
+        public SourceList<Guid, User> Users { get; private set; }
 
         public Guid Id { get; set; }
 
@@ -23,6 +23,8 @@ namespace Client.Model
             : base(new InstanceContext(instance))
         {
             instance.Model = this;
+            Messages = new SourceList<long, Entities.Message>();
+            Users = new SourceList<Guid, User>();
             try
             {
                 Id = Connect();

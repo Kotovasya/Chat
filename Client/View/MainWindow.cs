@@ -26,11 +26,11 @@ namespace Client.View
             this.model = model;
             InitializeComponent();
 
-            model.Messages = new SourceList<long, Entities.Message>(messagesContainer.Controls);
+            model.Messages.Collection = messagesContainer.Controls;
             model.Messages.ControlRemoving += messageContainer_ControlRemoving;
             model.Messages.ControlSizeChanged += messageContainer_ControlSizeChanged;
 
-            model.Users = new SourceList<Guid, Entities.User>(usersContainer.Controls);
+            model.Users.Collection = usersContainer.Controls;
             model.Users.ControlRemoving += usersContainer_ControlRemoving;
         }
 

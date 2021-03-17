@@ -14,7 +14,7 @@ namespace Client.Entities
     public class Message : IToControl<MessageControl>, INotifyPropertyChanged
     {
         private string text;
-        private UserDto author;
+        private User author;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -32,7 +32,7 @@ namespace Client.Entities
             }
         }
 
-        public UserDto Author
+        public User Author
         {
             get { return author; }
             set
@@ -46,7 +46,6 @@ namespace Client.Entities
         {
             Id = messageDto.Id;
             text = messageDto.Text;
-            author = messageDto.Author;
         }
 
         public MessageControl ToControl()
