@@ -14,11 +14,21 @@ namespace Client.Binding
         where TValue : IToControl<UserControl>, INotifyPropertyChanged
     {
         private readonly Dictionary<TKey, TValue> entites;
+        private Control.ControlCollection collection;
 
         public EventHandler<ControlEventArgs> ControlRemoving;
         public EventHandler<ControlEventArgs> ControlSizeChanged;
 
-        public Control.ControlCollection Collection { get; set; }
+        public Control.ControlCollection Collection
+        {
+            get { return collection; }
+            set 
+            { 
+                collection = value;
+                foreach (var kvp in entites)
+                    AddControl(kvp.Value);
+            }
+        }
 
         public TValue this[TKey key]
         {
@@ -32,10 +42,16 @@ namespace Client.Binding
 
         public void Add(TKey key, TValue value)
         {
+            if (collection != null)
+                AddControl(value);
+            entites.Add(key, value);
+        }
+
+        private void AddControl(TValue value)
+        {
             UserControl control = value.ToControl();
             control.SizeChanged += Control_SizeChanged;
             Collection?.Add(control);
-            entites.Add(key, value);
         }
 
         private void Control_SizeChanged(object sender, EventArgs e)

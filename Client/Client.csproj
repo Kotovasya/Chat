@@ -66,6 +66,7 @@
     </Compile>
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Extensions\BindingExtension.cs" />
     <Compile Include="Extensions\ShiftControlsExtension.cs" />
     <Compile Include="Model\ClientCallbacks.cs" />
     <Compile Include="Model\ClientModel.cs" />

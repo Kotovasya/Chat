@@ -1,4 +1,5 @@
-﻿using Client.Properties;
+﻿using Client.Extensions;
+using Client.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,11 +22,8 @@ namespace Client.View.Controls
         public ClientControl(Entities.User user)
             : this()
         {
-            userNameLabel.DataBindings.Add(new System.Windows.Forms.Binding("Text", user, "Name"));
-
-            System.Windows.Forms.Binding binding = new System.Windows.Forms.Binding("Image", user, "Online");
-            binding.Format += ConvertOnlineToPicture;
-            onlinePicture.DataBindings.Add(binding);
+            userNameLabel.CreateBinding("Text", user, "Name");
+            onlinePicture.CreateBinding("Image", user, "Online", ConvertOnlineToPicture);
         }
 
         private void ConvertOnlineToPicture(object sender, ConvertEventArgs e)

@@ -13,6 +13,7 @@ namespace Library.Contracts.Messaging
     [DataContract]
     public class SendMessageResponse : Response
     {
-
+        [DataMember]
+        public long MessageId { get; set; }
     }
 }

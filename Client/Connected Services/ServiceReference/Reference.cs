@@ -199,6 +199,22 @@ namespace Client.ServiceReference {
     [System.Runtime.Serialization.DataContractAttribute(Name="SendMessageResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging")]
     [System.SerializableAttribute()]
     public partial class SendMessageResponse : Client.ServiceReference.Response {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private long MessageIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public long MessageId {
+            get {
+                return this.MessageIdField;
+            }
+            set {
+                if ((this.MessageIdField.Equals(value) != true)) {
+                    this.MessageIdField = value;
+                    this.RaisePropertyChanged("MessageId");
+                }
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

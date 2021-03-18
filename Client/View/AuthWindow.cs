@@ -55,6 +55,8 @@ namespace Client.View
             if (response.Result == Result.Succesfully)
             {
                 model.Id = response.Id;
+                model.Name = loginTextbox.Text;
+                model.Users.Add(model.Id, new Entities.User(model.Id, model.Name, true));
                 var mainWindow = new MainWindow(this, model);
                 mainWindow.Show();
                 Hide();

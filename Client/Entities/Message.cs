@@ -48,6 +48,13 @@ namespace Client.Entities
             text = messageDto.Text;
         }
 
+        public Message(long id, string text, User author)
+        {
+            Id = id;
+            this.text = text;
+            this.author = author;
+        }
+
         public MessageControl ToControl()
         {
             Control = new MessageControl(this);

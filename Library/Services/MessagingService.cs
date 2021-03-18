@@ -24,7 +24,7 @@ namespace Library.Services
                 user.Messages.Add(message);
                 context.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
-                return new SendMessageResponse() { Result = Contracts.Result.Succesfully };
+                return new SendMessageResponse() { Result = Contracts.Result.Succesfully, MessageId = message.Id };
             });
         }
     }

@@ -15,7 +15,9 @@
   <xs:complexType name="SendMessageResponse">
     <xs:complexContent mixed="false">
       <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Library.Contracts" base="q2:Response">
-        <xs:sequence />
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MessageId" type="xs:long" />
+        </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>

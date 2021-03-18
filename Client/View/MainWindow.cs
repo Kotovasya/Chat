@@ -41,7 +41,7 @@ namespace Client.View
                 var response = model.SendMessage(new SendMessageRequest() { Id = model.Id, Text = messageBox.Text });
                 if (response.Result == Result.Succesfully)
                 {
-                    
+                    model.Messages.Add(response.MessageId, new Entities.Message(response.MessageId, messageBox.Text, model.Users[model.Id]));
                 }
             }
         }
@@ -50,9 +50,17 @@ namespace Client.View
 
         private void messagesContainer_ControlAdded(object sender, ControlEventArgs e)
         {
+            int x = e.Control.Location.X;
+            var control = (MessageControl)e.Control;
+            if (control.Message.Author.Id == model.Id)
+            {
+                control.BackColor = Color.Aqua;
+                x = messagesContainer.Width - control.Width;
+            }
+
             var lastControl = model.Messages.Last()?.Control;
             if (lastControl != null)
-                e.Control.Location = new Point(lastControl.Location.X, lastControl.Location.Y + lastControl.Height + 2);
+                e.Control.Location = new Point(x, lastControl.Location.Y + lastControl.Height + 2);
         }
 
         private void messageContainer_ControlRemoving(object sender, ControlEventArgs e)
@@ -62,6 +70,10 @@ namespace Client.View
 
         private void messageContainer_ControlSizeChanged(object sender, ControlEventArgs e)
         {
+            MessageControl editedControl = (MessageControl)e.Control;
+            if (editedControl.Message.Author.Id == model.Id)
+                editedControl.Location = new Point(messagesContainer.Width - editedControl.Width, editedControl.Location.Y);
+
             Control lastControl = e.Control;
             int index = messagesContainer.Controls.IndexOf(e.Control);
             for (int i = ++index; i < messagesContainer.Controls.Count; i++)

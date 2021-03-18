@@ -18,6 +18,7 @@ namespace Client.Model
         public SourceList<Guid, User> Users { get; private set; }
 
         public Guid Id { get; set; }
+        public string Name { get; set; }
 
         public ClientModel() 
             : base(new InstanceContext(instance))
