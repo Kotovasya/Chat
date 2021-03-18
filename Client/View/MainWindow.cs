@@ -65,7 +65,7 @@ namespace Client.View
 
         private void messageContainer_ControlRemoving(object sender, ControlEventArgs e)
         {
-            messagesContainer.Controls.ControlRemove(e);
+            messagesContainer.Controls.ControlRemove(e.Control);
         }
 
         private void messageContainer_ControlSizeChanged(object sender, ControlEventArgs e)
@@ -90,7 +90,7 @@ namespace Client.View
 
         private void usersContainer_ControlRemoving(object sender, ControlEventArgs e)
         {
-            usersContainer.Controls.ControlRemove(e);
+            usersContainer.Controls.ControlRemove(e.Control);
         }
 
         #endregion

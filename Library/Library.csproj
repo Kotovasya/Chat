@@ -74,6 +74,10 @@
     <Compile Include="Migrations\202102262000318_AddMessagingMigration.designer.cs">
       <DependentUpon>202102262000318_AddMessagingMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202103182229092_AddMessageDate.cs" />
+    <Compile Include="Migrations\202103182229092_AddMessageDate.designer.cs">
+      <DependentUpon>202103182229092_AddMessageDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contracts\Messaging\Requests\SendMessageRequest.cs" />
     <Compile Include="Contracts\Messaging\Responses\SendMessageResponse.cs" />
@@ -104,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202102262000318_AddMessagingMigration.resx">
       <DependentUpon>202102262000318_AddMessagingMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202103182229092_AddMessageDate.resx">
+      <DependentUpon>202103182229092_AddMessageDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

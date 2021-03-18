@@ -20,7 +20,13 @@ namespace Library.Services
             return Preform(() =>
             {
                 var user = context.Users.Find(request.Id);
-                var message = context.Messages.Add(new Message() { Id = context.Messages.LongCount(), Text = request.Text, UserId = request.Id });
+                var message = context.Messages.Add(new Message() 
+                { 
+                    Id = context.Messages.LongCount(), 
+                    Text = request.Text, 
+                    UserId = request.Id, 
+                    Date = DateTime.UtcNow 
+                });
                 user.Messages.Add(message);
                 context.Entry(user).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
