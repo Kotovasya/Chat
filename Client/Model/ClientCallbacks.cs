@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Client.Model
 {
+    /// <summary>
+    /// Класс, служащий для обработки запросов с сервера и добавления их в модель
+    /// </summary>
     public class ClientCallbacks : IServiceCallback
     {
         public ClientModel Model { get; set; }

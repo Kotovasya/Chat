@@ -11,13 +11,31 @@ using System.Windows.Forms;
 
 namespace Client.Model
 {
+    /// <summary>
+    /// Модель, служащая для хранения данных с сервера
+    /// </summary>
     public class ClientModel : ServiceClient
     {
+        /// <summary>
+        /// Экземпляр объекта, принимающий данные с сервера
+        /// </summary>
         private static readonly ClientCallbacks instance = new ClientCallbacks();
+        /// <summary>
+        /// Словарь, хранящий информацию о всех сообщениях
+        /// </summary>
         public SourceList<long, Entities.Message> Messages { get; private set; }
+        /// <summary>
+        /// Словарь, хранящий информацию о всех пользователях
+        /// </summary>
         public SourceList<Guid, User> Users { get; private set; }
 
+        /// <summary>
+        /// ID пользователя
+        /// </summary>
         public Guid Id { get; set; }
+        /// <summary>
+        /// Имя пользователя
+        /// </summary>
         public string Name { get; set; }
 
         public ClientModel() 

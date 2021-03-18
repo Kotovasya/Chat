@@ -9,6 +9,11 @@ using System.Collections;
 
 namespace Client.Binding
 {
+    /// <summary>
+    /// Словарь, хранящий сущности и служащий для уведомления UI об их изменениях
+    /// </summary>
+    /// <typeparam name="TKey">Ключ (ID) сущности</typeparam>
+    /// <typeparam name="TValue">Сущность</typeparam>
     public class SourceList<TKey, TValue> : IDictionary<TKey, TValue>
         where TKey : IEquatable<TKey>
         where TValue : IToControl<UserControl>, INotifyPropertyChanged
@@ -16,9 +21,18 @@ namespace Client.Binding
         private readonly Dictionary<TKey, TValue> entites;
         private Control.ControlCollection collection;
 
+        /// <summary>
+        /// Событие, возникающее при удалении UI Control'a сущности
+        /// </summary>
         public EventHandler<ControlEventArgs> ControlRemoving;
+        /// <summary>
+        /// Событие, возникающее при изменении размеров UI Control'a сущности
+        /// </summary>
         public EventHandler<ControlEventArgs> ControlSizeChanged;
 
+        /// <summary>
+        /// Коллекция, хранящая UI Controls сущностей. При наличии сущностей в словаре, добавляет их UI Control в установленную коллекцию
+        /// </summary>
         public Control.ControlCollection Collection
         {
             get { return collection; }
@@ -35,11 +49,19 @@ namespace Client.Binding
             get => entites[key];
         }
 
+        /// <summary>
+        /// Инициализирует экземпляр словаря, без привязки к коллекции Controls
+        /// </summary>
         public SourceList()
         {
             entites = new Dictionary<TKey, TValue>();
         }
 
+        /// <summary>
+        /// Добавляет новую сущность в словарь, а так же, при наличии привязки к ControlsCollection, добавляет ее UI Control в коллекцию
+        /// </summary>
+        /// <param name="key">Ключ (ID) сущности</param>
+        /// <param name="value">Экземпляр сущности</param>
         public void Add(TKey key, TValue value)
         {
             if (collection != null)
@@ -47,6 +69,10 @@ namespace Client.Binding
             entites.Add(key, value);
         }
 
+        /// <summary>
+        /// Добавляет UI Control сущности в ControlCollection
+        /// </summary>
+        /// <param name="value"></param>
         private void AddControl(TValue value)
         {
             UserControl control = value.ToControl();
@@ -54,21 +80,36 @@ namespace Client.Binding
             Collection?.Add(control);
         }
 
-        private void Control_SizeChanged(object sender, EventArgs e)
-        {
-            ControlSizeChanged?.Invoke(sender, new ControlEventArgs((UserControl)sender));
-        }
-
+        /// <summary>
+        /// Удаляет сущность и ее UI Control по ее ключу в словаре. Возвращает false, если сущности в словари нет, иначе true
+        /// </summary>
+        /// <param name="key">Ключ (ID) сущности</param>
+        /// <returns>Результат удаления сущности</returns>
         public bool Remove(TKey key)
         {
             ControlRemoving?.Invoke(this, new ControlEventArgs(entites[key].Control));
-            Collection?.Remove(entites[key].Control);
+            if (Collection != null && Collection.Contains(entites[key].Control))
+                Collection.Remove(entites[key].Control);
             return entites.Remove(key);
         }
 
+        /// <summary>
+        /// Возвращает последнюю добавленную сущность в словарь
+        /// </summary>
+        /// <returns>Последння добавленная сущность в словаре</returns>
         public TValue Last()
         {
             return entites.Any() ? entites.Last().Value : default;
+        }
+
+        /// <summary>
+        /// Обработчик события, вызывающийся при изменении размеров одного из UI Control в коллекции
+        /// </summary>
+        /// <param name="sender">UI Control, вызвавший изменения</param>
+        /// <param name="e">Аргументы события</param>
+        private void Control_SizeChanged(object sender, EventArgs e)
+        {
+            ControlSizeChanged?.Invoke(sender, new ControlEventArgs((Control)sender));
         }
 
         #region IDictionary realization

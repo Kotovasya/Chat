@@ -11,6 +11,9 @@ using System.Runtime.CompilerServices;
 
 namespace Client.Entities
 {
+    /// <summary>
+    /// Сущность сообщения, хранящиая информацию о нем и ее UI Control
+    /// </summary>
     public class Message : IToControl<MessageControl>, INotifyPropertyChanged
     {
         private string text;
@@ -42,12 +45,22 @@ namespace Client.Entities
             }
         }
 
+        /// <summary>
+        /// Инициализирует экзмепляр сущности из DTO сообщения
+        /// </summary>
+        /// <param name="messageDto">Полученное от сервера DTO сообщение</param>
         public Message(MessageDto messageDto)
         {
             Id = messageDto.Id;
             text = messageDto.Text;
         }
 
+        /// <summary>
+        /// Иницилизирует экземпляр сущности сообщения
+        /// </summary>
+        /// <param name="id">ID сообщения</param>
+        /// <param name="text">Текст сообщения</param>
+        /// <param name="author">Автор сообщения</param>
         public Message(long id, string text, User author)
         {
             Id = id;

@@ -10,14 +10,16 @@ namespace Client.Extensions
 {
     public static class ShiftControlsExtension
     {
-        public static void ControlRemove(this Control.ControlCollection collection, ControlEventArgs e)
+        /// <summary>
+        /// Удаляет Control из коллекции, передвигая остальные
+        /// </summary>
+        /// <param name="collection">Коллекция, из которой удаляется Control</param>
+        /// <param name="control">Удаляемый Control</param>
+        public static void ControlRemove(this Control.ControlCollection collection, Control control)
         {
-            int index = collection.IndexOf(e.Control);
+            int index = collection.IndexOf(control);
             for (int i = index; i < collection.Count; i++)
-            {
-                var control = collection[i];
-                control.Location = new Point(control.Location.X, control.Location.Y - e.Control.Height);
-            }
+                control.Location = new Point(collection[i].Location.X, collection[i].Location.Y - control.Height);    
         }
     }
 }

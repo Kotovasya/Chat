@@ -10,12 +10,18 @@ using System.Threading.Tasks;
 
 namespace Client.Entities
 {
+    /// <summary>
+    /// Сущность пользователя, хранящая информацию о нем и ее UI Control
+    /// </summary>
     public class User : IToControl<ClientControl>, INotifyPropertyChanged
     {
         private Guid id;
         private string name;
         private bool online;
 
+        /// <summary>
+        /// ID пользователя
+        /// </summary>
         public Guid Id
         {
             get { return id; }
@@ -26,6 +32,9 @@ namespace Client.Entities
             }
         }
 
+        /// <summary>
+        /// Имя пользователя
+        /// </summary>
         public string Name
         {
             get { return name; }
@@ -36,6 +45,9 @@ namespace Client.Entities
             }
         }
 
+        /// <summary>
+        /// Хранит значение, обозначающее, находится ли пользователь в сети в данный момент времени
+        /// </summary>
         public bool Online
         {
             get { return online; }
@@ -50,10 +62,20 @@ namespace Client.Entities
 
         public ClientControl Control { get; set; }
 
+        /// <summary>
+        /// Иницилизурет экземпляр пользователя из DTO, полученный от сервера
+        /// </summary>
+        /// <param name="user">Data Transfer Object пользователя</param>
         public User(ServiceReference.UserDto user)
             : this(user.Id, user.Name, true)
         { }
 
+        /// <summary>
+        /// Иницилизрует экземпляр пользователя
+        /// </summary>
+        /// <param name="id">ID пользователя</param>
+        /// <param name="name">Имя пользователя</param>
+        /// <param name="isOnline">Флаг, определяющий находится ли пользователь в сети</param>
         public User(Guid id, string name, bool isOnline)
         {
             this.id = id;
