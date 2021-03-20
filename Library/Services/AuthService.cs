@@ -19,7 +19,7 @@ namespace Library.Services
         /// <returns></returns>
         private AuthResponse CreateResponse(Guid oldId, User user)
         {
-            connections.Add(oldId, new Connection(user.Id, connections[oldId].Context));
+            connections.Add(user.Id, new Connection(user.Id, connections[oldId].Context));
             connections.Remove(oldId);
             SendBroadcastEvent(new UserConnectedEventArgs(user.Id, user.ToDto()));
             return new AuthResponse() { Result = Contracts.Result.Succesfully, Id = user.Id };

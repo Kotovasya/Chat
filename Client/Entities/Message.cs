@@ -18,6 +18,7 @@ namespace Client.Entities
     {
         private string text;
         private User author;
+        private DateTime date;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -45,6 +46,16 @@ namespace Client.Entities
             }
         }
 
+        public DateTime Date
+        {
+            get { return date; }
+            set
+            {
+                date = value;
+                OnPropertyChanged("Date");
+            }
+        }
+
         /// <summary>
         /// Инициализирует экзмепляр сущности из DTO сообщения
         /// </summary>
@@ -53,6 +64,7 @@ namespace Client.Entities
         {
             Id = messageDto.Id;
             text = messageDto.Text;
+            date = messageDto.Date;
         }
 
         /// <summary>
@@ -61,11 +73,12 @@ namespace Client.Entities
         /// <param name="id">ID сообщения</param>
         /// <param name="text">Текст сообщения</param>
         /// <param name="author">Автор сообщения</param>
-        public Message(long id, string text, User author)
+        public Message(long id, string text, User author, DateTime date)
         {
             Id = id;
             this.text = text;
             this.author = author;
+            this.date = date;
         }
 
         public MessageControl ToControl()

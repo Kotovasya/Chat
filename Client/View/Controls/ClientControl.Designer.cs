@@ -38,7 +38,7 @@ namespace Client.View.Controls
             // 
             this.userNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.userNameLabel.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.userNameLabel.Location = new System.Drawing.Point(32, 5);
+            this.userNameLabel.Location = new System.Drawing.Point(32, 3);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(103, 23);
             this.userNameLabel.TabIndex = 0;

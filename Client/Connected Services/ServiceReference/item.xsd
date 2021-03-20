@@ -10,6 +10,7 @@
   <xs:complexType name="MessageDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="Author" nillable="true" type="tns:UserDto" />
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
     </xs:sequence>

@@ -89,6 +89,12 @@
     <Compile Include="View\Controls\ClientControl.Designer.cs">
       <DependentUpon>ClientControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Controls\DialogControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\DialogControl.Designer.cs">
+      <DependentUpon>DialogControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\MessageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\ClientControl.resx">
       <DependentUpon>ClientControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\DialogControl.resx">
+      <DependentUpon>DialogControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\MessageControl.resx">
       <DependentUpon>MessageControl.cs</DependentUpon>

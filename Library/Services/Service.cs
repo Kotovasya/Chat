@@ -40,7 +40,6 @@ namespace Library.Services
         public Guid Connect()
         {
             Connection connection = new Connection();
-            connections.Add(connection.Id, connection);
             try
             {
                 connections.Add(connection.Id, connection);
