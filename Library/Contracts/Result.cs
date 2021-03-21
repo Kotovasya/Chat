@@ -40,6 +40,18 @@ namespace Library.Contracts
         /// </summary>
         [EnumMember]
         WrongPassword = 16,
+
+        /// <summary>
+        /// Добавляемый пользователь уже есть в диалоге
+        /// </summary>
+        [EnumMember]
+        UserAlreadyInDialog = 32,
+
+        /// <summary>
+        /// Недостаточно прав пользователя для выполнения запроса
+        /// </summary>
+        [EnumMember]
+        NotPremissions = 64,
         
         /// <summary>
         /// Во время выполнения операции произошла ошибка

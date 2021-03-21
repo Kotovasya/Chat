@@ -17,6 +17,8 @@ namespace Library.Data.Entities
         public string Password { get; set; }
 
         public virtual ICollection<Message> Messages { get; set; }
+        public virtual ICollection<Dialog> Dialogs { get; set; }
+        public virtual ICollection<Dialog> DialogsOwner { get; set; }
 
         /// <summary>
         /// Инициализирует нового пользователя
@@ -25,7 +27,8 @@ namespace Library.Data.Entities
         {
             Id = Guid.NewGuid();
             Messages = new HashSet<Message>();
-            Messages = new List<Message>();
+            Dialogs = new HashSet<Dialog>();
+            Dialogs = new HashSet<Dialog>();
         }
 
         /// <summary>

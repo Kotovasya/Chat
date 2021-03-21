@@ -25,5 +25,9 @@ namespace Library.Data
         /// Таблица сообщений
         /// </summary>
         public DbSet<Message> Messages { get; set; }
+        /// <summary>
+        /// Таблица диалогов
+        /// </summary>
+        public DbSet<Dialog> Dialogs { get; set; }
     }
 }

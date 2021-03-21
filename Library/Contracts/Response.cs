@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace Library.Contracts
 {
     /// <summary>
-    /// Абстрактный класс, служащий для наследования классов результатов выполнения операций
+    /// Класс, хранящий результат выполнения запроса клиента
     /// </summary>
     [DataContract]
-    public abstract class Response
+    public class Response
     {
         /// <summary>
         /// Результат выполнения операции

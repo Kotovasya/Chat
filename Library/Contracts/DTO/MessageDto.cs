@@ -21,19 +21,21 @@ namespace Library.Contracts.DTO
         public string Text { get; set; }
         [DataMember]
         public DateTime Date { get; set; }
-
+        [DataMember]
+        public int DialogId { get; set; }
 
         /// <summary>
         /// Инициализирует новый экземпляр сообщения, служащего для передачи информации о сообщении клиентам сервиса 
         /// </summary>
         /// <param name="author">Автор сообщения</param>
         /// <param name="text">Текст сообщения</param>
-        public MessageDto(long id, UserDto author, string text, DateTime date)
+        public MessageDto(long id, UserDto author, string text, DateTime date, int dialogId)
         {
             Id = id;
             Author = author;
             Text = text;
             Date = date;
+            DialogId = dialogId;
         }
 
         public MessageDto(UserDto author, string text)

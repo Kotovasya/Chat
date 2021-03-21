@@ -20,11 +20,13 @@ namespace Library.Data.Entities
         public DateTime Date { get; set; }
 
         public Guid? UserId { get; set; }
+        public int DialogId { get; set; }
         public virtual User User { get; set; }
+        public virtual Dialog Dialog { get; set; }
 
         public MessageDto ToDto()
         {
-            return new MessageDto(Id, User.ToDto(), Text, Date);
+            return new MessageDto(Id, User.ToDto(), Text, Date, DialogId);
         }
     }
 }
