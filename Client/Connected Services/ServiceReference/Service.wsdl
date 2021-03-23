@@ -35,10 +35,12 @@
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_Registration_InputMessage">
@@ -53,11 +55,41 @@
   <wsdl:message name="IService_Authorization_OutputMessage">
     <wsdl:part name="parameters" element="tns:AuthorizationResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_CreateDialog_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDialog" />
+  </wsdl:message>
+  <wsdl:message name="IService_CreateDialog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateDialogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ChangeDialog_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeDialog" />
+  </wsdl:message>
+  <wsdl:message name="IService_ChangeDialog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeDialogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddUserToDialog_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToDialog" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddUserToDialog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToDialogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ConnectToDialog_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToDialog" />
+  </wsdl:message>
+  <wsdl:message name="IService_ConnectToDialog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToDialogResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_LoadMessages_InputMessage">
     <wsdl:part name="parameters" element="tns:LoadMessages" />
   </wsdl:message>
   <wsdl:message name="IService_LoadMessages_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_LoadDialogs_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadDialogs" />
+  </wsdl:message>
+  <wsdl:message name="IService_LoadDialogs_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadDialogsResponse" />
   </wsdl:message>
   <wsdl:message name="IService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
@@ -80,6 +112,15 @@
   <wsdl:message name="IService_OnUserConnected_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnUserConnected" />
   </wsdl:message>
+  <wsdl:message name="IService_OnCreatedDialog_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnCreatedDialog" />
+  </wsdl:message>
+  <wsdl:message name="IService_OnAddedUserToDialog_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnAddedUserToDialog" />
+  </wsdl:message>
+  <wsdl:message name="IService_OnChangedDialog_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnChangedDialog" />
+  </wsdl:message>
   <wsdl:message name="IService_OnMessageSend_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnMessageSend" />
   </wsdl:message>
@@ -95,9 +136,29 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/Authorization" message="tns:IService_Authorization_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/AuthorizationResponse" message="tns:IService_Authorization_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="CreateDialog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateDialog" message="tns:IService_CreateDialog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateDialogResponse" message="tns:IService_CreateDialog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDialog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ChangeDialog" message="tns:IService_ChangeDialog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ChangeDialogResponse" message="tns:IService_ChangeDialog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToDialog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddUserToDialog" message="tns:IService_AddUserToDialog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddUserToDialogResponse" message="tns:IService_AddUserToDialog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConnectToDialog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ConnectToDialog" message="tns:IService_ConnectToDialog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ConnectToDialogResponse" message="tns:IService_ConnectToDialog_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="LoadMessages">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/LoadMessages" message="tns:IService_LoadMessages_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/LoadMessagesResponse" message="tns:IService_LoadMessages_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadDialogs">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/LoadDialogs" message="tns:IService_LoadDialogs_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/LoadDialogsResponse" message="tns:IService_LoadDialogs_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/SendMessage" message="tns:IService_SendMessage_InputMessage" />
@@ -113,6 +174,15 @@
     </wsdl:operation>
     <wsdl:operation name="OnUserConnected">
       <wsdl:output wsaw:Action="http://tempuri.org/IService/OnUserConnected" message="tns:IService_OnUserConnected_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnCreatedDialog">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OnCreatedDialog" message="tns:IService_OnCreatedDialog_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnAddedUserToDialog">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OnAddedUserToDialog" message="tns:IService_OnAddedUserToDialog_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnChangedDialog">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OnChangedDialog" message="tns:IService_OnChangedDialog_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="OnMessageSend">
       <wsdl:output wsaw:Action="http://tempuri.org/IService/OnMessageSend" message="tns:IService_OnMessageSend_OutputCallbackMessage" />
@@ -142,8 +212,53 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CreateDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/CreateDialog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/ChangeDialog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/AddUserToDialog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectToDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/ConnectToDialog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="LoadMessages">
       <soap12:operation soapAction="http://tempuri.org/IService/LoadMessages" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDialogs">
+      <soap12:operation soapAction="http://tempuri.org/IService/LoadDialogs" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -180,6 +295,24 @@
     </wsdl:operation>
     <wsdl:operation name="OnUserConnected">
       <soap12:operation soapAction="http://tempuri.org/IService/OnUserConnected" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnCreatedDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/OnCreatedDialog" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnAddedUserToDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/OnAddedUserToDialog" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnChangedDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/OnChangedDialog" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

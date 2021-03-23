@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO" />
+  <xs:complexType name="SendMessageRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Library.Contracts" base="q1:Request">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DialogId" type="xs:int" />
+          <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SendMessageRequest" nillable="true" type="tns:SendMessageRequest" />
+  <xs:complexType name="SendMessageResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Library.Contracts" base="q2:Response">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MessageId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SendMessageResponse" nillable="true" type="tns:SendMessageResponse" />
+  <xs:complexType name="MessageSendEventArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Library.Contracts" base="q3:ServerEventArgs">
+        <xs:sequence>
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO" minOccurs="0" name="Message" nillable="true" type="q4:MessageDto" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MessageSendEventArgs" nillable="true" type="tns:MessageSendEventArgs" />
+</xs:schema>

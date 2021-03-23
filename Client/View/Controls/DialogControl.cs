@@ -1,4 +1,5 @@
-﻿using Client.Extensions;
+﻿using Client.Entities;
+using Client.Extensions;
 using Client.Model;
 using Client.ServiceReference;
 using System;
@@ -17,16 +18,20 @@ namespace Client.View.Controls
     {
         private Graphics g;
         private static readonly Pen borderPen = new Pen(Color.FromArgb(122, 122, 122), 2);
-        private readonly ClientModel model;
+        private readonly Dialog dialog;
 
-        public DialogControl(ClientModel model)
+        public ClientModel Model { get; set; }
+
+        public Dialog Dialog { get; private set; }
+
+        public DialogControl(Dialog dialog)
         {
             InitializeComponent();
-            this.model = model;
+            this.dialog = dialog;
 
-            model.Messages.Collection = messagesContainer.Controls;
-            model.Messages.ControlRemoving += messageContainer_ControlRemoving;
-            model.Messages.ControlSizeChanged += messageContainer_ControlSizeChanged;
+            dialog.Messages.Collection = messagesContainer.Controls;
+            dialog.Messages.ControlRemoving += messageContainer_ControlRemoving;
+            dialog.Messages.ControlSizeChanged += messageContainer_ControlSizeChanged;
 
             messageTextbox.BorderStyle = BorderStyle.None;
         }
@@ -35,7 +40,7 @@ namespace Client.View.Controls
 
         private void messagesContainer_ControlAdded(object sender, ControlEventArgs e)
         {
-            var lastControl = model.Messages.Last()?.Control;
+            var lastControl = dialog.Messages.Last()?.Control;
             if (lastControl != null)
                 e.Control.Location = new Point(e.Control.Location.X, lastControl.Location.Y + lastControl.Height + 2);
         }
@@ -85,10 +90,10 @@ namespace Client.View.Controls
             if (e.KeyCode == Keys.Enter && !e.Shift)
             {
 
-                var response = model.SendMessage(new SendMessageRequest() { Id = model.Id, Text = messageTextbox.Text });
+                var response = Model.SendMessage(new SendMessageRequest() { Id = Model.Id, Text = messageTextbox.Text });
                 if (response.Result == Result.Succesfully)
                 {
-                    model.Messages.Add(response.MessageId, new Entities.Message(response.MessageId, messageTextbox.Text, model.Users[model.Id], DateTime.UtcNow));
+                    Dialog.Messages.Add(response.MessageId, new Entities.Message(response.MessageId, Dialog.Id, messageTextbox.Text, Model.Users[Model.Id], DateTime.UtcNow));
                 }
             }
         }

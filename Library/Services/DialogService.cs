@@ -72,6 +72,7 @@ namespace Library.Services
                     dialog.Password = request.NewPassword;
                 context.Entry(dialog).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
+                SendBroadcastEvent(new ChangeDialogEventArgs(request.Id, request));
                 return new Response() { Result = Result.Succesfully };
             });
         }

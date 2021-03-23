@@ -12,5 +12,8 @@ namespace Library.Services.Interfaces
     {
         [OperationContract]
         LoadMessagesResponse LoadMessages(LoadMessagesRequest request);
+
+        [OperationContract]
+        LoadDialogsResponse LoadDialogs(LoadDialogsRequest request);
     }
 }

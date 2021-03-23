@@ -24,6 +24,8 @@ namespace Client.Entities
 
         public long Id { get; set; }
 
+        public int DialogId { get; set; }
+
         public MessageControl Control { get; set; }
 
         public string Text
@@ -63,6 +65,7 @@ namespace Client.Entities
         public Message(MessageDto messageDto)
         {
             Id = messageDto.Id;
+            DialogId = messageDto.DialogId;
             text = messageDto.Text;
             date = messageDto.Date;
         }
@@ -73,9 +76,10 @@ namespace Client.Entities
         /// <param name="id">ID сообщения</param>
         /// <param name="text">Текст сообщения</param>
         /// <param name="author">Автор сообщения</param>
-        public Message(long id, string text, User author, DateTime date)
+        public Message(long id, int dialogId, string text, User author, DateTime date)
         {
             Id = id;
+            DialogId = dialogId;
             this.text = text;
             this.author = author;
             this.date = date;

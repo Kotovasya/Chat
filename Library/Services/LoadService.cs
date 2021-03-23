@@ -18,17 +18,28 @@ namespace Library.Services
         {
             return Preform(() =>
             {
-                var messages = request.LastMessageId == -1 ?
-                    context.Messages.OrderByDescending(m => m.Id)
-                    .Take(50)
-                    .AsEnumerable()
-                    .Select(m => m.ToDto())
-                    : context.Messages.OrderByDescending(m => m.Id)
-                    .SkipWhile((m, i) => m.Id > request.LastMessageId && i != 0)
-                    .Take(50)
-                    .AsEnumerable()
-                    .Select(m => m.ToDto());
-                return new LoadMessagesResponse() { Result = Contracts.Result.Succesfully, Messages = messages.ToList() };
+                var orderedMessages = context.Dialogs.Find(request.DialogId).Messages.OrderByDescending(m => m.Id);
+                var messages = request.LastMessageId == null ? 
+                orderedMessages.Take(50) : 
+                orderedMessages.SkipWhile(m => m.Id > request.LastMessageId).Take(50);
+                return new LoadMessagesResponse() { Result = Contracts.Result.Succesfully, Messages = messages.Select(m => m.ToDto()) };
+            });
+        }
+
+        /// <summary>
+        /// Запрашивает диалоги пользователя из базы данных и возвращает результат запроса
+        /// </summary>
+        /// <param name="request">Запрос на загрузку</param>
+        /// <returns>Ответ на загрузку</returns>
+        public LoadDialogsResponse LoadDialogs(LoadDialogsRequest request)
+        {
+            return Preform(() =>
+            {
+                var orderedDialogs = context.Users.Find(request.Id).Dialogs.OrderBy(d => d.Messages.Last().Date);
+                var dialogs = request.LastDialogId == null ?
+                orderedDialogs.Take(50) :
+                orderedDialogs.SkipWhile(d => d.Id != request.LastDialogId).Take(50);
+                return new LoadDialogsResponse() { Result = Contracts.Result.Succesfully, Dialgos = dialogs.Select(d => d.ToDto()) };
             });
         }
     }

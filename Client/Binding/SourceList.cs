@@ -58,6 +58,14 @@ namespace Client.Binding
         }
 
         /// <summary>
+        /// Инициализирует экземпляр словаря на основе другого, без привязки к коллекции Controls
+        /// </summary>
+        public SourceList(Dictionary<TKey, TValue> dictionary)
+        {
+            entites = dictionary;
+        }
+
+        /// <summary>
         /// Добавляет новую сущность в словарь, а так же, при наличии привязки к ControlsCollection, добавляет ее UI Control в коллекцию
         /// </summary>
         /// <param name="key">Ключ (ID) сущности</param>

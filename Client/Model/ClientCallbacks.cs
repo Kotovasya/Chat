@@ -15,6 +15,31 @@ namespace Client.Model
     {
         public ClientModel Model { get; set; }
 
+        public void OnAddedUserToDialog(AddedUserToDialogEventArgs args)
+        {
+            if (Model.Dialogs.ContainsKey(args.DialogId))
+            {
+                if (!Model.Users.ContainsKey(args.AddedUser.Id))
+                    Model.Users.Add(args.Id, new User(args.Id, args.AddedUser.Name, false));
+
+                Model.Dialogs[args.DialogId].Users.Add(args.AddedUser.Id, Model.Users[args.AddedUser.Id]);
+            }     
+        }
+
+        public void OnChangedDialog(ChangeDialogEventArgs args)
+        {
+            if (Model.Dialogs.ContainsKey(args.ChangedInfo.DialogId))
+            {
+                if (args.ChangedInfo.NewName != null)
+                    Model.Dialogs[args.ChangedInfo.DialogId].Name = args.ChangedInfo.NewName;
+            }
+        }
+
+        public void OnCreatedDialog(CreateDialogEventArgs args)
+        {
+            Model.Dialogs.Add(args.NewDialog.Id, new Dialog(args.NewDialog));
+        }
+
         public void OnMessageSend(MessageSendEventArgs args)
         {
             Message message = new Message(args.Message);
@@ -22,7 +47,7 @@ namespace Client.Model
                 Model.Users.Add(args.Id, new User(args.Id, args.Message.Author.Name, false));
 
             message.Author = Model.Users[args.Id];
-            Model.Messages.Add(args.Message.Id, message);
+            Model.Dialogs[message.DialogId].Messages.Add(message.Id, message);
         }
 
         public void OnUserConnected(UserConnectedEventArgs args)

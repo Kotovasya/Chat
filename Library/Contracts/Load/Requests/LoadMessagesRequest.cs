@@ -14,9 +14,15 @@ namespace Library.Contracts.Load
     public class LoadMessagesRequest : Request
     {
         /// <summary>
+        /// ID диалога, чьи сообщения будут загружаться
+        /// </summary>
+        [DataMember]
+        public int DialogId { get; set; }
+
+        /// <summary>
         /// Последнее сообщение, загруженное у пользователя
         /// </summary>
         [DataMember]
-        public long LastMessageId { get; set; }
+        public long? LastMessageId { get; set; }
     }
 }

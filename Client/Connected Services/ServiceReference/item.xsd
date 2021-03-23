@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="ArrayOfMessageDto">
+  <xs:complexType name="DialogDto">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageDto" nillable="true" type="tns:MessageDto" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Messages" nillable="true" type="q1:ArrayOfKeyValueOflongMessageDtoGF61LoN1" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerId" type="ser:guid" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Users" nillable="true" type="q2:ArrayOfKeyValueOfguidUserDtoVKZaMA76" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfMessageDto" nillable="true" type="tns:ArrayOfMessageDto" />
+  <xs:element name="DialogDto" nillable="true" type="tns:DialogDto" />
   <xs:complexType name="MessageDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="Author" nillable="true" type="tns:UserDto" />
       <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DialogId" type="xs:int" />
       <xs:element minOccurs="0" name="Id" type="xs:long" />
       <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
     </xs:sequence>
@@ -23,4 +29,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="UserDto" nillable="true" type="tns:UserDto" />
+  <xs:complexType name="ArrayOfMessageDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MessageDto" nillable="true" type="tns:MessageDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMessageDto" nillable="true" type="tns:ArrayOfMessageDto" />
+  <xs:complexType name="ArrayOfDialogDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DialogDto" nillable="true" type="tns:DialogDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDialogDto" nillable="true" type="tns:ArrayOfDialogDto" />
 </xs:schema>

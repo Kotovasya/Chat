@@ -14,6 +14,12 @@ namespace Library.Contracts.Messaging
     public class SendMessageRequest : Request
     {
         /// <summary>
+        /// ID диалога, в который отправлено сообщение
+        /// </summary>
+        [DataMember]
+        public int DialogId { get; set; }
+
+        /// <summary>
         /// Текст сообщения
         /// </summary>
         [DataMember]

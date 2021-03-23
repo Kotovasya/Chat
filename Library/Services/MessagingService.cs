@@ -20,15 +20,19 @@ namespace Library.Services
             return Preform(() =>
             {
                 var user = context.Users.Find(request.Id);
-                var message = context.Messages.Add(new Message() 
-                { 
-                    Id = context.Messages.LongCount(), 
-                    Text = request.Text, 
-                    UserId = request.Id, 
-                    Date = DateTime.UtcNow 
+                var dialog = context.Dialogs.Find(request.DialogId);
+                var message = context.Messages.Add(new Message()
+                {
+                    Id = context.Messages.LongCount(),
+                    DialogId = request.DialogId,
+                    Text = request.Text,
+                    UserId = request.Id,
+                    Date = DateTime.UtcNow
                 });
                 user.Messages.Add(message);
+                dialog.Messages.Add(message);
                 context.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                context.Entry(dialog).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
                 return new SendMessageResponse() { Result = Contracts.Result.Succesfully, MessageId = message.Id };
             });

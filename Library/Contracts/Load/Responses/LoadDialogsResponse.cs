@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 namespace Library.Contracts.Load
 {
     /// <summary>
-    /// Класс, хранящий результат выполнения загрузки сообщений
+    /// Класс, хранящий результат выполнения загрузки диалогов пользователя
     /// </summary>
     [DataContract]
-    public class LoadMessagesResponse : Response
+    public class LoadDialogsResponse : Response
     {
         /// <summary>
-        /// Загруженные сообщения
+        /// Загруженные диалоги
         /// </summary>
         [DataMember]
-        public IEnumerable<MessageDto> Messages { get; set; }
+        public IEnumerable<DialogDto> Dialgos { get; set; }
     }
 }

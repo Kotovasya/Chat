@@ -13,8 +13,10 @@ namespace Library.Contracts.Dialog
         [DataMember]
         public ChangeDialogRequest ChangedInfo { get; set; }
 
-        public ChangeDialogEventArgs(Guid id) : base(id)
+        public ChangeDialogEventArgs(Guid id, ChangeDialogRequest changedInfo) 
+            : base(id)
         {
+            ChangedInfo = changedInfo;
         }
     }
 }

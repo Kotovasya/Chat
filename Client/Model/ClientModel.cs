@@ -23,7 +23,7 @@ namespace Client.Model
         /// <summary>
         /// Словарь, хранящий информацию о всех сообщениях
         /// </summary>
-        public SourceList<long, Entities.Message> Messages { get; private set; }
+        public SourceList<int, Dialog> Dialogs { get; private set; }
         /// <summary>
         /// Словарь, хранящий информацию о всех пользователях
         /// </summary>
@@ -42,7 +42,7 @@ namespace Client.Model
             : base(new InstanceContext(instance))
         {
             instance.Model = this;
-            Messages = new SourceList<long, Entities.Message>();
+            Dialogs = new SourceList<int, Dialog>();
             Users = new SourceList<Guid, User>();
             try
             {
