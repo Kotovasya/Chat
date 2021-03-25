@@ -16,6 +16,9 @@ namespace Library.Services.Interfaces
 
         [OperationContract]
         void Disconnect(Guid id);
+
+        [OperationContract]
+        Guid LogOut(Guid id);
     }
 
     public partial interface IServiceCallback

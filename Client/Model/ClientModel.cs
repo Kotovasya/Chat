@@ -21,7 +21,7 @@ namespace Client.Model
         /// </summary>
         private static readonly ClientCallbacks instance = new ClientCallbacks();
         /// <summary>
-        /// Словарь, хранящий информацию о всех сообщениях
+        /// Словарь, хранящий информацию о всех диалогах
         /// </summary>
         public SourceList<int, Dialog> Dialogs { get; private set; }
         /// <summary>

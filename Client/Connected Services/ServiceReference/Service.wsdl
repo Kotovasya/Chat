@@ -40,7 +40,8 @@
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.User" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IService_Registration_InputMessage">
@@ -109,6 +110,24 @@
   <wsdl:message name="IService_Disconnect_OutputMessage">
     <wsdl:part name="parameters" element="tns:DisconnectResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_LogOut_InputMessage">
+    <wsdl:part name="parameters" element="tns:LogOut" />
+  </wsdl:message>
+  <wsdl:message name="IService_LogOut_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LogOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ChangePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePassword" />
+  </wsdl:message>
+  <wsdl:message name="IService_ChangePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ChangeUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeUsername" />
+  </wsdl:message>
+  <wsdl:message name="IService_ChangeUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeUsernameResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_OnUserConnected_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnUserConnected" />
   </wsdl:message>
@@ -126,6 +145,12 @@
   </wsdl:message>
   <wsdl:message name="IService_OnUserDiconnected_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnUserDiconnected" />
+  </wsdl:message>
+  <wsdl:message name="IService_OnUsernameChanged_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnUsernameChanged" />
+  </wsdl:message>
+  <wsdl:message name="IService_OnUsernameChanged_InputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnUsernameChangedResponse" />
   </wsdl:message>
   <wsdl:portType name="IService">
     <wsdl:operation name="Registration">
@@ -172,6 +197,18 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/Disconnect" message="tns:IService_Disconnect_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/DisconnectResponse" message="tns:IService_Disconnect_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/LogOut" message="tns:IService_LogOut_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/LogOutResponse" message="tns:IService_LogOut_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ChangePassword" message="tns:IService_ChangePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ChangePasswordResponse" message="tns:IService_ChangePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ChangeUsername" message="tns:IService_ChangeUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ChangeUsernameResponse" message="tns:IService_ChangeUsername_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="OnUserConnected">
       <wsdl:output wsaw:Action="http://tempuri.org/IService/OnUserConnected" message="tns:IService_OnUserConnected_OutputCallbackMessage" />
     </wsdl:operation>
@@ -189,6 +226,10 @@
     </wsdl:operation>
     <wsdl:operation name="OnUserDiconnected">
       <wsdl:output wsaw:Action="http://tempuri.org/IService/OnUserDiconnected" message="tns:IService_OnUserDiconnected_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnUsernameChanged">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OnUsernameChanged" message="tns:IService_OnUsernameChanged_OutputCallbackMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/OnUsernameChangedResponse" message="tns:IService_OnUsernameChanged_InputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IService" type="tns:IService">
@@ -293,6 +334,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="LogOut">
+      <soap12:operation soapAction="http://tempuri.org/IService/LogOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePassword">
+      <soap12:operation soapAction="http://tempuri.org/IService/ChangePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUsername">
+      <soap12:operation soapAction="http://tempuri.org/IService/ChangeUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="OnUserConnected">
       <soap12:operation soapAction="http://tempuri.org/IService/OnUserConnected" style="document" />
       <wsdl:output>
@@ -325,6 +393,15 @@
     </wsdl:operation>
     <wsdl:operation name="OnUserDiconnected">
       <soap12:operation soapAction="http://tempuri.org/IService/OnUserDiconnected" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnUsernameChanged">
+      <soap12:operation soapAction="http://tempuri.org/IService/OnUsernameChanged" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>

@@ -15,7 +15,6 @@ namespace Client.Binding
     /// <typeparam name="TKey">Ключ (ID) сущности</typeparam>
     /// <typeparam name="TValue">Сущность</typeparam>
     public class SourceList<TKey, TValue> : IDictionary<TKey, TValue>
-        where TKey : IEquatable<TKey>
         where TValue : IToControl<UserControl>, INotifyPropertyChanged
     {
         private readonly Dictionary<TKey, TValue> entites;

@@ -73,6 +73,9 @@
     <Compile Include="Contracts\Load\Responses\LoadDialogsResponse.cs" />
     <Compile Include="Contracts\Load\Responses\LoadMessagesResponse.cs" />
     <Compile Include="Contracts\Request.cs" />
+    <Compile Include="Contracts\User\Events\UsernameChangedEventArgs.cs" />
+    <Compile Include="Contracts\User\Requests\ChangePasswordRequest.cs" />
+    <Compile Include="Contracts\User\Requests\ChangeUsernameRequest.cs" />
     <Compile Include="Data\Entities\Dialog.cs" />
     <Compile Include="Data\Entities\Message.cs" />
     <Compile Include="Data\Entities\User.cs" />
@@ -112,9 +115,11 @@
     <Compile Include="Services\Interfaces\ILoadService.cs" />
     <Compile Include="Services\Interfaces\IMessagingService.cs" />
     <Compile Include="Services\Interfaces\IService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\LoadService.cs" />
     <Compile Include="Services\MessagingService.cs" />
     <Compile Include="Services\Service.cs" />
+    <Compile Include="Services\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

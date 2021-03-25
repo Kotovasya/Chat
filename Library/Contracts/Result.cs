@@ -52,7 +52,7 @@ namespace Library.Contracts
         /// </summary>
         [EnumMember]
         NotPremissions = 64,
-        
+
         /// <summary>
         /// Во время выполнения операции произошла ошибка
         /// </summary>

@@ -14,19 +14,15 @@ namespace Client.Entities
     /// <summary>
     /// Сущность сообщения, хранящиая информацию о нем и ее UI Control
     /// </summary>
-    public class Message : IToControl<MessageControl>, INotifyPropertyChanged
+    public class Message : Entity<MessageControl>
     {
         private string text;
         private User author;
         private DateTime date;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
         public long Id { get; set; }
 
         public int DialogId { get; set; }
-
-        public MessageControl Control { get; set; }
 
         public string Text
         {
@@ -85,15 +81,10 @@ namespace Client.Entities
             this.date = date;
         }
 
-        public MessageControl ToControl()
+        public override MessageControl ToControl()
         {
             Control = new MessageControl(this);
             return Control;
-        }
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

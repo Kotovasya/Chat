@@ -61,6 +61,19 @@ namespace Library.Services
         }
 
         /// <summary>
+        /// Вызывается для выхода пользователя с аккаунта
+        /// </summary>
+        /// <param name="id">ID пользователя</param>
+        /// <returns>ID нового подключения</returns>
+        public Guid LogOut(Guid id)
+        {
+            Connection connection = new Connection(Guid.NewGuid(), connections[id].Context, true);
+            connections.Add(connection.Id, connection);
+            connections.Remove(id);
+            return connection.Id;
+        }
+
+        /// <summary>
         /// Выполняет операцию, передеваемую в метод и, в случае неудачного ее выполнения, возвращает ошибку операции
         /// </summary>
         /// <typeparam name="T">Класс ответа</typeparam>

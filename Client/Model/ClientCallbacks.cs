@@ -62,5 +62,11 @@ namespace Client.Model
         {
             Model.Users?.Remove(args.Id);
         }
+
+        public void OnUsernameChanged(UsernameChangedEventArgs args)
+        {
+            if (Model.Users.ContainsKey(args.Id))
+                Model.Users[args.Id].Name = args.NewName;
+        }
     }
 }

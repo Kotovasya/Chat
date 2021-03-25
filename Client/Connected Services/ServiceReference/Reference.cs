@@ -17,6 +17,8 @@ namespace Client.ServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Request", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.ChangePasswordRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.ChangeUsernameRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadMessagesRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogsRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.SendMessageRequest))]
@@ -62,6 +64,68 @@ namespace Client.ServiceReference {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ChangePasswordRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.User")]
+    [System.SerializableAttribute()]
+    public partial class ChangePasswordRequest : Client.ServiceReference.Request {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NewPasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string OldPasswordField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NewPassword {
+            get {
+                return this.NewPasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NewPasswordField, value) != true)) {
+                    this.NewPasswordField = value;
+                    this.RaisePropertyChanged("NewPassword");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string OldPassword {
+            get {
+                return this.OldPasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.OldPasswordField, value) != true)) {
+                    this.OldPasswordField = value;
+                    this.RaisePropertyChanged("OldPassword");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ChangeUsernameRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.User")]
+    [System.SerializableAttribute()]
+    public partial class ChangeUsernameRequest : Client.ServiceReference.Request {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NewNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NewName {
+            get {
+                return this.NewNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NewNameField, value) != true)) {
+                    this.NewNameField = value;
+                    this.RaisePropertyChanged("NewName");
+                }
             }
         }
     }
@@ -879,6 +943,7 @@ namespace Client.ServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ServerEventArgs", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.UsernameChangedEventArgs))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.MessageSendEventArgs))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.CreateDialogEventArgs))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.AddedUserToDialogEventArgs))]
@@ -921,6 +986,29 @@ namespace Client.ServiceReference {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UsernameChangedEventArgs", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.User")]
+    [System.SerializableAttribute()]
+    public partial class UsernameChangedEventArgs : Client.ServiceReference.ServerEventArgs {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NewNameField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string NewName {
+            get {
+                return this.NewNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NewNameField, value) != true)) {
+                    this.NewNameField = value;
+                    this.RaisePropertyChanged("NewName");
+                }
             }
         }
     }
@@ -1125,6 +1213,24 @@ namespace Client.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Disconnect", ReplyAction="http://tempuri.org/IService/DisconnectResponse")]
         System.Threading.Tasks.Task DisconnectAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LogOut", ReplyAction="http://tempuri.org/IService/LogOutResponse")]
+        System.Guid LogOut(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LogOut", ReplyAction="http://tempuri.org/IService/LogOutResponse")]
+        System.Threading.Tasks.Task<System.Guid> LogOutAsync(System.Guid id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ChangePassword", ReplyAction="http://tempuri.org/IService/ChangePasswordResponse")]
+        Client.ServiceReference.Response ChangePassword(Client.ServiceReference.ChangePasswordRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ChangePassword", ReplyAction="http://tempuri.org/IService/ChangePasswordResponse")]
+        System.Threading.Tasks.Task<Client.ServiceReference.Response> ChangePasswordAsync(Client.ServiceReference.ChangePasswordRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ChangeUsername", ReplyAction="http://tempuri.org/IService/ChangeUsernameResponse")]
+        Client.ServiceReference.Response ChangeUsername(Client.ServiceReference.ChangeUsernameRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/ChangeUsername", ReplyAction="http://tempuri.org/IService/ChangeUsernameResponse")]
+        System.Threading.Tasks.Task<Client.ServiceReference.Response> ChangeUsernameAsync(Client.ServiceReference.ChangeUsernameRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1147,6 +1253,9 @@ namespace Client.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/OnUserDiconnected")]
         void OnUserDiconnected(Client.ServiceReference.ServerEventArgs args);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/OnUsernameChanged", ReplyAction="http://tempuri.org/IService/OnUsernameChangedResponse")]
+        void OnUsernameChanged(Client.ServiceReference.UsernameChangedEventArgs args);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1263,6 +1372,30 @@ namespace Client.ServiceReference {
         
         public System.Threading.Tasks.Task DisconnectAsync(System.Guid id) {
             return base.Channel.DisconnectAsync(id);
+        }
+        
+        public System.Guid LogOut(System.Guid id) {
+            return base.Channel.LogOut(id);
+        }
+        
+        public System.Threading.Tasks.Task<System.Guid> LogOutAsync(System.Guid id) {
+            return base.Channel.LogOutAsync(id);
+        }
+        
+        public Client.ServiceReference.Response ChangePassword(Client.ServiceReference.ChangePasswordRequest request) {
+            return base.Channel.ChangePassword(request);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ServiceReference.Response> ChangePasswordAsync(Client.ServiceReference.ChangePasswordRequest request) {
+            return base.Channel.ChangePasswordAsync(request);
+        }
+        
+        public Client.ServiceReference.Response ChangeUsername(Client.ServiceReference.ChangeUsernameRequest request) {
+            return base.Channel.ChangeUsername(request);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ServiceReference.Response> ChangeUsernameAsync(Client.ServiceReference.ChangeUsernameRequest request) {
+            return base.Channel.ChangeUsernameAsync(request);
         }
     }
 }

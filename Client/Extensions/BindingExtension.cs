@@ -19,7 +19,7 @@ namespace Client.Extensions
         /// <param name="converter">Конвертер, необходимый для преобразования данных из источника</param>
         public static void CreateBinding(this Control control, string propertyName, object dataSource, string dataMember, ConvertEventHandler converter = null)
         {
-            System.Windows.Forms.Binding binding = new System.Windows.Forms.Binding(propertyName, dataSource, dataMember);
+            System.Windows.Forms.Binding binding = new System.Windows.Forms.Binding(propertyName, dataSource, dataMember, true);
             if (converter != null)
                 binding.Format += converter;
             control.DataBindings.Add(binding);

@@ -72,6 +72,7 @@ namespace Client.View.Controls
             this.messageTextbox.Size = new System.Drawing.Size(618, 25);
             this.messageTextbox.TabIndex = 9;
             this.messageTextbox.Text = "";
+            this.messageTextbox.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.messageTextbox_ContentsResized);
             this.messageTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.messageTextbox_KeyDown);
             // 
             // rightPanel

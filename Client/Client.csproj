@@ -65,6 +65,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Entities\Dialog.cs" />
+    <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Extensions\BindingExtension.cs" />
@@ -84,6 +85,12 @@
     <Compile Include="View\AuthWindow.Designer.cs">
       <DependentUpon>AuthWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Controls\ButtonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\ButtonControl.Designer.cs">
+      <DependentUpon>ButtonControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\ClientControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -96,11 +103,23 @@
     <Compile Include="View\Controls\DialogControl.Designer.cs">
       <DependentUpon>DialogControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Controls\DialogPreviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\DialogPreviewControl.Designer.cs">
+      <DependentUpon>DialogPreviewControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\MessageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="View\Controls\MessageControl.Designer.cs">
       <DependentUpon>MessageControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\SettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\SettingsControl.Designer.cs">
+      <DependentUpon>SettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.cs">
       <SubType>Form</SubType>
@@ -162,6 +181,9 @@
     <None Include="Connected Services\ServiceReference\item81.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServiceReference\item9.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServiceReference\Service.wsdl" />
   </ItemGroup>
   <ItemGroup>
@@ -178,14 +200,23 @@
     <EmbeddedResource Include="View\AuthWindow.resx">
       <DependentUpon>AuthWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\ButtonControl.resx">
+      <DependentUpon>ButtonControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\ClientControl.resx">
       <DependentUpon>ClientControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\DialogControl.resx">
       <DependentUpon>DialogControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\DialogPreviewControl.resx">
+      <DependentUpon>DialogPreviewControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\MessageControl.resx">
       <DependentUpon>MessageControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\SettingsControl.resx">
+      <DependentUpon>SettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -211,6 +242,69 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\online.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\full window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimize window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\restore window.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dialogs.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\create dialog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\favourite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove dialog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\send.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\read dialog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unread dialog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password incorrect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\change password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit username.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

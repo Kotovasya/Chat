@@ -13,7 +13,7 @@ namespace Client.Entities
     /// <summary>
     /// Сущность пользователя, хранящая информацию о нем и ее UI Control
     /// </summary>
-    public class User : IToControl<ClientControl>, INotifyPropertyChanged
+    public class User : Entity<ClientControl>
     {
         private Guid id;
         private string name;
@@ -58,10 +58,6 @@ namespace Client.Entities
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public ClientControl Control { get; set; }
-
         /// <summary>
         /// Иницилизурет экземпляр пользователя из DTO, полученный от сервера
         /// </summary>
@@ -83,15 +79,10 @@ namespace Client.Entities
             online = isOnline;
         }
 
-        public ClientControl ToControl()
+        public override ClientControl ToControl()
         {
             Control = new ClientControl(this);
             return Control;
-        }
-
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }

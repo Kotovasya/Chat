@@ -21,10 +21,10 @@ namespace Library
         /// </summary>
         /// <param name="id">ID пользователя</param>
         /// <param name="context">Контекст обратного вызова клиента</param>
-        public Connection(Guid id, OperationContext context)
+        public Connection(Guid id, OperationContext context, bool isTemporary = false)
         {
             Id = id;
-            IsTemporary = false;
+            IsTemporary = isTemporary;
             Context = context;
         }
         

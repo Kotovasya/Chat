@@ -1,4 +1,5 @@
-﻿using Library.Contracts.Auth;
+﻿using Library.Contracts;
+using Library.Contracts.Auth;
 using System;
 using System.ServiceModel;
 
