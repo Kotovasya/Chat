@@ -29,120 +29,67 @@ namespace Client.View.Controls
         /// </summary>
         private void InitializeComponent()
         {
-            this.changeUsernameTextbox = new System.Windows.Forms.RichTextBox();
-            this.newPasswordTextbox = new System.Windows.Forms.RichTextBox();
-            this.oldPasswordTextbox = new System.Windows.Forms.RichTextBox();
             this.changePasswordLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.buttonControl1 = new Client.View.Controls.ButtonControl();
-            this.buttonControl2 = new Client.View.Controls.ButtonControl();
             this.changeUsernameImage = new System.Windows.Forms.PictureBox();
             this.newPasswordImage = new System.Windows.Forms.PictureBox();
             this.oldPasswordImage = new System.Windows.Forms.PictureBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.newPasswordTextbox = new System.Windows.Forms.TextBox();
+            this.oldPasswordTextbox = new System.Windows.Forms.TextBox();
+            this.changeUsernameTextbox = new System.Windows.Forms.TextBox();
+            this.oldPasswordLabel = new System.Windows.Forms.Label();
+            this.newPasswordLabel = new System.Windows.Forms.Label();
+            this.changeUsernameLabel = new System.Windows.Forms.Label();
+            this.changeUsernameButton = new Client.View.Controls.ButtonControl();
+            this.changePasswordButton = new Client.View.Controls.ButtonControl();
             ((System.ComponentModel.ISupportInitialize)(this.changeUsernameImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.newPasswordImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oldPasswordImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // changeUsernameTextbox
-            // 
-            this.changeUsernameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.changeUsernameTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.changeUsernameTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.changeUsernameTextbox.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.changeUsernameTextbox.Location = new System.Drawing.Point(633, 96);
-            this.changeUsernameTextbox.Multiline = false;
-            this.changeUsernameTextbox.Name = "changeUsernameTextbox";
-            this.changeUsernameTextbox.Size = new System.Drawing.Size(244, 40);
-            this.changeUsernameTextbox.TabIndex = 10;
-            this.changeUsernameTextbox.Text = "";
-            // 
-            // newPasswordTextbox
-            // 
-            this.newPasswordTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.newPasswordTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.newPasswordTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.newPasswordTextbox.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.newPasswordTextbox.Location = new System.Drawing.Point(125, 186);
-            this.newPasswordTextbox.Multiline = false;
-            this.newPasswordTextbox.Name = "newPasswordTextbox";
-            this.newPasswordTextbox.Size = new System.Drawing.Size(244, 40);
-            this.newPasswordTextbox.TabIndex = 11;
-            this.newPasswordTextbox.Text = "Новый пароль";
-            // 
-            // oldPasswordTextbox
-            // 
-            this.oldPasswordTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.oldPasswordTextbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.oldPasswordTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.oldPasswordTextbox.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.oldPasswordTextbox.Location = new System.Drawing.Point(125, 96);
-            this.oldPasswordTextbox.Multiline = false;
-            this.oldPasswordTextbox.Name = "oldPasswordTextbox";
-            this.oldPasswordTextbox.Size = new System.Drawing.Size(244, 40);
-            this.oldPasswordTextbox.TabIndex = 12;
-            this.oldPasswordTextbox.Text = "Старый пароль";
-            // 
             // changePasswordLabel
             // 
             this.changePasswordLabel.AutoSize = true;
-            this.changePasswordLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 20.25F);
-            this.changePasswordLabel.Location = new System.Drawing.Point(104, 19);
+            this.changePasswordLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
+            this.changePasswordLabel.Location = new System.Drawing.Point(123, 19);
             this.changePasswordLabel.Name = "changePasswordLabel";
-            this.changePasswordLabel.Size = new System.Drawing.Size(213, 37);
+            this.changePasswordLabel.Size = new System.Drawing.Size(174, 30);
             this.changePasswordLabel.TabIndex = 16;
             this.changePasswordLabel.Text = "Сменить пароль";
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 20.25F);
-            this.label1.Location = new System.Drawing.Point(555, 19);
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
+            this.label1.Location = new System.Drawing.Point(479, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(344, 37);
+            this.label1.Size = new System.Drawing.Size(281, 30);
             this.label1.TabIndex = 17;
             this.label1.Text = "Сменить имя пользователя";
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
-            this.label2.Location = new System.Drawing.Point(536, 149);
+            this.label2.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
+            this.label2.Location = new System.Drawing.Point(408, 159);
             this.label2.MaximumSize = new System.Drawing.Size(400, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(386, 90);
+            this.label2.Size = new System.Drawing.Size(356, 40);
             this.label2.TabIndex = 18;
             this.label2.Text = "Внимание! После смены имени пользователя, для авторизации необходимо использовать" +
     " новое имя";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // buttonControl1
-            // 
-            this.buttonControl1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonControl1.Location = new System.Drawing.Point(596, 254);
-            this.buttonControl1.Name = "buttonControl1";
-            this.buttonControl1.Size = new System.Drawing.Size(250, 64);
-            this.buttonControl1.TabIndex = 19;
-            // 
-            // buttonControl2
-            // 
-            this.buttonControl2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.buttonControl2.Location = new System.Drawing.Point(87, 254);
-            this.buttonControl2.Name = "buttonControl2";
-            this.buttonControl2.Size = new System.Drawing.Size(250, 64);
-            this.buttonControl2.TabIndex = 20;
-            // 
             // changeUsernameImage
             // 
+            this.changeUsernameImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.changeUsernameImage.Image = global::Client.Properties.Resources.user;
-            this.changeUsernameImage.Location = new System.Drawing.Point(562, 96);
+            this.changeUsernameImage.Location = new System.Drawing.Point(448, 93);
             this.changeUsernameImage.Name = "changeUsernameImage";
-            this.changeUsernameImage.Size = new System.Drawing.Size(40, 40);
+            this.changeUsernameImage.Size = new System.Drawing.Size(30, 32);
             this.changeUsernameImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.changeUsernameImage.TabIndex = 15;
             this.changeUsernameImage.TabStop = false;
@@ -150,9 +97,9 @@ namespace Client.View.Controls
             // newPasswordImage
             // 
             this.newPasswordImage.Image = global::Client.Properties.Resources.password;
-            this.newPasswordImage.Location = new System.Drawing.Point(54, 186);
+            this.newPasswordImage.Location = new System.Drawing.Point(89, 180);
             this.newPasswordImage.Name = "newPasswordImage";
-            this.newPasswordImage.Size = new System.Drawing.Size(40, 40);
+            this.newPasswordImage.Size = new System.Drawing.Size(30, 32);
             this.newPasswordImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.newPasswordImage.TabIndex = 14;
             this.newPasswordImage.TabStop = false;
@@ -160,42 +107,119 @@ namespace Client.View.Controls
             // oldPasswordImage
             // 
             this.oldPasswordImage.Image = global::Client.Properties.Resources.password;
-            this.oldPasswordImage.Location = new System.Drawing.Point(54, 96);
+            this.oldPasswordImage.Location = new System.Drawing.Point(89, 93);
             this.oldPasswordImage.Name = "oldPasswordImage";
-            this.oldPasswordImage.Size = new System.Drawing.Size(40, 40);
+            this.oldPasswordImage.Size = new System.Drawing.Size(30, 32);
             this.oldPasswordImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.oldPasswordImage.TabIndex = 13;
             this.oldPasswordImage.TabStop = false;
             // 
-            // textBox1
+            // newPasswordTextbox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semilight", 20.25F);
-            this.textBox1.Location = new System.Drawing.Point(343, 309);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(244, 43);
-            this.textBox1.TabIndex = 21;
-            this.textBox1.Text = "Новый пароль";
+            this.newPasswordTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
+            this.newPasswordTextbox.Location = new System.Drawing.Point(125, 183);
+            this.newPasswordTextbox.Name = "newPasswordTextbox";
+            this.newPasswordTextbox.PasswordChar = '•';
+            this.newPasswordTextbox.Size = new System.Drawing.Size(234, 36);
+            this.newPasswordTextbox.TabIndex = 21;
+            // 
+            // oldPasswordTextbox
+            // 
+            this.oldPasswordTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
+            this.oldPasswordTextbox.Location = new System.Drawing.Point(125, 96);
+            this.oldPasswordTextbox.Name = "oldPasswordTextbox";
+            this.oldPasswordTextbox.PasswordChar = '•';
+            this.oldPasswordTextbox.Size = new System.Drawing.Size(234, 36);
+            this.oldPasswordTextbox.TabIndex = 22;
+            this.oldPasswordTextbox.Click += new System.EventHandler(this.oldPasswordTextbox_Click);
+            // 
+            // changeUsernameTextbox
+            // 
+            this.changeUsernameTextbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.changeUsernameTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
+            this.changeUsernameTextbox.Location = new System.Drawing.Point(484, 93);
+            this.changeUsernameTextbox.Name = "changeUsernameTextbox";
+            this.changeUsernameTextbox.Size = new System.Drawing.Size(234, 36);
+            this.changeUsernameTextbox.TabIndex = 23;
+            this.changeUsernameTextbox.Click += new System.EventHandler(this.changeUsernameTextbox_Click);
+            // 
+            // oldPasswordLabel
+            // 
+            this.oldPasswordLabel.AutoSize = true;
+            this.oldPasswordLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.oldPasswordLabel.Location = new System.Drawing.Point(121, 72);
+            this.oldPasswordLabel.Name = "oldPasswordLabel";
+            this.oldPasswordLabel.Size = new System.Drawing.Size(176, 21);
+            this.oldPasswordLabel.TabIndex = 24;
+            this.oldPasswordLabel.Text = "Введите старый пароль";
+            // 
+            // newPasswordLabel
+            // 
+            this.newPasswordLabel.AutoSize = true;
+            this.newPasswordLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.newPasswordLabel.Location = new System.Drawing.Point(121, 159);
+            this.newPasswordLabel.Name = "newPasswordLabel";
+            this.newPasswordLabel.Size = new System.Drawing.Size(172, 21);
+            this.newPasswordLabel.TabIndex = 25;
+            this.newPasswordLabel.Text = "Введите новый пароль";
+            // 
+            // changeUsernameLabel
+            // 
+            this.changeUsernameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.changeUsernameLabel.AutoSize = true;
+            this.changeUsernameLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
+            this.changeUsernameLabel.Location = new System.Drawing.Point(480, 69);
+            this.changeUsernameLabel.Name = "changeUsernameLabel";
+            this.changeUsernameLabel.Size = new System.Drawing.Size(146, 21);
+            this.changeUsernameLabel.TabIndex = 26;
+            this.changeUsernameLabel.Text = "Введите новое имя";
+            // 
+            // changeUsernameButton
+            // 
+            this.changeUsernameButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.changeUsernameButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.changeUsernameButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.changeUsernameButton.Image = global::Client.Properties.Resources.edit_username;
+            this.changeUsernameButton.Location = new System.Drawing.Point(484, 254);
+            this.changeUsernameButton.Name = "changeUsernameButton";
+            this.changeUsernameButton.Size = new System.Drawing.Size(234, 51);
+            this.changeUsernameButton.TabIndex = 28;
+            this.changeUsernameButton.Title = "Сменить имя";
+            this.changeUsernameButton.Click += new System.EventHandler(this.ChangeUsername_Click);
+            // 
+            // changePasswordButton
+            // 
+            this.changePasswordButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.changePasswordButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.changePasswordButton.Image = global::Client.Properties.Resources.change_password;
+            this.changePasswordButton.Location = new System.Drawing.Point(125, 254);
+            this.changePasswordButton.Name = "changePasswordButton";
+            this.changePasswordButton.Size = new System.Drawing.Size(234, 51);
+            this.changePasswordButton.TabIndex = 27;
+            this.changePasswordButton.Title = "Сменить пароль";
+            this.changePasswordButton.Click += new System.EventHandler(this.changePassword_Click);
             // 
             // SettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.buttonControl2);
-            this.Controls.Add(this.buttonControl1);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.changeUsernameButton);
+            this.Controls.Add(this.changePasswordButton);
+            this.Controls.Add(this.changeUsernameLabel);
+            this.Controls.Add(this.newPasswordLabel);
+            this.Controls.Add(this.oldPasswordLabel);
+            this.Controls.Add(this.changeUsernameTextbox);
+            this.Controls.Add(this.oldPasswordTextbox);
+            this.Controls.Add(this.newPasswordTextbox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.changePasswordLabel);
             this.Controls.Add(this.changeUsernameImage);
             this.Controls.Add(this.newPasswordImage);
             this.Controls.Add(this.oldPasswordImage);
-            this.Controls.Add(this.oldPasswordTextbox);
-            this.Controls.Add(this.newPasswordTextbox);
-            this.Controls.Add(this.changeUsernameTextbox);
             this.Name = "SettingsControl";
-            this.Size = new System.Drawing.Size(1000, 708);
-            this.Load += new System.EventHandler(this.SettingsControl_Load);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.SettingsControl_Paint);
+            this.Size = new System.Drawing.Size(807, 509);
             ((System.ComponentModel.ISupportInitialize)(this.changeUsernameImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.newPasswordImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oldPasswordImage)).EndInit();
@@ -205,18 +229,19 @@ namespace Client.View.Controls
         }
 
         #endregion
-
-        private System.Windows.Forms.RichTextBox changeUsernameTextbox;
-        private System.Windows.Forms.RichTextBox newPasswordTextbox;
-        private System.Windows.Forms.RichTextBox oldPasswordTextbox;
         private System.Windows.Forms.PictureBox oldPasswordImage;
         private System.Windows.Forms.PictureBox newPasswordImage;
         private System.Windows.Forms.PictureBox changeUsernameImage;
         private System.Windows.Forms.Label changePasswordLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private ButtonControl buttonControl1;
-        private ButtonControl buttonControl2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox newPasswordTextbox;
+        private System.Windows.Forms.TextBox oldPasswordTextbox;
+        private System.Windows.Forms.TextBox changeUsernameTextbox;
+        private System.Windows.Forms.Label oldPasswordLabel;
+        private System.Windows.Forms.Label newPasswordLabel;
+        private System.Windows.Forms.Label changeUsernameLabel;
+        private ButtonControl changePasswordButton;
+        private ButtonControl changeUsernameButton;
     }
 }

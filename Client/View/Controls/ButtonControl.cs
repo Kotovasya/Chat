@@ -13,34 +13,23 @@ using System.Windows.Forms;
 
 namespace Client.View.Controls
 {
-    public partial class ButtonControl : UserControl, INotifyPropertyChanged
+    public partial class ButtonControl : UserControl
     {
-        private string text;
-
-        public new string Text
+        public string Title
         {
-            get { return text; }
-            set
-            {
-                text = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Text"));
-            }
+            get { return buttonText.Text; }
+            set { buttonText.Text = value; }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public Image Image
+        {
+            get { return buttonImage.Image; }
+            set { buttonImage.Image = value; }
+        }
 
         public ButtonControl()
         {
             InitializeComponent();
-        }
-
-        public ButtonControl(Image image, string text)
-        {
-            InitializeComponent();
-            buttonImage.Image = image;
-            Text = text;
-            buttonText.CreateBinding("Text", this, "Text");
-            Dock = DockStyle.Top;
         }
 
         protected override void OnClick(EventArgs e)

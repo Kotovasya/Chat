@@ -47,6 +47,7 @@ namespace Client.View.Controls
             this.dialogImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.dialogImage.TabIndex = 0;
             this.dialogImage.TabStop = false;
+            this.dialogImage.Click += new System.EventHandler(this.DialogPreviewControl_Click);
             // 
             // dialogNameLabel
             // 
@@ -60,6 +61,7 @@ namespace Client.View.Controls
             this.dialogNameLabel.TabIndex = 2;
             this.dialogNameLabel.Text = "Заголовок";
             this.dialogNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dialogNameLabel.Click += new System.EventHandler(this.DialogPreviewControl_Click);
             // 
             // lastMessageLabel
             // 
@@ -73,6 +75,7 @@ namespace Client.View.Controls
             this.lastMessageLabel.TabIndex = 3;
             this.lastMessageLabel.Text = "Последнее сообщение";
             this.lastMessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lastMessageLabel.Click += new System.EventHandler(this.DialogPreviewControl_Click);
             // 
             // dateLabel
             // 
@@ -86,6 +89,7 @@ namespace Client.View.Controls
             this.dateLabel.TabIndex = 4;
             this.dateLabel.Text = "00:01";
             this.dateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.dateLabel.Click += new System.EventHandler(this.DialogPreviewControl_Click);
             // 
             // DialogPreviewControl
             // 

@@ -20,6 +20,7 @@ namespace Client.Binding
         private readonly Dictionary<TKey, TValue> entites;
         private Control.ControlCollection collection;
 
+        public EventHandler<TValue> ControlAdding;
         /// <summary>
         /// Событие, возникающее при удалении UI Control'a сущности
         /// </summary>
@@ -36,10 +37,16 @@ namespace Client.Binding
         {
             get { return collection; }
             set 
-            { 
-                collection = value;
-                foreach (var kvp in entites)
-                    AddControl(kvp.Value);
+            {
+                if (value == null)
+                    collection.Clear();
+                else
+                {
+                    collection = value;
+                    collection.Clear();
+                    foreach (var kvp in entites)
+                        AddControl(kvp.Value);
+                }
             }
         }
 
@@ -84,7 +91,11 @@ namespace Client.Binding
         {
             UserControl control = value.ToControl();
             control.SizeChanged += Control_SizeChanged;
-            Collection?.Add(control);
+            if (Collection != null)
+            {
+                Collection.Add(control);
+                ControlAdding?.Invoke(control, value);
+            }
         }
 
         /// <summary>

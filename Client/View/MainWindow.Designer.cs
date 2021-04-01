@@ -35,10 +35,15 @@ namespace Client.View
             this.closeImage = new System.Windows.Forms.PictureBox();
             this.menuPanel = new System.Windows.Forms.Panel();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.dialogsButton = new Client.View.Controls.ButtonControl();
+            this.createDialogButton = new Client.View.Controls.ButtonControl();
+            this.settingsButton = new Client.View.Controls.ButtonControl();
+            this.logoutButton = new Client.View.Controls.ButtonControl();
             this.topPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.restoreImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeImage)).BeginInit();
+            this.menuPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // topPanel
@@ -108,6 +113,10 @@ namespace Client.View
             // 
             this.menuPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.menuPanel.Controls.Add(this.logoutButton);
+            this.menuPanel.Controls.Add(this.settingsButton);
+            this.menuPanel.Controls.Add(this.createDialogButton);
+            this.menuPanel.Controls.Add(this.dialogsButton);
             this.menuPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.menuPanel.Location = new System.Drawing.Point(0, 32);
             this.menuPanel.Name = "menuPanel";
@@ -121,6 +130,58 @@ namespace Client.View
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1000, 708);
             this.mainPanel.TabIndex = 2;
+            // 
+            // dialogsButton
+            // 
+            this.dialogsButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dialogsButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dialogsButton.Image = global::Client.Properties.Resources.dialogs;
+            this.dialogsButton.Location = new System.Drawing.Point(0, 0);
+            this.dialogsButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dialogsButton.Name = "dialogsButton";
+            this.dialogsButton.Size = new System.Drawing.Size(248, 64);
+            this.dialogsButton.TabIndex = 0;
+            this.dialogsButton.Title = "Диалоги";
+            this.dialogsButton.Click += new System.EventHandler(this.DialogsButton_Click);
+            // 
+            // createDialogButton
+            // 
+            this.createDialogButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.createDialogButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.createDialogButton.Image = global::Client.Properties.Resources.create_dialog;
+            this.createDialogButton.Location = new System.Drawing.Point(0, 64);
+            this.createDialogButton.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.createDialogButton.Name = "createDialogButton";
+            this.createDialogButton.Size = new System.Drawing.Size(248, 64);
+            this.createDialogButton.TabIndex = 1;
+            this.createDialogButton.Title = "Создать диалог";
+            this.createDialogButton.Click += new System.EventHandler(this.CreateDialogButton_Click);
+            // 
+            // settingsButton
+            // 
+            this.settingsButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.settingsButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.settingsButton.Image = global::Client.Properties.Resources.settings;
+            this.settingsButton.Location = new System.Drawing.Point(0, 128);
+            this.settingsButton.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(248, 64);
+            this.settingsButton.TabIndex = 2;
+            this.settingsButton.Title = "Настройки";
+            this.settingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
+            // 
+            // logoutButton
+            // 
+            this.logoutButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.logoutButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.logoutButton.Image = global::Client.Properties.Resources.logout;
+            this.logoutButton.Location = new System.Drawing.Point(0, 192);
+            this.logoutButton.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Size = new System.Drawing.Size(248, 64);
+            this.logoutButton.TabIndex = 3;
+            this.logoutButton.Title = "Выход";
+            this.logoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
             // MainWindow
             // 
@@ -140,6 +201,7 @@ namespace Client.View
             ((System.ComponentModel.ISupportInitialize)(this.minimizeImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.restoreImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeImage)).EndInit();
+            this.menuPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -152,5 +214,9 @@ namespace Client.View
         private System.Windows.Forms.PictureBox closeImage;
         private System.Windows.Forms.PictureBox minimizeImage;
         private System.Windows.Forms.PictureBox restoreImage;
+        private Controls.ButtonControl settingsButton;
+        private Controls.ButtonControl createDialogButton;
+        private Controls.ButtonControl dialogsButton;
+        private Controls.ButtonControl logoutButton;
     }
 }

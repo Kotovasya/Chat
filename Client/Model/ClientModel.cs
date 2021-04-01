@@ -11,6 +11,8 @@ using System.Windows.Forms;
 
 namespace Client.Model
 {
+    public delegate Response SendEventHandler(Request request);
+
     /// <summary>
     /// Модель, служащая для хранения данных с сервера
     /// </summary>

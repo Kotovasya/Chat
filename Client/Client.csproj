@@ -109,6 +109,12 @@
     <Compile Include="View\Controls\DialogPreviewControl.Designer.cs">
       <DependentUpon>DialogPreviewControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Controls\DialogsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\DialogsControl.Designer.cs">
+      <DependentUpon>DialogsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Controls\MessageControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\DialogPreviewControl.resx">
       <DependentUpon>DialogPreviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\DialogsControl.resx">
+      <DependentUpon>DialogsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\MessageControl.resx">
       <DependentUpon>MessageControl.cs</DependentUpon>

@@ -38,5 +38,15 @@ namespace Client.View.Controls
             var flag = (bool)e.Value;
             e.Value = flag ? Resources.unread_dialog : Resources.read_dialog;
         }
+
+        protected override void OnClick(EventArgs e)
+        {
+            base.OnClick(e);
+        }
+
+        private void DialogPreviewControl_Click(object sender, EventArgs e)
+        {
+            OnClick(e);
+        }
     }
 }

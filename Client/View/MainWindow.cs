@@ -19,14 +19,12 @@ namespace Client.View
 {
     public partial class MainWindow : Form
     {
-        private static readonly ButtonControl dialogsButton = new ButtonControl(Resources.dialogs, "Все диалоги");
-        private static readonly ButtonControl createDialogButton = new ButtonControl(Resources.create_dialog, "Создать диалог");
-        private static readonly ButtonControl settingsButton = new ButtonControl(Resources.settings, "Настройки");
-        private static readonly ButtonControl logoutButton = new ButtonControl(Resources.logout, "Выйти");
 
         private readonly AuthWindow authWindow;
         private readonly ClientModel model;
         private readonly SourceList<int, Dialog.DialogPreview> favouriteDialogs;
+
+        private SettingsControl settingsControl;
 
         private Point MouseDownLocation;
 
@@ -34,17 +32,14 @@ namespace Client.View
         {
             InitializeComponent();
             favouriteDialogs = new SourceList<int, Dialog.DialogPreview>();
-            dialogsButton.Click += DialogsButton_Click;
-            createDialogButton.Click += CreateDialogButton_Click;
-            settingsButton.Click += SettingsButton_Click;
-            logoutButton.Click += LogoutButton_Click;
+            settingsControl = new SettingsControl(model);
         }
 
         public MainWindow(AuthWindow authWindow, ClientModel model)
         {
             this.authWindow = authWindow;
             this.model = model;
-            InitializeComponent();
+            InitializeComponent();        
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -65,7 +60,9 @@ namespace Client.View
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(settingsControl);
+            settingsControl.Dock = DockStyle.Fill;
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -85,8 +82,8 @@ namespace Client.View
 
         private void restoreImage_Click(object sender, EventArgs e)
         {
-            restoreImage.Image = restoreImage.Image == Resources.restore_window ? Resources.full_window : Resources.restore_window;
-            WindowState = restoreImage.Image == Resources.restore_window ? FormWindowState.Maximized : FormWindowState.Normal;
+            restoreImage.Image = WindowState == FormWindowState.Normal ? Resources.full_window : Resources.restore_window;
+            WindowState = WindowState == FormWindowState.Normal ? FormWindowState.Maximized : FormWindowState.Normal;
         }
 
         private void minimizeImage_Click(object sender, EventArgs e)

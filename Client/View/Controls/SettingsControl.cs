@@ -17,20 +17,16 @@ namespace Client.View.Controls
     {
         
         private readonly ClientModel model;
-        private Graphics g;
-        private Pen borderPen;
+
+        public SettingsControl()
+        {
+            InitializeComponent();
+        }
 
         public SettingsControl(ClientModel model)
         {
             InitializeComponent();
-            InitializeButtons();
             this.model = model;
-            
-        }
-
-        private void SettingsControl_Load(object sender, EventArgs e)
-        {
-            g = CreateGraphics();
         }
 
         private void changePassword_Click(object sender, EventArgs e)
@@ -41,7 +37,11 @@ namespace Client.View.Controls
                 OldPassword = oldPasswordTextbox.Text, 
                 NewPassword = newPasswordTextbox.Text 
             });
-
+            if (response.Result == Result.WrongPassword)
+            {
+                oldPasswordLabel.Text = "Неверный пароль";
+                oldPasswordLabel.ForeColor = Color.Red;
+            }
         }
 
         private void ChangeUsername_Click(object sender, EventArgs e)
@@ -51,28 +51,23 @@ namespace Client.View.Controls
                 Id = model.Id,
                 NewName = changeUsernameTextbox.Text,
             });
+            if (response.Result == Result.AlreadyRegister)
+            {
+                changeUsernameLabel.Text = "Данное имя уже занято";
+                changeUsernameLabel.ForeColor = Color.Red;
+            }
         }
 
-        private void InitializeButtons()
+        private void oldPasswordTextbox_Click(object sender, EventArgs e)
         {
-            ButtonControl changePasswordControl = new ButtonControl(Resources.change_password, "Изменить пароль");
-            ButtonControl changeUsernameControl = new ButtonControl(Resources.edit_username, "Изменить имя");
-            changePasswordControl.Click += changePassword_Click;
-            changeUsernameControl.Click += ChangeUsername_Click;
-            Controls.Add(changePasswordControl);
-            Controls.Add(changeUsernameControl);
-            changeUsernameControl.Location = new Point(596, 254);
-            changePasswordControl.Location = new Point(87, 254);
+            oldPasswordLabel.Text = "Введите старый пароль";
+            oldPasswordLabel.ForeColor = Color.Black;
         }
 
-        private void SettingsControl_Paint(object sender, PaintEventArgs e)
+        private void changeUsernameTextbox_Click(object sender, EventArgs e)
         {
-            g.DrawRectangle(borderPen, new Rectangle(messageTextbox.Location, messageTextbox.Size));
-        }
-
-        private void PaintRectangle(Rectangle rectangle, Color color)
-        {
-            Pen pen = new Pen(color, 2);
+            changeUsernameLabel.Text = "Введите новое имя";
+            changeUsernameLabel.ForeColor = Color.Black;
         }
     }
 }
