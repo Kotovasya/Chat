@@ -15,12 +15,12 @@ namespace Client.View.Controls
 {
     public partial class DialogPreviewControl : UserControl
     {
-        private readonly Dialog dialog;
+        public Dialog Dialog { get; set; }
 
         public DialogPreviewControl(Dialog dialog)
         {
             InitializeComponent();
-            this.dialog = dialog;
+            Dialog = dialog;
             dialogNameLabel.CreateBinding("Text", dialog, "Name");
             lastMessageLabel.CreateBinding("Text", dialog.Preview, "LastMessage.Text");
             dateLabel.CreateBinding("Text", dialog.Preview, "LastMessage.Date", ConvertDateToString);

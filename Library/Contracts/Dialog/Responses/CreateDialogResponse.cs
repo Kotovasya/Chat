@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Contracts.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -11,6 +12,6 @@ namespace Library.Contracts.Dialog
     public class CreateDialogResponse : Response
     {
         [DataMember]
-        public int Id { get; set; }
+        public DialogDto Dialog { get; set; }
     }
 }

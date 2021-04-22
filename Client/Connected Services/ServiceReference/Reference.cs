@@ -371,20 +371,20 @@ namespace Client.ServiceReference {
     public partial class ConnectToDialogRequest : Client.ServiceReference.Request {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DialogIdField;
+        private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DialogId {
+        public string Name {
             get {
-                return this.DialogIdField;
+                return this.NameField;
             }
             set {
-                if ((this.DialogIdField.Equals(value) != true)) {
-                    this.DialogIdField = value;
-                    this.RaisePropertyChanged("DialogId");
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -569,17 +569,17 @@ namespace Client.ServiceReference {
     public partial class CreateDialogResponse : Client.ServiceReference.Response {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
+        private Client.ServiceReference.DialogDto DialogField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
+        public Client.ServiceReference.DialogDto Dialog {
             get {
-                return this.IdField;
+                return this.DialogField;
             }
             set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
+                if ((object.ReferenceEquals(this.DialogField, value) != true)) {
+                    this.DialogField = value;
+                    this.RaisePropertyChanged("Dialog");
                 }
             }
         }
@@ -655,6 +655,9 @@ namespace Client.ServiceReference {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         NotPremissions = 64,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        DialogNameAlreadyTaken = 128,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         ServerException = 1024,

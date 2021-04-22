@@ -1,5 +1,6 @@
 ﻿using Client.Binding;
 using Client.Entities;
+using Client.Model;
 using Client.ServiceReference;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,15 @@ namespace Client.View.Controls
     public partial class DialogsControl : UserControl
     {
         private readonly SourceList<int, Dialog> dialogs;
+        private readonly ClientModel model;
 
-        public DialogsControl(SourceList<int, Dialog> dialogs)
+        public EventHandler<Dialog> DialogOpen;
+
+        public DialogsControl(ClientModel model)
         {
             InitializeComponent();
-            this.dialogs = dialogs;
+            this.model = model;
+            this.dialogs = model.Dialogs;
             dialogs.ControlAdding += OnDialogAdded;
             dialogs.Collection = dialogsContainer.Controls;
         }
@@ -49,7 +54,18 @@ namespace Client.View.Controls
 
         private void dialogPreview_Click(object sender, EventArgs e)
         {
-            
+            var preview = (DialogPreviewControl)sender;
+            DialogOpen?.Invoke(sender, preview.Dialog);
+        }
+
+        private void connectToDialogButton_Click(object sender, EventArgs e)
+        {
+            ConnectToDialogWindow window = new ConnectToDialogWindow(model);
+            window.ConnectedToDialog += (object obj, Dialog dialog) => 
+            { 
+                DialogOpen?.Invoke(obj, dialog); 
+            };
+            window.Show();
         }
     }
 }

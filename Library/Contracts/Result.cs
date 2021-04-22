@@ -54,6 +54,12 @@ namespace Library.Contracts
         NotPremissions = 64,
 
         /// <summary>
+        /// Имя диалога уже занято
+        /// </summary>
+        [EnumMember]
+        DialogNameAlreadyTaken = 128,
+
+        /// <summary>
         /// Во время выполнения операции произошла ошибка
         /// </summary>
         [EnumMember]

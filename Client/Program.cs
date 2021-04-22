@@ -13,10 +13,10 @@ namespace Client
     {
         static void Main(string[] args)
         {
-            //ClientModel model = new ClientModel();
+            ClientModel model = new ClientModel();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindow());
+            Application.Run(new AuthWindow(model));
         }
     }
 }

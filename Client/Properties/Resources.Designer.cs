@@ -83,6 +83,16 @@ namespace Client.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap connect_to_dialog {
+            get {
+                object obj = ResourceManager.GetObject("connect to dialog", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap create_dialog {
             get {
                 object obj = ResourceManager.GetObject("create dialog", resourceCulture);
@@ -116,6 +126,16 @@ namespace Client.Properties {
         internal static System.Drawing.Bitmap edit {
             get {
                 object obj = ResourceManager.GetObject("edit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap edit_dialog_name {
+            get {
+                object obj = ResourceManager.GetObject("edit dialog name", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

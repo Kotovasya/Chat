@@ -23,23 +23,23 @@ namespace Client.View
         private readonly AuthWindow authWindow;
         private readonly ClientModel model;
         private readonly SourceList<int, Dialog.DialogPreview> favouriteDialogs;
-
-        private SettingsControl settingsControl;
+        private readonly CreateDialogControl createDialogControl;
+        private readonly SettingsControl settingsControl;
+        private readonly DialogsControl dialogsControl;
 
         private Point MouseDownLocation;
-
-        public MainWindow()
-        {
-            InitializeComponent();
-            favouriteDialogs = new SourceList<int, Dialog.DialogPreview>();
-            settingsControl = new SettingsControl(model);
-        }
 
         public MainWindow(AuthWindow authWindow, ClientModel model)
         {
             this.authWindow = authWindow;
             this.model = model;
-            InitializeComponent();        
+            InitializeComponent();
+            favouriteDialogs = new SourceList<int, Dialog.DialogPreview>();
+            settingsControl = new SettingsControl(model);
+            dialogsControl = new DialogsControl(model);
+            createDialogControl = new CreateDialogControl(model);
+            dialogsControl.DialogOpen += DialogOpen_Click;
+            createDialogControl.DialogCreate += DialogOpen_Click;
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -50,19 +50,23 @@ namespace Client.View
         #region Menu Buttons Events
         private void DialogsButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SetControl(dialogsControl);
+        }
+
+        private void DialogOpen_Click(object sender, Dialog openedDialog)
+        {
+            openedDialog.Control.Model = model;
+            SetControl(openedDialog.Control);
         }
 
         private void CreateDialogButton_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            SetControl(createDialogControl);
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            mainPanel.Controls.Clear();
-            mainPanel.Controls.Add(settingsControl);
-            settingsControl.Dock = DockStyle.Fill;
+            SetControl(settingsControl);
         }
 
         private void LogoutButton_Click(object sender, EventArgs e)
@@ -72,6 +76,13 @@ namespace Client.View
             Close();
         }
         #endregion
+
+        private void SetControl(Control control)
+        {
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(control);
+            control.Dock = DockStyle.Fill;
+        }
 
         #region Top Panel Events
 

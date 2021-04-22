@@ -1,5 +1,6 @@
 ﻿using Library.Contracts;
 using Library.Contracts.Dialog;
+using Library.Contracts.DTO;
 using Library.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,15 @@ namespace Library.Services
         {
             return Preform(() =>
             {
+                if (context.Dialogs.Any(d => d.Name == request.Name))
+                    return new CreateDialogResponse() { Result = Result.DialogNameAlreadyTaken };
+                
                 Dialog dialog = context.Dialogs.Add(new Dialog(context.Dialogs.Count(), request.Id, request.Name, request.Password));
+                dialog.Users.Add(context.Users.Find(request.Id));
                 context.SaveChanges();
-                SendBroadcastEvent(new CreateDialogEventArgs(request.Id, dialog.ToDto()));
-                return new CreateDialogResponse() { Result = Result.Succesfully, Id = dialog.Id };
+                DialogDto dialogDto = dialog.ToDto();
+                SendBroadcastEvent(new CreateDialogEventArgs(request.Id, dialogDto));
+                return new CreateDialogResponse() { Result = Result.Succesfully, Dialog = dialogDto };                    
             });
         }
 
@@ -27,7 +33,13 @@ namespace Library.Services
             return Preform(() =>
             {
                 User user = context.Users.Find(request.Id);
-                Dialog dialog = context.Dialogs.Find(request.DialogId);
+                Dialog dialog = context.Dialogs.SingleOrDefault(d => d.Name == request.Name);
+                if (dialog == null)
+                    return new ConnectToDialogResponse() { Result = Result.WrongLogin };
+
+                if (dialog.Password != request.Password)
+                    return new ConnectToDialogResponse() { Result = Result.WrongPassword };
+
                 if (dialog.Users.Contains(user))
                     return new ConnectToDialogResponse() { Result = Result.UserAlreadyInDialog };
 

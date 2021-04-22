@@ -29,10 +29,10 @@ namespace Library.Services
                     UserId = request.Id,
                     Date = DateTime.UtcNow
                 });
-                user.Messages.Add(message);
-                dialog.Messages.Add(message);
-                context.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                context.Entry(dialog).State = System.Data.Entity.EntityState.Modified;
+                //user.Messages.Add(message);
+                //dialog.Messages.Add(message);
+                //context.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                //context.Entry(dialog).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
                 return new SendMessageResponse() { Result = Contracts.Result.Succesfully, MessageId = message.Id };
             });

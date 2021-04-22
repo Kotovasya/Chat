@@ -11,7 +11,7 @@ namespace Library.Contracts.Dialog
     public class ConnectToDialogRequest : Request
     {
         [DataMember]
-        public int DialogId { get; set; }
+        public string Name { get; set; }
 
         [DataMember]
         public string Password { get; set; }

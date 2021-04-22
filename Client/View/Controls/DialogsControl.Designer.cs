@@ -30,10 +30,11 @@ namespace Client.View.Controls
         private void InitializeComponent()
         {
             this.topPanel = new System.Windows.Forms.Panel();
+            this.connectToDialogButton = new Client.View.Controls.ButtonControl();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.searchTextbox = new System.Windows.Forms.TextBox();
             this.leftPanel = new System.Windows.Forms.Panel();
             this.rightPanel = new System.Windows.Forms.Panel();
-            this.searchTextbox = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dialogsContainer = new System.Windows.Forms.Panel();
             this.topPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -42,6 +43,7 @@ namespace Client.View.Controls
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.topPanel.Controls.Add(this.connectToDialogButton);
             this.topPanel.Controls.Add(this.pictureBox1);
             this.topPanel.Controls.Add(this.searchTextbox);
             this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -49,6 +51,36 @@ namespace Client.View.Controls
             this.topPanel.Name = "topPanel";
             this.topPanel.Size = new System.Drawing.Size(900, 100);
             this.topPanel.TabIndex = 2;
+            // 
+            // connectToDialogButton
+            // 
+            this.connectToDialogButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.connectToDialogButton.Image = global::Client.Properties.Resources.connect_to_dialog;
+            this.connectToDialogButton.Location = new System.Drawing.Point(581, 25);
+            this.connectToDialogButton.Name = "connectToDialogButton";
+            this.connectToDialogButton.Size = new System.Drawing.Size(250, 49);
+            this.connectToDialogButton.TabIndex = 25;
+            this.connectToDialogButton.Title = "Присоединиться";
+            this.connectToDialogButton.Click += new System.EventHandler(this.connectToDialogButton_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Client.Properties.Resources.search;
+            this.pictureBox1.Location = new System.Drawing.Point(100, 31);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
+            // 
+            // searchTextbox
+            // 
+            this.searchTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
+            this.searchTextbox.Location = new System.Drawing.Point(147, 31);
+            this.searchTextbox.Name = "searchTextbox";
+            this.searchTextbox.Size = new System.Drawing.Size(309, 36);
+            this.searchTextbox.TabIndex = 23;
+            this.searchTextbox.TextChanged += new System.EventHandler(this.searchTextbox_TextChanged);
             // 
             // leftPanel
             // 
@@ -67,26 +99,6 @@ namespace Client.View.Controls
             this.rightPanel.Name = "rightPanel";
             this.rightPanel.Size = new System.Drawing.Size(150, 600);
             this.rightPanel.TabIndex = 4;
-            // 
-            // searchTextbox
-            // 
-            this.searchTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
-            this.searchTextbox.Location = new System.Drawing.Point(147, 31);
-            this.searchTextbox.Name = "searchTextbox";
-            this.searchTextbox.PasswordChar = '•';
-            this.searchTextbox.Size = new System.Drawing.Size(309, 36);
-            this.searchTextbox.TabIndex = 23;
-            this.searchTextbox.TextChanged += new System.EventHandler(this.searchTextbox_TextChanged);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Client.Properties.Resources.search;
-            this.pictureBox1.Location = new System.Drawing.Point(100, 31);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 36);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 24;
-            this.pictureBox1.TabStop = false;
             // 
             // dialogsContainer
             // 
@@ -122,5 +134,6 @@ namespace Client.View.Controls
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox searchTextbox;
         private System.Windows.Forms.Panel dialogsContainer;
+        private ButtonControl connectToDialogButton;
     }
 }
