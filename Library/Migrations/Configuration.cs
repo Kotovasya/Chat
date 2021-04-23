@@ -10,7 +10,6 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Library.Data.DatabaseContext";
         }
 
         protected override void Seed(Library.Data.DatabaseContext context)

@@ -28,6 +28,24 @@ namespace Library.Services
             });
         }
 
+        public Response RemoveDialog(RemoveDialogRequest request)
+        {
+            return Preform(() =>
+            {
+                Dialog dialog = context.Dialogs.Find(request.DialogId);
+                if (dialog.Owner_Id != request.Id)
+                    return new Response() { Result = Result.NotPremissions };
+
+                if (dialog.Password != request.Password)
+                    return new Response() { Result = Result.WrongPassword };
+
+                context.Dialogs.Remove(dialog);
+                context.SaveChanges();
+                SendBroadcastEvent(new DialogRemovedEventArgs(request.Id, request.DialogId));
+                return new Response() { Result = Result.Succesfully };
+            });
+        }
+
         public ConnectToDialogResponse ConnectToDialog(ConnectToDialogRequest request)
         {
             return Preform(() =>
@@ -51,20 +69,19 @@ namespace Library.Services
             });
         }
 
-        public Response AddUserToDialog(AddUserToDialogRequest request)
+        public Response LeaveFromDialog(LeaveFromDialogRequest request)
         {
             return Preform(() =>
             {
-                User owner = context.Users.Find(request.Id);
+                User user = context.Users.Find(request.Id);
                 Dialog dialog = context.Dialogs.Find(request.DialogId);
-                if (dialog.OwnerId != owner.Id)
-                    return new Response() { Result = Result.NotPremissions };
-                User addedUser = context.Users.Find(request.AddedId);
+                if (!dialog.Users.Contains(user))
+                    return new Response() { Result = Result.UserNotInDialog };               
 
-                dialog.Users.Add(addedUser);
+                dialog.Users.Remove(user);
                 context.Entry(dialog).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
-                SendEvent(dialog.Users.Select(u => u.Id), new AddedUserToDialogEventArgs(request.Id, dialog.Id, addedUser.ToDto()));
+                SendEvent(dialog.Users.Select(u => u.Id), new UserLeaveFromDialogEventArgs(request.Id, dialog.Id));
                 return new Response() { Result = Result.Succesfully };
             });
         }
@@ -75,7 +92,7 @@ namespace Library.Services
             {
                 User user = context.Users.Find(request.Id);
                 Dialog dialog = context.Dialogs.Find(request.DialogId);
-                if (user.Id != dialog.OwnerId)
+                if (user.Id != dialog.Owner_Id)
                     return new Response() { Result = Result.NotPremissions };
 
                 if (request.NewName != null)

@@ -20,7 +20,7 @@ namespace Library.Services
         /// <summary>
         /// Контекст базы данных
         /// </summary>
-        private readonly DatabaseContext context;
+        private readonly Data.DatabaseContext context;
         /// <summary>
         /// Словарь, хранящий созданные и активные подключения в данный момент
         /// </summary>
@@ -29,7 +29,7 @@ namespace Library.Services
 
         public Service()
         {
-            context = new DatabaseContext();
+            context = new Data.DatabaseContext();
             connections = new Dictionary<Guid, Connection>();
         }
 

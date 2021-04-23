@@ -1,47 +1,56 @@
-п»їusing Library.Contracts.DTO;
+using Library.Contracts.DTO;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.Spatial;
 
 namespace Library.Data.Entities
 {
     /// <summary>
-    /// РЎСѓС‰РЅРѕСЃС‚СЊ Р±Р°Р·С‹ РґР°РЅРЅС‹С…, С…СЂР°РЅСЏС‰Р°СЏ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏС…
+    /// Сущность базы данных, хранящая информацию о пользователе
     /// </summary>
-    public class User : IDto<UserDto>
+    public partial class User : IDto<UserDto>
     {
-        public Guid Id { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
-
-        public virtual ICollection<Message> Messages { get; set; }
-        public virtual ICollection<Dialog> Dialogs { get; set; }
-        public virtual ICollection<Dialog> DialogsOwner { get; set; }
-
-        /// <summary>
-        /// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
-        /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
             Id = Guid.NewGuid();
+            Dialogs = new HashSet<Dialog>();
             Messages = new HashSet<Message>();
-            Dialogs = new HashSet<Dialog>();
-            Dialogs = new HashSet<Dialog>();
+            OwnedDialogs = new HashSet<Dialog>();
         }
 
+
         /// <summary>
-        /// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РЅРѕРІРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ СЃ Р·Р°РґР°РЅРЅС‹Рј Р»РѕРіРёРЅРѕРј (РёРјРµРЅРµРј) Рё РїР°СЂРѕР»РµРј
+        /// Инициализирует нового пользователя с заданным логином (именем) и паролем
         /// </summary>
-        /// <param name="login">Р›РѕРіРёРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</param>
-        /// <param name="password">РџР°СЂРѕР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ</param>
+        /// <param name="login">Логин пользователя</param>
+        /// <param name="password">Пароль пользователя</param>
         public User(string login, string password)
             : this()
         {
             Login = login;
             Password = password;
         }
+
+        public Guid Id { get; set; }
+
+        [Required]
+        [StringLength(30)]
+        public string Login { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Dialog> Dialogs { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Message> Messages { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Dialog> OwnedDialogs { get; set; }
 
         public UserDto ToDto()
         {

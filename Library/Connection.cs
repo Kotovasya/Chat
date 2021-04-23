@@ -27,7 +27,7 @@ namespace Library
             IsTemporary = isTemporary;
             Context = context;
         }
-        
+
         /// <summary>
         /// Инициализирует экземпляр временного подключения клиента к сервису
         /// </summary>

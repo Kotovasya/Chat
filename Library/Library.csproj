@@ -50,18 +50,24 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connection.cs" />
     <Compile Include="Contracts\Dialog\Events\ChangeDialogEventArgs.cs" />
     <Compile Include="Contracts\Dialog\Events\CreateDialogEventArgs.cs" />
     <Compile Include="Contracts\Dialog\Events\AddedUserToDialogEventArgs.cs" />
+    <Compile Include="Contracts\Dialog\Events\DialogRemovedEventArgs.cs" />
+    <Compile Include="Contracts\Dialog\Events\UserLeaveFromDialogEventArgs.cs" />
     <Compile Include="Contracts\Dialog\Requests\AddUserToDialogRequest.cs" />
     <Compile Include="Contracts\Dialog\Requests\ChangeDialogRequest.cs" />
     <Compile Include="Contracts\Dialog\Requests\ConnectToDialogRequest.cs" />
     <Compile Include="Contracts\Dialog\Requests\CreateDialogRequest.cs" />
+    <Compile Include="Contracts\Dialog\Requests\LeaveFromDialogRequest.cs" />
+    <Compile Include="Contracts\Dialog\Requests\RemoveDialogRequest.cs" />
     <Compile Include="Contracts\Dialog\Responses\ConnectToDialogResponse.cs" />
     <Compile Include="Contracts\Dialog\Responses\CreateDialogResponse.cs" />
     <Compile Include="Contracts\DTO\DialogDto.cs" />
@@ -76,33 +82,19 @@
     <Compile Include="Contracts\User\Events\UsernameChangedEventArgs.cs" />
     <Compile Include="Contracts\User\Requests\ChangePasswordRequest.cs" />
     <Compile Include="Contracts\User\Requests\ChangeUsernameRequest.cs" />
-    <Compile Include="Data\Entities\Dialog.cs" />
-    <Compile Include="Data\Entities\Message.cs" />
-    <Compile Include="Data\Entities\User.cs" />
+    <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Contracts\Auth\Events\UserConnectedEventArgs.cs" />
     <Compile Include="Contracts\Messaging\Events\MessageSendEventArgs.cs" />
     <Compile Include="Contracts\ServerEventArgs.cs" />
-    <Compile Include="Data\DatabaseContext.cs" />
-    <Compile Include="Migrations\202102220904061_InitialCreate.cs" />
-    <Compile Include="Migrations\202102220904061_InitialCreate.designer.cs">
-      <DependentUpon>202102220904061_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102262000318_AddMessagingMigration.cs" />
-    <Compile Include="Migrations\202102262000318_AddMessagingMigration.designer.cs">
-      <DependentUpon>202102262000318_AddMessagingMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103182229092_AddMessageDate.cs" />
-    <Compile Include="Migrations\202103182229092_AddMessageDate.designer.cs">
-      <DependentUpon>202103182229092_AddMessageDate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103210907285_AddDialogs.cs" />
-    <Compile Include="Migrations\202103210907285_AddDialogs.designer.cs">
-      <DependentUpon>202103210907285_AddDialogs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Contracts\Messaging\Requests\SendMessageRequest.cs" />
     <Compile Include="Contracts\Messaging\Responses\SendMessageResponse.cs" />
-    <Compile Include="Connection.cs" />
+    <Compile Include="Data\Entities\Dialog.cs" />
+    <Compile Include="Data\Entities\Message.cs" />
+    <Compile Include="Migrations\202104231935365_MessageDateAdded.cs" />
+    <Compile Include="Migrations\202104231935365_MessageDateAdded.designer.cs">
+      <DependentUpon>202104231935365_MessageDateAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\Auth\Requests\AuthRequest.cs" />
     <Compile Include="Contracts\Auth\Responses\AuthResponse.cs" />
@@ -120,26 +112,20 @@
     <Compile Include="Services\MessagingService.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="Data\Entities\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102220904061_InitialCreate.resx">
-      <DependentUpon>202102220904061_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102262000318_AddMessagingMigration.resx">
-      <DependentUpon>202102262000318_AddMessagingMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103182229092_AddMessageDate.resx">
-      <DependentUpon>202103182229092_AddMessageDate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103210907285_AddDialogs.resx">
-      <DependentUpon>202103210907285_AddDialogs.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202104231935365_MessageDateAdded.resx">
+      <DependentUpon>202104231935365_MessageDateAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <VSToolsPath Condition="'$(VSToolsPath)' == '' and '$(VisualStudioVersion)' != '' and '$(VisualStudioVersion)' != '11.0'">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

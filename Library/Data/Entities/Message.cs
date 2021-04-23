@@ -1,32 +1,36 @@
-п»їusing Library.Contracts.DTO;
+using Library.Contracts.DTO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity.Spatial;
 
 namespace Library.Data.Entities
 {
     /// <summary>
-    /// РЎСѓС‰РЅРѕСЃС‚СЊ Р±Р°Р·С‹ РґР°РЅРЅС‹С…, С…СЂР°РЅСЏС‰Р°СЏ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃРѕРѕР±С‰РµРЅРёСЏС…
+    /// Сущность базы данных, хранящая информацию о сообщении
     /// </summary>
-    public class Message : IDto<MessageDto>
+    public partial class Message : IDto<MessageDto>
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Id { get; set; }
+
         public string Text { get; set; }
+
+        public Guid Author_Id { get; set; }
 
         [Column(TypeName = "datetime2")]
         public DateTime Date { get; set; }
 
-        public Guid? UserId { get; set; }
-        public int DialogId { get; set; }
-        public virtual User User { get; set; }
+        public int Dialog_Id { get; set; }
+
         public virtual Dialog Dialog { get; set; }
+
+        public virtual User Author { get; set; }
 
         public MessageDto ToDto()
         {
-            return new MessageDto(Id, User.ToDto(), Text, Date, DialogId);
+            return new MessageDto(Id, Author.ToDto(), Text, Date, Dialog_Id);
         }
     }
 }

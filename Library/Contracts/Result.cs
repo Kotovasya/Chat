@@ -60,6 +60,12 @@ namespace Library.Contracts
         DialogNameAlreadyTaken = 128,
 
         /// <summary>
+        /// Пользователя нет в диалоге
+        /// </summary>
+        [EnumMember]
+        UserNotInDialog = 256,
+
+        /// <summary>
         /// Во время выполнения операции произошла ошибка
         /// </summary>
         [EnumMember]

@@ -15,14 +15,16 @@ namespace Library.Services.Interfaces
         CreateDialogResponse CreateDialog(CreateDialogRequest request);
 
         [OperationContract]
-        Response ChangeDialog(ChangeDialogRequest request);
+        Response RemoveDialog(RemoveDialogRequest request);
 
         [OperationContract]
-        Response AddUserToDialog(AddUserToDialogRequest request);
+        Response ChangeDialog(ChangeDialogRequest request);
 
         [OperationContract]
         ConnectToDialogResponse ConnectToDialog(ConnectToDialogRequest request);
 
+        [OperationContract]
+        Response LeaveFromDialog(LeaveFromDialogRequest request);
     }
 
     public partial interface IServiceCallback

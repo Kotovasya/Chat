@@ -36,7 +36,7 @@ namespace Library.Contracts.DTO
         {
             Id = dialog.Id;
             Name = dialog.Name;
-            OwnerId = dialog.OwnerId;
+            OwnerId = dialog.Owner_Id;
         }
 
         public DialogDto AddInfo(Data.Entities.Dialog dialog)

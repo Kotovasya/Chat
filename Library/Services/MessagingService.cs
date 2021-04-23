@@ -24,9 +24,9 @@ namespace Library.Services
                 var message = context.Messages.Add(new Message()
                 {
                     Id = context.Messages.LongCount(),
-                    DialogId = request.DialogId,
+                    Dialog_Id = request.DialogId,
                     Text = request.Text,
-                    UserId = request.Id,
+                    Author_Id = request.Id,
                     Date = DateTime.UtcNow
                 });
                 //user.Messages.Add(message);

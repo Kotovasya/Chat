@@ -1,33 +1,52 @@
-п»їusing Library.Data.Entities;
+using Library.Data.Entities;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
+using System.Linq;
 
 namespace Library.Data
 {
     /// <summary>
-    /// РљРѕРЅС‚РµРєСЃС‚ Р±Р°Р·С‹ РґР°РЅРЅС‹С…, СЃР»СѓР¶Р°С‰РёР№ РґР»СЏ РѕР±СЂР°С‰РµРЅРёСЏ Рє РµРµ С‚Р°Р±Р»РёС†Р°Рј
+    /// Контекст базы данных, служащий для обращения к ее таблицам
     /// </summary>
-    public class DatabaseContext : DbContext
+    public partial class DatabaseContext : DbContext
     {
         /// <summary>
-        /// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµС‚ РєРѕРЅС‚РµРєСЃС‚ Р±Р°Р·С‹ РґР°РЅРЅС‹С…, СЃС‚СЂРѕРєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє РєРѕС‚РѕСЂРѕР№ РЅР°С…РѕРґРёС‚СЃСЏ РІ С„Р°Р№Р»Рµ РєРѕРЅС„РёРіСѓСЂР°С†РёРё
+        /// Инициализирует контекст базы данных, строка подключения к которой находится в файле конфигурации
         /// </summary>
         public DatabaseContext()
-            : base("DBConnection")
+            : base("DbConnection")
         {
-
         }
 
-        /// <summary>
-        /// РўР°Р±Р»РёС†Р° РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
-        /// </summary>
-        public DbSet<User> Users { get; set; }
-        /// <summary>
-        /// РўР°Р±Р»РёС†Р° СЃРѕРѕР±С‰РµРЅРёР№
-        /// </summary>
-        public DbSet<Message> Messages { get; set; }
-        /// <summary>
-        /// РўР°Р±Р»РёС†Р° РґРёР°Р»РѕРіРѕРІ
-        /// </summary>
-        public DbSet<Dialog> Dialogs { get; set; }
+        public virtual DbSet<Dialog> Dialogs { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Dialog>()
+                .HasMany(e => e.Messages)
+                .WithRequired(e => e.Dialog)
+                .HasForeignKey(e => e.Dialog_Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Dialog>()
+                .HasMany(e => e.Users)
+                .WithMany(e => e.OwnedDialogs)
+                .Map(m => m.ToTable("UsersDialogs"));
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Dialogs)
+                .WithRequired(e => e.Owner)
+                .HasForeignKey(e => e.Owner_Id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<User>()
+                .HasMany(e => e.Messages)
+                .WithRequired(e => e.Author)
+                .HasForeignKey(e => e.Author_Id)
+                .WillCascadeOnDelete(false);
+        }
     }
 }
