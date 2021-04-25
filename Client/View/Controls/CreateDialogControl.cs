@@ -35,8 +35,8 @@ namespace Client.View.Controls
             CreateDialogResponse response = model.CreateDialog(new CreateDialogRequest() 
             { 
                 Id = model.Id, 
-                Name = dialogNameLabel.Text, 
-                Password = passwordLabel.Text 
+                Name = dialogNameTextbox.Text, 
+                Password = passwordTextbox.Text 
             });
             if (response.Result == Result.Succesfully)
             {

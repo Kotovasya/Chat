@@ -55,9 +55,11 @@ namespace Client.View.Controls
             // connectToDialogButton
             // 
             this.connectToDialogButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.connectToDialogButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.connectToDialogButton.Image = global::Client.Properties.Resources.connect_to_dialog;
             this.connectToDialogButton.Location = new System.Drawing.Point(581, 25);
             this.connectToDialogButton.Name = "connectToDialogButton";
+            this.connectToDialogButton.Separator = false;
             this.connectToDialogButton.Size = new System.Drawing.Size(250, 49);
             this.connectToDialogButton.TabIndex = 25;
             this.connectToDialogButton.Title = "Присоединиться";

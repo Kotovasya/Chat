@@ -182,6 +182,7 @@ namespace Client.View.Controls
             this.changeUsernameButton.Image = global::Client.Properties.Resources.edit_username;
             this.changeUsernameButton.Location = new System.Drawing.Point(484, 254);
             this.changeUsernameButton.Name = "changeUsernameButton";
+            this.changeUsernameButton.Separator = false;
             this.changeUsernameButton.Size = new System.Drawing.Size(234, 51);
             this.changeUsernameButton.TabIndex = 28;
             this.changeUsernameButton.Title = "Сменить имя";
@@ -194,6 +195,7 @@ namespace Client.View.Controls
             this.changePasswordButton.Image = global::Client.Properties.Resources.change_password;
             this.changePasswordButton.Location = new System.Drawing.Point(125, 254);
             this.changePasswordButton.Name = "changePasswordButton";
+            this.changePasswordButton.Separator = false;
             this.changePasswordButton.Size = new System.Drawing.Size(234, 51);
             this.changePasswordButton.TabIndex = 27;
             this.changePasswordButton.Title = "Сменить пароль";

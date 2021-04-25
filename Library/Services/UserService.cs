@@ -14,6 +14,9 @@ namespace Library.Services
         {
             return Preform(() =>
             {
+                if (!CheckValidPassword(request.NewPassword))
+                    return new Response() { Result = Result.InvalidPassword };
+
                 var user = context.Users.Find(request.Id);
                 if (user.Password != request.OldPassword)
                     return new Response() { Result = Result.WrongPassword };
@@ -28,6 +31,9 @@ namespace Library.Services
         {
             return Preform(() =>
             {
+                if (!CheckValidName(request.NewName))
+                    return new Response() { Result = Result.InvalidName };
+
                 if (context.Users.Any(u => u.Login == request.NewName))
                     return new Response() { Result = Result.AlreadyRegister };
                 var user = context.Users.Find(request.Id);

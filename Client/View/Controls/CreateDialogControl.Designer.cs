@@ -100,9 +100,11 @@ namespace Client.View.Controls
             // createDialogButton
             // 
             this.createDialogButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.createDialogButton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.createDialogButton.Image = global::Client.Properties.Resources.create_dialog;
             this.createDialogButton.Location = new System.Drawing.Point(315, 379);
             this.createDialogButton.Name = "createDialogButton";
+            this.createDialogButton.Separator = false;
             this.createDialogButton.Size = new System.Drawing.Size(250, 50);
             this.createDialogButton.TabIndex = 31;
             this.createDialogButton.Title = "Создать диалог";

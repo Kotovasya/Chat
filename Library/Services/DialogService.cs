@@ -16,6 +16,9 @@ namespace Library.Services
         {
             return Preform(() =>
             {
+                if (request.Name == string.Empty || request.Name.All(c => char.IsWhiteSpace(c)))
+                    return new CreateDialogResponse() { Result = Result.InvalidName };
+
                 if (context.Dialogs.Any(d => d.Name == request.Name))
                     return new CreateDialogResponse() { Result = Result.DialogNameAlreadyTaken };
                 
@@ -90,13 +93,18 @@ namespace Library.Services
         {
             return Preform(() =>
             {
+
                 User user = context.Users.Find(request.Id);
                 Dialog dialog = context.Dialogs.Find(request.DialogId);
                 if (user.Id != dialog.Owner_Id)
                     return new Response() { Result = Result.NotPremissions };
 
                 if (request.NewName != null)
+                {
+                    if (context.Dialogs.Any(d => d.Name == request.NewName))
+                        return new Response() { Result = Result.DialogNameAlreadyTaken };
                     dialog.Name = request.NewName;
+                }
                 if (request.NewPassword != null)
                     dialog.Password = request.NewPassword;
                 context.Entry(dialog).State = System.Data.Entity.EntityState.Modified;

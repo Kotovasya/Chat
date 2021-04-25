@@ -18,7 +18,6 @@ namespace Client.View.Controls
     {
         private Graphics g;
         private static readonly Pen borderPen = new Pen(Color.FromArgb(122, 122, 122), 2);
-        private readonly Dialog dialog;
 
         public ClientModel Model { get; set; }
 
@@ -26,8 +25,7 @@ namespace Client.View.Controls
 
         public DialogControl(Dialog dialog)
         {
-            InitializeComponent();
-            this.dialog = dialog;
+            Dialog = dialog;
 
             dialog.Messages.Collection = messagesContainer.Controls;
             dialog.Messages.ControlRemoving += messageContainer_ControlRemoving;
@@ -40,7 +38,7 @@ namespace Client.View.Controls
 
         private void messagesContainer_ControlAdded(object sender, ControlEventArgs e)
         {
-            var lastControl = dialog.Messages.Last()?.Control;
+            var lastControl = Dialog.Messages.Last()?.Control;
             if (lastControl != null)
                 e.Control.Location = new Point(e.Control.Location.X, lastControl.Location.Y + lastControl.Height + 2);
         }

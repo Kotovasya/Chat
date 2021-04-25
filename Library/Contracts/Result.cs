@@ -66,9 +66,27 @@ namespace Library.Contracts
         UserNotInDialog = 256,
 
         /// <summary>
+        /// Отправлено пустое сообщение
+        /// </summary>
+        [EnumMember]
+        EmptyMessage = 512,
+
+        /// <summary>
+        /// Заданное имя недействительно
+        /// </summary>
+        [EnumMember]
+        InvalidName = 1024,
+
+        /// <summary>
+        /// Заданный пароль недействителен
+        /// </summary>
+        [EnumMember]
+        InvalidPassword = 2048,
+
+        /// <summary>
         /// Во время выполнения операции произошла ошибка
         /// </summary>
         [EnumMember]
-        ServerException = 1024,
+        ServerException = 65536,
     }
 }

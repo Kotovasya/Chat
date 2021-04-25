@@ -110,7 +110,7 @@ namespace Library.Services
                     {
                         methodInfo.Invoke(service, new[] { args });
                         return;
-                    }              
+                    }
             }
         }
 
@@ -138,6 +138,26 @@ namespace Library.Services
                 .Where(k => isTemporary || !k.Value.IsTemporary)
                 .Select(k => k.Key)
                 , args);
+        }
+
+        /// <summary>
+        /// Проверяет, является ли имя действительным
+        /// </summary>
+        /// <param name="name">Строка с именем для проверки</param>
+        /// <returns></returns>
+        private bool CheckValidName(string name)
+        {
+            return !string.IsNullOrWhiteSpace(name) && name.Length > 2 && name.Length <= 30;
+        }
+
+        /// <summary>
+        /// Проверяет, является ли пароль действительным
+        /// </summary>
+        /// <param name="password">Строка с паролем для проверки</param>
+        /// <returns></returns>
+        private bool CheckValidPassword(string password)
+        {
+            return !string.IsNullOrWhiteSpace(password) && password.Length > 3;
         }
     }
 }

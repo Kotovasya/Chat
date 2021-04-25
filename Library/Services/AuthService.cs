@@ -53,6 +53,12 @@ namespace Library.Services
         {
             return Preform(() => 
             {
+                if (!CheckValidName(request.Login))
+                    return new AuthResponse() { Result = Contracts.Result.InvalidName };
+
+                if (!CheckValidPassword(request.Password))
+                    return new AuthResponse() { Result = Contracts.Result.InvalidPassword };
+
                 if (context.Users.Any(u => u.Login.ToLower() == request.Login.ToLower()))
                     return new AuthResponse() { Result = Contracts.Result.AlreadyRegister };
 

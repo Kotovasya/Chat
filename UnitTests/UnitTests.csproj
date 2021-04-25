@@ -64,10 +64,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Server\Dialog Service\CreateDialog.cs" />
+    <Compile Include="Server\Dialog Service\EditDialog.cs" />
     <Compile Include="Server\Dialog Service\JoinToDialog.cs" />
+    <Compile Include="Server\Messaging Service\SendMessage.cs" />
     <Compile Include="Server\Service.cs" />
     <Compile Include="Server\TestUser.cs" />
-    <Compile Include="Server\User Service\AuthorizationUser.cs" />
+    <Compile Include="Server\User Service\Authorization.cs" />
+    <Compile Include="Server\User Service\EditUser.cs" />
+    <Compile Include="Server\User Service\Registration.cs" />
     <Compile Include="TestSettings.cs" />
   </ItemGroup>
   <ItemGroup>

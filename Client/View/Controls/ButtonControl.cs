@@ -27,6 +27,12 @@ namespace Client.View.Controls
             set { buttonImage.Image = value; }
         }
 
+        public bool Separator
+        {
+            get { return panel1.Visible; }
+            set { panel1.Visible = value; }
+        }
+
         public ButtonControl()
         {
             InitializeComponent();

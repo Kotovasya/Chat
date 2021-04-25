@@ -19,8 +19,14 @@ namespace Library.Services
         {
             return Preform(() =>
             {
+                if (string.IsNullOrWhiteSpace(request.Text))
+                    return new SendMessageResponse() { Result = Contracts.Result.EmptyMessage };
+
                 var user = context.Users.Find(request.Id);
                 var dialog = context.Dialogs.Find(request.DialogId);
+                if (!dialog.Users.Contains(user))
+                    return new SendMessageResponse() { Result = Contracts.Result.UserNotInDialog };
+
                 var message = context.Messages.Add(new Message()
                 {
                     Id = context.Messages.LongCount(),
