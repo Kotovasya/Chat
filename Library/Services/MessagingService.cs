@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library.Contracts;
 
 namespace Library.Services
 {
@@ -20,12 +21,12 @@ namespace Library.Services
             return Preform(() =>
             {
                 if (string.IsNullOrWhiteSpace(request.Text))
-                    return new SendMessageResponse() { Result = Contracts.Result.EmptyMessage };
+                    return new SendMessageResponse() { Result = Result.EmptyMessage };
 
                 var user = context.Users.Find(request.Id);
                 var dialog = context.Dialogs.Find(request.DialogId);
                 if (!dialog.Users.Contains(user))
-                    return new SendMessageResponse() { Result = Contracts.Result.UserNotInDialog };
+                    return new SendMessageResponse() { Result = Result.UserNotInDialog };
 
                 var message = context.Messages.Add(new Message()
                 {
@@ -35,13 +36,47 @@ namespace Library.Services
                     Author_Id = request.Id,
                     Date = DateTime.UtcNow
                 });
-                //user.Messages.Add(message);
-                //dialog.Messages.Add(message);
-                //context.Entry(user).State = System.Data.Entity.EntityState.Modified;
-                //context.Entry(dialog).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
-                return new SendMessageResponse() { Result = Contracts.Result.Succesfully, MessageId = message.Id };
+                SendEvent(dialog.Users.Select(u => u.Id), new MessageSendEventArgs(request.Id, message.ToDto()));
+                return new SendMessageResponse() { Result = Result.Succesfully, MessageId = message.Id };
             });
+        }
+
+        public Response EditMessage(EditMessageRequest request)
+        {
+            if (string.IsNullOrWhiteSpace(request.NewText))
+                return new Response() { Result = Result.EmptyMessage };
+
+            var user = context.Users.Find(request.Id);
+            var dialog = context.Dialogs.Find(request.DialogId);
+            if (!dialog.Users.Contains(user))
+                return new Response() { Result = Result.UserNotInDialog };
+
+            var message = context.Messages.Find(request.MessageId);
+            if (message.Author.Id != request.Id)
+                return new Response() { Result = Result.NotPremissions };
+
+            message.Text = request.NewText;
+            context.Entry(message).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+            SendEvent(dialog.Users.Select(u => u.Id), new MessageEditedEventArgs(request));
+            return new Response() { Result = Result.Succesfully };
+        }
+
+        public Response RemoveMessage(RemoveMessageRequest request)
+        {
+            var user = context.Users.Find(request.Id);
+            var dialog = context.Dialogs.Find(request.DialogId);
+            if (!dialog.Users.Contains(user))
+                return new Response() { Result = Result.UserNotInDialog };
+
+            var message = context.Messages.Find(request.MessageId);
+            if (message.Author.Id != request.Id)
+                return new Response() { Result = Result.NotPremissions };
+
+            context.Messages.Remove(message);
+            SendEvent(dialog.Users.Select(u => u.Id), new MessageRemovedEventArgs(request));
+            return new Response() { Result = Result.Succesfully };
         }
     }
 }

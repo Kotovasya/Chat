@@ -32,6 +32,10 @@ namespace Client.View.Controls
             this.textLabel = new System.Windows.Forms.Label();
             this.authorLabel = new System.Windows.Forms.Label();
             this.dateLabel = new System.Windows.Forms.Label();
+            this.editMessageImage = new System.Windows.Forms.PictureBox();
+            this.removeMessageImage = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.editMessageImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.removeMessageImage)).BeginInit();
             this.SuspendLayout();
             // 
             // textLabel
@@ -64,28 +68,57 @@ namespace Client.View.Controls
             // 
             // dateLabel
             // 
-            this.dateLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.dateLabel.AutoSize = true;
             this.dateLabel.BackColor = System.Drawing.Color.Transparent;
             this.dateLabel.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.dateLabel.Location = new System.Drawing.Point(656, 0);
+            this.dateLabel.Location = new System.Drawing.Point(88, 0);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.Size = new System.Drawing.Size(44, 20);
             this.dateLabel.TabIndex = 0;
             this.dateLabel.Text = "20:20";
             this.dateLabel.Click += new System.EventHandler(this.MessageControl_Click);
             // 
+            // editMessageImage
+            // 
+            this.editMessageImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.editMessageImage.Image = global::Client.Properties.Resources.edit;
+            this.editMessageImage.Location = new System.Drawing.Point(644, 0);
+            this.editMessageImage.Name = "editMessageImage";
+            this.editMessageImage.Size = new System.Drawing.Size(26, 26);
+            this.editMessageImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.editMessageImage.TabIndex = 4;
+            this.editMessageImage.TabStop = false;
+            this.editMessageImage.Visible = false;
+            this.editMessageImage.Click += new System.EventHandler(this.editMessageImage_Click);
+            // 
+            // removeMessageImage
+            // 
+            this.removeMessageImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.removeMessageImage.Image = global::Client.Properties.Resources.delete_message;
+            this.removeMessageImage.Location = new System.Drawing.Point(674, 0);
+            this.removeMessageImage.Name = "removeMessageImage";
+            this.removeMessageImage.Size = new System.Drawing.Size(26, 26);
+            this.removeMessageImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.removeMessageImage.TabIndex = 5;
+            this.removeMessageImage.TabStop = false;
+            this.removeMessageImage.Visible = false;
+            this.removeMessageImage.Click += new System.EventHandler(this.removeMessageImage_Click);
+            // 
             // MessageControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Controls.Add(this.removeMessageImage);
+            this.Controls.Add(this.editMessageImage);
             this.Controls.Add(this.authorLabel);
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.textLabel);
             this.Name = "MessageControl";
             this.Size = new System.Drawing.Size(700, 50);
             this.Click += new System.EventHandler(this.MessageControl_Click);
+            ((System.ComponentModel.ISupportInitialize)(this.editMessageImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.removeMessageImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -95,5 +128,7 @@ namespace Client.View.Controls
         private System.Windows.Forms.Label textLabel;
         private System.Windows.Forms.Label authorLabel;
         private System.Windows.Forms.Label dateLabel;
+        private System.Windows.Forms.PictureBox editMessageImage;
+        private System.Windows.Forms.PictureBox removeMessageImage;
     }
 }

@@ -67,6 +67,7 @@ namespace Client.View
             this.passwordTextbox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.passwordTextbox.Location = new System.Drawing.Point(42, 42);
             this.passwordTextbox.Name = "passwordTextbox";
+            this.passwordTextbox.PasswordChar = '•';
             this.passwordTextbox.Size = new System.Drawing.Size(193, 27);
             this.passwordTextbox.TabIndex = 24;
             this.passwordTextbox.Click += new System.EventHandler(this.Input_Click);

@@ -54,6 +54,7 @@ namespace Client.Entities
         }
 
         private string name;
+        private int usersCount;
 
         public int Id { get; set; }
         public Guid OwnerId { get; private set; }
@@ -70,6 +71,16 @@ namespace Client.Entities
             }
         }
 
+        public int UsersCount
+        {
+            get { return usersCount; }
+            set
+            {
+                usersCount = value;
+                OnPropertyChanged("UsersCount");
+            }
+        }
+
         public DialogPreview Preview { get; set; }
         
         public Dialog(DialogDto dialog)
@@ -78,6 +89,10 @@ namespace Client.Entities
             name = dialog.Name;
             OwnerId = dialog.OwnerId;
             Users = new SourceList<Guid, User>(dialog.Users?.ToDictionary(kvp => kvp.Key, kvp => new User(kvp.Value)));
+            UsersCount = Users.Count;
+            Users.ControlAdding += (sender, user) => { UsersCount += 1; };
+            Users.ControlRemoving += (sender, user) => { UsersCount += 1; };
+
             Messages = new SourceList<long, Message>(dialog.Messages?.ToDictionary(kvp => kvp.Key, kvp => new Message(kvp.Value)));
             Preview = new DialogPreview(this);
         }

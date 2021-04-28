@@ -78,6 +78,10 @@
     <Compile Include="Contracts\Load\Requests\LoadMessagesRequest.cs" />
     <Compile Include="Contracts\Load\Responses\LoadDialogsResponse.cs" />
     <Compile Include="Contracts\Load\Responses\LoadMessagesResponse.cs" />
+    <Compile Include="Contracts\Messaging\Events\MessageEditedEventArgs.cs" />
+    <Compile Include="Contracts\Messaging\Events\MessageRemovedEventArgs.cs" />
+    <Compile Include="Contracts\Messaging\Requests\EditMessageRequest.cs" />
+    <Compile Include="Contracts\Messaging\Requests\RemoveMessageRequest.cs" />
     <Compile Include="Contracts\Request.cs" />
     <Compile Include="Contracts\User\Events\UsernameChangedEventArgs.cs" />
     <Compile Include="Contracts\User\Requests\ChangePasswordRequest.cs" />

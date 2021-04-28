@@ -40,6 +40,29 @@ namespace Client.Model
             Model.Dialogs.Add(args.NewDialog.Id, new Dialog(args.NewDialog));
         }
 
+        public void OnDialogRemoved(DialogRemovedEventArgs args)
+        {
+            Model.Dialogs.Remove(args.DialogId);
+        }
+
+        public void OnMessageEdited(MessageEditedEventArgs args)
+        {
+            var dialog = Model.Dialogs.FirstOrDefault(d => d.Key == args.DialogId).Value;
+            if (dialog != null)
+            {
+                var message = dialog.Messages.FirstOrDefault(m => m.Key == args.MessageId).Value;
+                if (message != null)
+                    message.Text = args.NewText;
+            }
+        }
+
+        public void OnMessageRemoved(MessageRemovedEventArgs args)
+        {
+            var dialog = Model.Dialogs.FirstOrDefault(d => d.Key == args.DialogId).Value;
+            if (dialog != null)
+                dialog.Messages.Remove(args.MessageId);
+        }
+
         public void OnMessageSend(MessageSendEventArgs args)
         {
             Message message = new Message(args.Message);
@@ -61,6 +84,13 @@ namespace Client.Model
         public void OnUserDiconnected(ServerEventArgs args)
         {
             Model.Users?.Remove(args.Id);
+        }
+
+        public void OnUserLeavedFromDialog(UserLeaveFromDialogEventArgs args)
+        {
+            var dialog = Model.Dialogs.FirstOrDefault(d => d.Key == args.DialogId).Value;
+            if (dialog != null)
+                dialog.Users.Remove(args.Id);
         }
 
         public void OnUsernameChanged(UsernameChangedEventArgs args)

@@ -37,5 +37,11 @@ namespace Library.Services.Interfaces
 
         [OperationContract(IsOneWay = true)]
         void OnChangedDialog(ChangeDialogEventArgs args);
+
+        [OperationContract(IsOneWay = true)]
+        void OnUserLeavedFromDialog(UserLeaveFromDialogEventArgs args);
+
+        [OperationContract(IsOneWay = true)]
+        void OnDialogRemoved(DialogRemovedEventArgs args);
     }
 }

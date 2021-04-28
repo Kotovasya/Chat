@@ -23,14 +23,60 @@
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="SendMessageResponse" nillable="true" type="tns:SendMessageResponse" />
+  <xs:complexType name="EditMessageRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Library.Contracts" base="q3:Request">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DialogId" type="xs:int" />
+          <xs:element minOccurs="0" name="MessageId" type="xs:long" />
+          <xs:element minOccurs="0" name="NewText" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EditMessageRequest" nillable="true" type="tns:EditMessageRequest" />
+  <xs:complexType name="RemoveMessageRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Library.Contracts" base="q4:Request">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DialogId" type="xs:int" />
+          <xs:element minOccurs="0" name="MessageId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RemoveMessageRequest" nillable="true" type="tns:RemoveMessageRequest" />
   <xs:complexType name="MessageSendEventArgs">
     <xs:complexContent mixed="false">
-      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Library.Contracts" base="q3:ServerEventArgs">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Library.Contracts" base="q5:ServerEventArgs">
         <xs:sequence>
-          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO" minOccurs="0" name="Message" nillable="true" type="q4:MessageDto" />
+          <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO" minOccurs="0" name="Message" nillable="true" type="q6:MessageDto" />
         </xs:sequence>
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
   <xs:element name="MessageSendEventArgs" nillable="true" type="tns:MessageSendEventArgs" />
+  <xs:complexType name="MessageEditedEventArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/Library.Contracts" base="q7:ServerEventArgs">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DialogId" type="xs:int" />
+          <xs:element minOccurs="0" name="MessageId" type="xs:long" />
+          <xs:element minOccurs="0" name="NewText" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MessageEditedEventArgs" nillable="true" type="tns:MessageEditedEventArgs" />
+  <xs:complexType name="MessageRemovedEventArgs">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Library.Contracts" base="q8:ServerEventArgs">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="DialogId" type="xs:int" />
+          <xs:element minOccurs="0" name="MessageId" type="xs:long" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MessageRemovedEventArgs" nillable="true" type="tns:MessageRemovedEventArgs" />
 </xs:schema>

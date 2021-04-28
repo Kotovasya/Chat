@@ -16,6 +16,11 @@ namespace Client.View.Controls
     {
         public Entities.Message Message { get; private set; }
         public bool IsSelected { get; set; }
+        public bool IsClientAuthor { get; set; }
+
+
+        public EventHandler<MessageControl> EditMessage { get; set; }
+        public EventHandler<MessageControl> RemoveMessage { get; set; }
 
 
         public MessageControl()
@@ -51,6 +56,18 @@ namespace Client.View.Controls
         {
             IsSelected = !IsSelected;
             this.BackColor = IsSelected ? Color.FromArgb(240, 242, 245) : Color.FromKnownColor(KnownColor.ControlLightLight);
+        }
+
+        private void editMessageImage_Click(object sender, EventArgs e)
+        {
+            if (IsClientAuthor && IsSelected)
+                EditMessage?.Invoke(this, this);            
+        }
+
+        private void removeMessageImage_Click(object sender, EventArgs e)
+        {
+            if (IsClientAuthor && IsSelected)
+                RemoveMessage?.Invoke(this, this);
         }
     }
 }

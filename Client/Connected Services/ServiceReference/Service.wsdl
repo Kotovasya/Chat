@@ -62,23 +62,29 @@
   <wsdl:message name="IService_CreateDialog_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreateDialogResponse" />
   </wsdl:message>
+  <wsdl:message name="IService_RemoveDialog_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDialog" />
+  </wsdl:message>
+  <wsdl:message name="IService_RemoveDialog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveDialogResponse" />
+  </wsdl:message>
   <wsdl:message name="IService_ChangeDialog_InputMessage">
     <wsdl:part name="parameters" element="tns:ChangeDialog" />
   </wsdl:message>
   <wsdl:message name="IService_ChangeDialog_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangeDialogResponse" />
   </wsdl:message>
-  <wsdl:message name="IService_AddUserToDialog_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddUserToDialog" />
-  </wsdl:message>
-  <wsdl:message name="IService_AddUserToDialog_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddUserToDialogResponse" />
-  </wsdl:message>
   <wsdl:message name="IService_ConnectToDialog_InputMessage">
     <wsdl:part name="parameters" element="tns:ConnectToDialog" />
   </wsdl:message>
   <wsdl:message name="IService_ConnectToDialog_OutputMessage">
     <wsdl:part name="parameters" element="tns:ConnectToDialogResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_LeaveFromDialog_InputMessage">
+    <wsdl:part name="parameters" element="tns:LeaveFromDialog" />
+  </wsdl:message>
+  <wsdl:message name="IService_LeaveFromDialog_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LeaveFromDialogResponse" />
   </wsdl:message>
   <wsdl:message name="IService_LoadMessages_InputMessage">
     <wsdl:part name="parameters" element="tns:LoadMessages" />
@@ -97,6 +103,18 @@
   </wsdl:message>
   <wsdl:message name="IService_SendMessage_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_EditMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditMessage" />
+  </wsdl:message>
+  <wsdl:message name="IService_EditMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RemoveMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMessage" />
+  </wsdl:message>
+  <wsdl:message name="IService_RemoveMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveMessageResponse" />
   </wsdl:message>
   <wsdl:message name="IService_Connect_InputMessage">
     <wsdl:part name="parameters" element="tns:Connect" />
@@ -140,8 +158,20 @@
   <wsdl:message name="IService_OnChangedDialog_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnChangedDialog" />
   </wsdl:message>
+  <wsdl:message name="IService_OnUserLeavedFromDialog_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnUserLeavedFromDialog" />
+  </wsdl:message>
+  <wsdl:message name="IService_OnDialogRemoved_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnDialogRemoved" />
+  </wsdl:message>
   <wsdl:message name="IService_OnMessageSend_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnMessageSend" />
+  </wsdl:message>
+  <wsdl:message name="IService_OnMessageEdited_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnMessageEdited" />
+  </wsdl:message>
+  <wsdl:message name="IService_OnMessageRemoved_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:OnMessageRemoved" />
   </wsdl:message>
   <wsdl:message name="IService_OnUserDiconnected_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:OnUserDiconnected" />
@@ -165,17 +195,21 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IService/CreateDialog" message="tns:IService_CreateDialog_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/CreateDialogResponse" message="tns:IService_CreateDialog_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RemoveDialog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RemoveDialog" message="tns:IService_RemoveDialog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RemoveDialogResponse" message="tns:IService_RemoveDialog_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ChangeDialog">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/ChangeDialog" message="tns:IService_ChangeDialog_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/ChangeDialogResponse" message="tns:IService_ChangeDialog_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AddUserToDialog">
-      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddUserToDialog" message="tns:IService_AddUserToDialog_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddUserToDialogResponse" message="tns:IService_AddUserToDialog_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="ConnectToDialog">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/ConnectToDialog" message="tns:IService_ConnectToDialog_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/ConnectToDialogResponse" message="tns:IService_ConnectToDialog_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LeaveFromDialog">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/LeaveFromDialog" message="tns:IService_LeaveFromDialog_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/LeaveFromDialogResponse" message="tns:IService_LeaveFromDialog_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="LoadMessages">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/LoadMessages" message="tns:IService_LoadMessages_InputMessage" />
@@ -188,6 +222,14 @@
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/SendMessage" message="tns:IService_SendMessage_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/SendMessageResponse" message="tns:IService_SendMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/EditMessage" message="tns:IService_EditMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/EditMessageResponse" message="tns:IService_EditMessage_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMessage">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RemoveMessage" message="tns:IService_RemoveMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RemoveMessageResponse" message="tns:IService_RemoveMessage_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Connect">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/Connect" message="tns:IService_Connect_InputMessage" />
@@ -221,8 +263,20 @@
     <wsdl:operation name="OnChangedDialog">
       <wsdl:output wsaw:Action="http://tempuri.org/IService/OnChangedDialog" message="tns:IService_OnChangedDialog_OutputCallbackMessage" />
     </wsdl:operation>
+    <wsdl:operation name="OnUserLeavedFromDialog">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OnUserLeavedFromDialog" message="tns:IService_OnUserLeavedFromDialog_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnDialogRemoved">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OnDialogRemoved" message="tns:IService_OnDialogRemoved_OutputCallbackMessage" />
+    </wsdl:operation>
     <wsdl:operation name="OnMessageSend">
       <wsdl:output wsaw:Action="http://tempuri.org/IService/OnMessageSend" message="tns:IService_OnMessageSend_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnMessageEdited">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OnMessageEdited" message="tns:IService_OnMessageEdited_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OnMessageRemoved">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OnMessageRemoved" message="tns:IService_OnMessageRemoved_OutputCallbackMessage" />
     </wsdl:operation>
     <wsdl:operation name="OnUserDiconnected">
       <wsdl:output wsaw:Action="http://tempuri.org/IService/OnUserDiconnected" message="tns:IService_OnUserDiconnected_OutputCallbackMessage" />
@@ -262,6 +316,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RemoveDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/RemoveDialog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ChangeDialog">
       <soap12:operation soapAction="http://tempuri.org/IService/ChangeDialog" style="document" />
       <wsdl:input>
@@ -271,8 +334,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AddUserToDialog">
-      <soap12:operation soapAction="http://tempuri.org/IService/AddUserToDialog" style="document" />
+    <wsdl:operation name="ConnectToDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/ConnectToDialog" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -280,8 +343,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="ConnectToDialog">
-      <soap12:operation soapAction="http://tempuri.org/IService/ConnectToDialog" style="document" />
+    <wsdl:operation name="LeaveFromDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/LeaveFromDialog" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -309,6 +372,24 @@
     </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <soap12:operation soapAction="http://tempuri.org/IService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditMessage">
+      <soap12:operation soapAction="http://tempuri.org/IService/EditMessage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveMessage">
+      <soap12:operation soapAction="http://tempuri.org/IService/RemoveMessage" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -385,8 +466,32 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="OnUserLeavedFromDialog">
+      <soap12:operation soapAction="http://tempuri.org/IService/OnUserLeavedFromDialog" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnDialogRemoved">
+      <soap12:operation soapAction="http://tempuri.org/IService/OnDialogRemoved" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="OnMessageSend">
       <soap12:operation soapAction="http://tempuri.org/IService/OnMessageSend" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnMessageEdited">
+      <soap12:operation soapAction="http://tempuri.org/IService/OnMessageEdited" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnMessageRemoved">
+      <soap12:operation soapAction="http://tempuri.org/IService/OnMessageRemoved" style="document" />
       <wsdl:output>
         <soap12:body use="literal" />
       </wsdl:output>
