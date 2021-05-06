@@ -16,7 +16,7 @@ namespace Client.View.Controls
 {
     public partial class DialogsControl : UserControl
     {
-        private readonly SourceList<int, Dialog> dialogs;
+        private readonly SourceList<int, DialogPreview> dialogPreviews;
         private readonly ClientModel model;
 
         public EventHandler<Dialog> DialogOpen;
@@ -25,9 +25,9 @@ namespace Client.View.Controls
         {
             InitializeComponent();
             this.model = model;
-            this.dialogs = model.Dialogs;
-            dialogs.ControlAdding += OnDialogAdded;
-            dialogs.Collection = dialogsContainer.Controls;
+            this.dialogPreviews = new SourceList<int, DialogPreview>();
+            dialogPreviews.Collection = dialogsContainer.Controls;
+            model.Dialogs.ElementAdding += OnDialogAdded;
         }
 
         private void searchTextbox_TextChanged(object sender, EventArgs e)
@@ -35,13 +35,13 @@ namespace Client.View.Controls
             var text = searchTextbox.Text;
             if (string.IsNullOrWhiteSpace(text))
             {
-                dialogs.Collection = dialogsContainer.Controls;
+                dialogPreviews.Collection = dialogsContainer.Controls;
                 return;
             }
-            dialogs.Collection = null;
-            var result = dialogs.Values
-                .Where(d => d.Name.Contains(text))
-                .OrderBy(d => d.Preview.LastMessage.Date)
+            dialogPreviews.Collection = null;
+            var result = dialogPreviews.Values
+                .Where(d => d.Owner.Name.Contains(text))
+                .OrderBy(d => d.LastMessage?.Date)
                 .Select(d => d.Control);
             foreach (var control in result)
                 dialogsContainer.Controls.Add(control);
@@ -49,13 +49,19 @@ namespace Client.View.Controls
 
         private void OnDialogAdded(object sender, Dialog dialog)
         {
-            dialog.Control.Click += dialogPreview_Click;
+            dialogPreviews.Add(dialog.Id, dialog.Preview);
+            var control = dialog.Preview.Control;
+            var lastControl = dialogPreviews.Last()?.Control;
+            if (lastControl != null)
+                control.Location = new Point(control.Location.X, lastControl.Location.Y + lastControl.Height + 2);        
+            control.Click += dialogPreview_Click;
+
         }
 
         private void dialogPreview_Click(object sender, EventArgs e)
         {
             var preview = (DialogPreviewControl)sender;
-            DialogOpen?.Invoke(sender, preview.Dialog);
+            DialogOpen?.Invoke(sender, model.Dialogs[preview.DialogId]);
         }
 
         private void connectToDialogButton_Click(object sender, EventArgs e)

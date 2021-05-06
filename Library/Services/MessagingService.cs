@@ -20,7 +20,7 @@ namespace Library.Services
         {
             return Preform(() =>
             {
-                if (string.IsNullOrWhiteSpace(request.Text))
+                if (string.IsNullOrWhiteSpace(request.Text) || request.Text == string.Empty)
                     return new SendMessageResponse() { Result = Result.EmptyMessage };
 
                 var user = context.Users.Find(request.Id);
@@ -44,7 +44,7 @@ namespace Library.Services
 
         public Response EditMessage(EditMessageRequest request)
         {
-            if (string.IsNullOrWhiteSpace(request.NewText))
+            if (string.IsNullOrWhiteSpace(request.NewText) || request.NewText == string.Empty)
                 return new Response() { Result = Result.EmptyMessage };
 
             var user = context.Users.Find(request.Id);
@@ -70,11 +70,13 @@ namespace Library.Services
             if (!dialog.Users.Contains(user))
                 return new Response() { Result = Result.UserNotInDialog };
 
-            var message = context.Messages.Find(request.MessageId);
-            if (message.Author.Id != request.Id)
-                return new Response() { Result = Result.NotPremissions };
+            foreach (var id in request.MessagesIds)
+            {
+                var message = context.Messages.Find(id);
+                if (message.Author.Id == request.Id)
+                    context.Messages.Remove(message);
+            }
 
-            context.Messages.Remove(message);
             SendEvent(dialog.Users.Select(u => u.Id), new MessageRemovedEventArgs(request));
             return new Response() { Result = Result.Succesfully };
         }

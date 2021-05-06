@@ -10,49 +10,12 @@ using System.Collections.Specialized;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
+using Client.Model;
 
 namespace Client.Entities
 {
     public class Dialog : Entity<DialogControl>
     {
-        public class DialogPreview : Entity<DialogPreviewControl>
-        {
-            private bool unreadMessage;
-            private Message lastMessage;
-
-            public Dialog Owner { get; set; }
-
-            public bool UnreadMessages
-            {
-                get { return unreadMessage; }
-                set
-                {
-                    unreadMessage = value;
-                    OnPropertyChanged("UnreadMessage");
-                }
-            }
-
-            public Message LastMessage
-            {
-                get { return lastMessage; }
-                set
-                {
-                    lastMessage = value;
-                    OnPropertyChanged("LastMessage");
-                }
-            }
-
-            public DialogPreview(Dialog dialog)
-            {
-                Owner = dialog;
-            }
-
-            public override DialogPreviewControl ToControl()
-            {
-                return new DialogPreviewControl(Owner);
-            }
-        }
-
         private string name;
         private int usersCount;
 
@@ -71,29 +34,18 @@ namespace Client.Entities
             }
         }
 
-        public int UsersCount
-        {
-            get { return usersCount; }
-            set
-            {
-                usersCount = value;
-                OnPropertyChanged("UsersCount");
-            }
-        }
+        public bool AllMessagesLoad { get; private set; }
 
         public DialogPreview Preview { get; set; }
-        
+
         public Dialog(DialogDto dialog)
         {
             Id = dialog.Id;
             name = dialog.Name;
             OwnerId = dialog.OwnerId;
-            Users = new SourceList<Guid, User>(dialog.Users?.ToDictionary(kvp => kvp.Key, kvp => new User(kvp.Value)));
-            UsersCount = Users.Count;
-            Users.ControlAdding += (sender, user) => { UsersCount += 1; };
-            Users.ControlRemoving += (sender, user) => { UsersCount += 1; };
-
-            Messages = new SourceList<long, Message>(dialog.Messages?.ToDictionary(kvp => kvp.Key, kvp => new Message(kvp.Value)));
+            Users = new SourceList<Guid, User>(dialog.Users?.ToDictionary(u => u.Id, u => new User(u)));
+            Messages = new SourceList<long, Message>(dialog.Messages?.ToDictionary(m => m.Id, m => 
+            new Message(m.Id, m.DialogId, m.Text, Users[m.Author.Id], m.Date)));
             Preview = new DialogPreview(this);
         }
 
@@ -101,6 +53,29 @@ namespace Client.Entities
         {
             Control = new DialogControl(this);
             return Control;
+        }
+
+        //Костыль который я отказался фиксить из-за сроков
+        public DialogControl ToControl(ClientModel model)
+        {
+            Control = new DialogControl(this, model);
+            return Control;
+        }
+
+        public void LoadMessages(LoadMessagesResponse response)
+        {
+
+            if (response.Result == Result.AllLoad)
+                AllMessagesLoad = true;
+            foreach (var message in response.Messages)
+                Messages.Add(message.Id, new Message(message.Id, message.DialogId, message.Text, Users[message.Author.Id], message.Date));            
+        }
+
+        public void LoadUsers(LoadDialogUsersResponse response)
+        {
+            if (response.Result == Result.Succesfully)
+                foreach (var user in response.Users)
+                    Users.Add(user.Id, new User(user));
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Library.Services
     /// <summary>
     /// Сервис, принимающий запросы и возвращающий ответы клиентам этого сервиса
     /// </summary>
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, IncludeExceptionDetailInFaults = true)]
     public partial class Service : IService
     {
         /// <summary>

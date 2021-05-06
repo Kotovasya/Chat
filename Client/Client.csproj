@@ -65,6 +65,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Entities\Dialog.cs" />
+    <Compile Include="Entities\DialogPreview.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Message.cs" />
     <Compile Include="Entities\User.cs" />
@@ -115,12 +116,6 @@
     <Compile Include="View\Controls\DialogControl.Designer.cs">
       <DependentUpon>DialogControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Controls\DialogPreviewControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="View\Controls\DialogPreviewControl.Designer.cs">
-      <DependentUpon>DialogPreviewControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\Controls\DialogsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -138,6 +133,12 @@
     </Compile>
     <Compile Include="View\Controls\SettingsControl.Designer.cs">
       <DependentUpon>SettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Controls\DialogPreviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Controls\DialogPreviewControl.Designer.cs">
+      <DependentUpon>DialogPreviewControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindow.cs">
       <SubType>Form</SubType>
@@ -158,6 +159,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServiceReference\Client.ServiceReference.LoadDialogsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceReference\Client.ServiceReference.LoadDialogUsersResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServiceReference\Client.ServiceReference.LoadMessagesResponse.datasource">
@@ -233,9 +237,6 @@
     <EmbeddedResource Include="View\Controls\DialogControl.resx">
       <DependentUpon>DialogControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Controls\DialogPreviewControl.resx">
-      <DependentUpon>DialogPreviewControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\DialogsControl.resx">
       <DependentUpon>DialogsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -244,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Controls\SettingsControl.resx">
       <DependentUpon>SettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Controls\DialogPreviewControl.resx">
+      <DependentUpon>DialogPreviewControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
@@ -338,6 +342,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\edit dialog name.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Chat App Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

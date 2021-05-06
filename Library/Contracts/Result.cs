@@ -84,6 +84,12 @@ namespace Library.Contracts
         InvalidPassword = 2048,
 
         /// <summary>
+        /// Все сообщения или диалоги уже загружены
+        /// </summary>
+        [EnumMember]
+        AllLoad = 4096,
+
+        /// <summary>
         /// Во время выполнения операции произошла ошибка
         /// </summary>
         [EnumMember]

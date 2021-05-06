@@ -10,15 +10,15 @@ namespace Library.Contracts.Messaging
     [DataContract]
     public class MessageRemovedEventArgs : ServerEventArgs
     {
-        public MessageRemovedEventArgs(Guid id, int dialogId, long messageId)
+        public MessageRemovedEventArgs(Guid id, int dialogId, long[] messagesIds)
             : base(id)
         {
             DialogId = dialogId;
-            MessageId = messageId;
+            MessagesIds = messagesIds;
         }
 
         public MessageRemovedEventArgs(RemoveMessageRequest request)
-            : this (request.Id, request.DialogId, request.MessageId)
+            : this (request.Id, request.DialogId, request.MessagesIds)
         {
 
         }
@@ -27,6 +27,6 @@ namespace Library.Contracts.Messaging
         public int DialogId { get; set; }
 
         [DataMember]
-        public long MessageId { get; set; }
+        public long[] MessagesIds { get; set; }
     }
 }

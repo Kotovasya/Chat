@@ -18,6 +18,6 @@ namespace Library.Contracts.Load
         /// Загруженные диалоги
         /// </summary>
         [DataMember]
-        public IEnumerable<DialogDto> Dialgos { get; set; }
+        public IEnumerable<DialogDto> Dialogs { get; set; }
     }
 }

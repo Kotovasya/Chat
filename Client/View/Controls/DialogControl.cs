@@ -17,10 +17,13 @@ namespace Client.View.Controls
 {
     public partial class DialogControl : UserControl
     {
+        private static readonly Pen borderPen = new Pen(Color.FromArgb(122, 122, 122), 2);
+
         private Graphics g;
         private ClientModel model;
-        private static readonly Pen borderPen = new Pen(Color.FromArgb(122, 122, 122), 2);
         private Entities.Message EditableMessage;
+        private SortedList<long, MessageControl> MessageControls;
+        private List<MessageControl> SelectedMessages;
 
         public ClientModel Model
         {
@@ -35,35 +38,55 @@ namespace Client.View.Controls
         public Dialog Dialog { get; private set; }
 
         public DialogControl(Dialog dialog)
+            : this(dialog, null)
+        {
+            
+        }
+
+        public DialogControl(Dialog dialog, ClientModel model)
         {
             InitializeComponent();
             Dialog = dialog;
+            Model = model;
+
+            MessageControls = new SortedList<long, MessageControl>();
+            SelectedMessages = new List<MessageControl>();
 
             dialogNameLabel.CreateBinding("Text", dialog, "Name");
-            usersCountLabel.CreateBinding("Text", dialog, "UsersCount", (sender, e) => e.Value = "Количество участников: " + e.Value);
 
-            dialog.Messages.Collection = messagesContainer.Controls;
+            dialog.Messages.ControlAdding += messagesContainer_MessageAdded;
             dialog.Messages.ControlRemoving += messageContainer_ControlRemoving;
-            dialog.Messages.ControlSizeChanged += messageContainer_ControlSizeChanged;
+            dialog.Messages.Collection = messagesContainer.Controls;
 
-            dialog.Users.Collection = usersContainer.Controls;
+            dialog.Users.ControlAdding += usersContainer_UserAdded;
             dialog.Users.ControlRemoving += usersContainer_ControlRemoving;
+            dialog.Users.Collection = usersContainer.Controls;
 
             messageTextbox.BorderStyle = BorderStyle.None;
+            messageTextbox.Size = new Size(657, 25);
         }
 
         #region Messages Container Events
 
-        private void messagesContainer_ControlAdded(object sender, ControlEventArgs e)
+        private void messagesContainer_MessageAdded(object sender, Entities.Message message)
         {
-            var lastControl = Dialog.Messages.Last()?.Control;
-            if (lastControl != null)
-                e.Control.Location = new Point(e.Control.Location.X, lastControl.Location.Y + lastControl.Height + 2);
-
-            var control = (MessageControl)e.Control;
-            control.IsClientAuthor = control.Message.Author.Id == model.Id;
-            control.EditMessage += editMessage;
-            control.RemoveMessage += removeMessage;
+            MessageControls.Add(message.Id, message.Control);
+            int newMessageIndex = MessageControls.IndexOfKey(message.Id);
+            for(int i = newMessageIndex; i < MessageControls.Count; i++)
+            {
+                if (i - 1 != -1)         
+                {
+                    var control = MessageControls.ElementAt(i).Value;
+                    var prevControl = MessageControls.ElementAt(i - 1).Value;
+                    var newPoint = new Point(control.Location.X, prevControl.Location.Y + control.Height + 2);
+                    control.Location = newPoint;
+                }
+            }
+            message.Control.IsClientAuthor = message.Control.Message.Author.Id == model.Id;
+            message.Control.MessageSelected += OnSelectMessage;
+            message.Control.TextEdited += messageContainer_ControlSizeChanged;
+            message.Control.EditMessage += OnEditMessage;
+            message.Control.RemoveMessage += OnRemoveMessage;
         }
 
         private void messageContainer_ControlRemoving(object sender, ControlEventArgs e)
@@ -71,10 +94,10 @@ namespace Client.View.Controls
             messagesContainer.Controls.ControlRemove(e.Control);
         }
 
-        private void messageContainer_ControlSizeChanged(object sender, ControlEventArgs e)
+        private void messageContainer_ControlSizeChanged(object sender, MessageControl e)
         {
-            Control lastControl = e.Control;
-            int index = messagesContainer.Controls.IndexOf(e.Control);
+            Control lastControl = e;
+            int index = messagesContainer.Controls.IndexOf(lastControl);
             for (int i = ++index; i < messagesContainer.Controls.Count; i++)
             {
                 var control = messagesContainer.Controls[i];
@@ -83,7 +106,7 @@ namespace Client.View.Controls
             }
         }
 
-        private void editMessage(object sender, MessageControl control)
+        private void OnEditMessage(object sender, MessageControl control)
         {
             editMessageLabel.Visible = true;
             cancelEditMessageLabel.Visible = true;
@@ -92,17 +115,44 @@ namespace Client.View.Controls
             EditableMessage = control.Message;
         }
 
-        private void removeMessage(object sender, MessageControl control)
+        private void OnRemoveMessage(object sender, MessageControl control)
         {
             var response = model.RemoveMessage(new RemoveMessageRequest()
             {
                 Id = model.Id,
                 DialogId = Dialog.Id,
-                MessageId = control.Message.Id
+                MessagesIds = new[] { control.Message.Id }
             });
             if (response.Result == Result.Succesfully)
             {
                 Dialog.Messages.Remove(control.Message.Id);
+            }
+            SelectedMessages.Remove(control);
+            control.Dispose();
+        }
+
+        private void OnSelectMessage(object sender, MessageControl control)
+        {
+            if (control.IsSelected)
+            {
+                SelectedMessages.Add(control);
+                control.IsButtonsVisible = true;
+            }
+            else
+            {
+                SelectedMessages.Remove(control);
+                control.IsButtonsVisible = false;
+            }
+            if (SelectedMessages.Count > 1)
+            {
+                SelectedMessages.ForEach(m => m.IsButtonsVisible = false);
+                removeSelectedMessagesButton.Visible = true;
+            }
+            else
+            {
+                SelectedMessages.ForEach(m => m.IsButtonsVisible = true);
+                removeSelectedMessagesButton.Visible = false;
+                
             }
         }
 
@@ -113,13 +163,16 @@ namespace Client.View.Controls
         private void usersCountLabel_Click(object sender, EventArgs e)
         {
             usersContainer.Visible = !usersContainer.Visible;
+            if (!messagesContainer.Controls.Contains(usersContainer))
+                messagesContainer.Controls.Add(usersContainer);   
+            usersContainer.BringToFront();
         }
 
-        private void usersContainer_ControlAdded(object sender, ControlEventArgs e)
+        private void usersContainer_UserAdded(object sender, User user)
         {
             var lastControl = Dialog.Users.Last()?.Control;
             if (lastControl != null)
-                e.Control.Location = new Point(e.Control.Location.X, lastControl.Location.Y + lastControl.Height + 2);
+                user.Control.Location = new Point(user.Control.Location.X, lastControl.Location.Y + lastControl.Height + 2);
         }
 
         private void usersContainer_ControlRemoving(object sender, ControlEventArgs e)
@@ -146,8 +199,7 @@ namespace Client.View.Controls
 
         private void bottomPanel_Paint(object sender, PaintEventArgs e)
         {
-            if (g == null)
-                e.Graphics.DrawRectangle(borderPen, new Rectangle(messageTextbox.Location, messageTextbox.Size));
+            e.Graphics.DrawRectangle(borderPen, new Rectangle(messageTextbox.Location, messageTextbox.Size));
         }
 
         private void messageTextbox_KeyDown(object sender, KeyEventArgs e)
@@ -210,9 +262,9 @@ namespace Client.View.Controls
 
                 if (response.Result == Result.Succesfully)
                 {
-                    messageTextbox.Text = string.Empty;
                     Dialog.Messages.Add(response.MessageId,
                         new Entities.Message(response.MessageId, Dialog.Id, messageTextbox.Text, model.Users[model.Id], DateTime.UtcNow));
+                    messageTextbox.Text = string.Empty;
                 }
                 else
                 {
@@ -260,8 +312,62 @@ namespace Client.View.Controls
         private void dialogSettingImage_Click(object sender, EventArgs e)
         {
             dialogSettingsPanel.Visible = !dialogSettingsPanel.Visible;
+            if (!messagesContainer.Controls.Contains(dialogSettingsPanel))
+                messagesContainer.Controls.Add(dialogSettingsPanel);
+            dialogSettingsPanel.BringToFront();
         }
 
-        #endregion      
+        #endregion
+
+        private void messagesContainer_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (!Dialog.AllMessagesLoad && e.NewValue == messagesContainer.VerticalScroll.Maximum)
+            {
+                var response = model.LoadMessages(new LoadMessagesRequest()
+                {
+                    Id = model.Id,
+                    DialogId = Dialog.Id,
+                    LastMessageId = Dialog.Messages.Last()?.Id
+                });
+                if (response.Result == Result.Succesfully)
+                    Dialog.LoadMessages(response);
+            }
+        }
+
+        private void dialogSettingImage_MouseEnter(object sender, EventArgs e)
+        {
+            dialogSettingImage.Size = new Size(50, 50);
+        }
+
+        private void dialogSettingImage_MouseLeave(object sender, EventArgs e)
+        {
+            dialogSettingImage.Size = new Size(48, 48);
+        }
+
+        private void removeSelectedMessagesButton_Click(object sender, EventArgs e)
+        {
+            var response = model.RemoveMessage(new RemoveMessageRequest()
+            {
+                Id = model.Id,
+                DialogId = Dialog.Id,
+                MessagesIds = SelectedMessages.Select(m => m.Message.Id).ToArray()
+            });
+            if (response.Result == Result.Succesfully)
+            {
+                foreach (var messageControl in SelectedMessages)
+                    Dialog.Messages.Remove(messageControl.Message.Id);
+                SelectedMessages.Clear();
+            }
+        }
+
+        private void usersCountLabel_MouseEnter(object sender, EventArgs e)
+        {
+            usersCountLabel.Font = new Font("Segoe UI", 13);
+        }
+
+        private void usersCountLabel_MouseLeave(object sender, EventArgs e)
+        {
+            usersCountLabel.Font = new Font("Segoe UI", 12);
+        }    
     }
 }

@@ -75,8 +75,10 @@
     <Compile Include="Contracts\DTO\MessageDto.cs" />
     <Compile Include="Contracts\DTO\UserDto.cs" />
     <Compile Include="Contracts\Load\Requests\LoadDialogsRequest.cs" />
+    <Compile Include="Contracts\Load\Requests\LoadDialogUsersRequest.cs" />
     <Compile Include="Contracts\Load\Requests\LoadMessagesRequest.cs" />
     <Compile Include="Contracts\Load\Responses\LoadDialogsResponse.cs" />
+    <Compile Include="Contracts\Load\Responses\LoadDialogUsersResponse.cs" />
     <Compile Include="Contracts\Load\Responses\LoadMessagesResponse.cs" />
     <Compile Include="Contracts\Messaging\Events\MessageEditedEventArgs.cs" />
     <Compile Include="Contracts\Messaging\Events\MessageRemovedEventArgs.cs" />

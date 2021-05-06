@@ -36,6 +36,8 @@ namespace Client.View
             this.nameTextbox = new System.Windows.Forms.TextBox();
             this.nameImage = new System.Windows.Forms.PictureBox();
             this.warningLabel = new System.Windows.Forms.Label();
+            this.mameLabel = new System.Windows.Forms.Label();
+            this.passwordLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.passwordImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nameImage)).BeginInit();
             this.SuspendLayout();
@@ -43,7 +45,7 @@ namespace Client.View
             // cancelButton
             // 
             this.cancelButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.cancelButton.Location = new System.Drawing.Point(131, 93);
+            this.cancelButton.Location = new System.Drawing.Point(166, 134);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(104, 35);
             this.cancelButton.TabIndex = 0;
@@ -54,7 +56,7 @@ namespace Client.View
             // connectToDialogButton
             // 
             this.connectToDialogButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.connectToDialogButton.Location = new System.Drawing.Point(12, 93);
+            this.connectToDialogButton.Location = new System.Drawing.Point(16, 134);
             this.connectToDialogButton.Name = "connectToDialogButton";
             this.connectToDialogButton.Size = new System.Drawing.Size(104, 35);
             this.connectToDialogButton.TabIndex = 1;
@@ -65,17 +67,17 @@ namespace Client.View
             // passwordTextbox
             // 
             this.passwordTextbox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.passwordTextbox.Location = new System.Drawing.Point(42, 42);
+            this.passwordTextbox.Location = new System.Drawing.Point(42, 80);
             this.passwordTextbox.Name = "passwordTextbox";
             this.passwordTextbox.PasswordChar = '•';
-            this.passwordTextbox.Size = new System.Drawing.Size(193, 27);
+            this.passwordTextbox.Size = new System.Drawing.Size(228, 27);
             this.passwordTextbox.TabIndex = 24;
             this.passwordTextbox.Click += new System.EventHandler(this.Input_Click);
             // 
             // passwordImage
             // 
             this.passwordImage.Image = global::Client.Properties.Resources.password;
-            this.passwordImage.Location = new System.Drawing.Point(12, 42);
+            this.passwordImage.Location = new System.Drawing.Point(12, 80);
             this.passwordImage.Name = "passwordImage";
             this.passwordImage.Size = new System.Drawing.Size(24, 24);
             this.passwordImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -85,16 +87,16 @@ namespace Client.View
             // nameTextbox
             // 
             this.nameTextbox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameTextbox.Location = new System.Drawing.Point(42, 9);
+            this.nameTextbox.Location = new System.Drawing.Point(42, 27);
             this.nameTextbox.Name = "nameTextbox";
-            this.nameTextbox.Size = new System.Drawing.Size(193, 27);
+            this.nameTextbox.Size = new System.Drawing.Size(228, 27);
             this.nameTextbox.TabIndex = 26;
             this.nameTextbox.Click += new System.EventHandler(this.Input_Click);
             // 
             // nameImage
             // 
             this.nameImage.Image = global::Client.Properties.Resources.create_dialog;
-            this.nameImage.Location = new System.Drawing.Point(12, 9);
+            this.nameImage.Location = new System.Drawing.Point(12, 27);
             this.nameImage.Name = "nameImage";
             this.nameImage.Size = new System.Drawing.Size(24, 24);
             this.nameImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -105,19 +107,42 @@ namespace Client.View
             // 
             this.warningLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
             this.warningLabel.ForeColor = System.Drawing.Color.Red;
-            this.warningLabel.Location = new System.Drawing.Point(12, 70);
+            this.warningLabel.Location = new System.Drawing.Point(3, 110);
             this.warningLabel.Name = "warningLabel";
-            this.warningLabel.Size = new System.Drawing.Size(223, 21);
+            this.warningLabel.Size = new System.Drawing.Size(290, 21);
             this.warningLabel.TabIndex = 27;
             this.warningLabel.Text = "Неверное название диалога";
             this.warningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.warningLabel.Visible = false;
             // 
+            // mameLabel
+            // 
+            this.mameLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
+            this.mameLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.mameLabel.Location = new System.Drawing.Point(38, 1);
+            this.mameLabel.Name = "mameLabel";
+            this.mameLabel.Size = new System.Drawing.Size(215, 23);
+            this.mameLabel.TabIndex = 37;
+            this.mameLabel.Text = "Введите название диалога";
+            // 
+            // passwordLabel
+            // 
+            this.passwordLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
+            this.passwordLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.passwordLabel.Location = new System.Drawing.Point(38, 54);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(215, 23);
+            this.passwordLabel.TabIndex = 36;
+            this.passwordLabel.Text = "Введите пароль";
+            // 
             // ConnectToDialogWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(247, 138);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(289, 180);
+            this.ControlBox = false;
+            this.Controls.Add(this.mameLabel);
+            this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.warningLabel);
             this.Controls.Add(this.nameTextbox);
             this.Controls.Add(this.nameImage);
@@ -127,8 +152,11 @@ namespace Client.View
             this.Controls.Add(this.cancelButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ConnectToDialogWindow";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connect to dialog";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.passwordImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nameImage)).EndInit();
             this.ResumeLayout(false);
@@ -145,5 +173,7 @@ namespace Client.View
         private System.Windows.Forms.TextBox nameTextbox;
         private System.Windows.Forms.PictureBox nameImage;
         private System.Windows.Forms.Label warningLabel;
+        private System.Windows.Forms.Label mameLabel;
+        private System.Windows.Forms.Label passwordLabel;
     }
 }

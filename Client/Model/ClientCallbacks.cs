@@ -60,7 +60,10 @@ namespace Client.Model
         {
             var dialog = Model.Dialogs.FirstOrDefault(d => d.Key == args.DialogId).Value;
             if (dialog != null)
-                dialog.Messages.Remove(args.MessageId);
+            {
+                foreach (var id in args.MessagesIds)
+                    dialog.Messages.Remove(id);
+            }
         }
 
         public void OnMessageSend(MessageSendEventArgs args)

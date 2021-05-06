@@ -19,8 +19,6 @@ namespace Client.ServiceReference {
     [System.SerializableAttribute()]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.ChangePasswordRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.ChangeUsernameRequest))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadMessagesRequest))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogsRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.SendMessageRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.EditMessageRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.RemoveMessageRequest))]
@@ -29,6 +27,9 @@ namespace Client.ServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.ChangeDialogRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.ConnectToDialogRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LeaveFromDialogRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadMessagesRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogsRequest))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogUsersRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.AuthRequest))]
     public partial class Request : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -128,68 +129,6 @@ namespace Client.ServiceReference {
                 if ((object.ReferenceEquals(this.NewNameField, value) != true)) {
                     this.NewNameField = value;
                     this.RaisePropertyChanged("NewName");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoadMessagesRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
-    [System.SerializableAttribute()]
-    public partial class LoadMessagesRequest : Client.ServiceReference.Request {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DialogIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<long> LastMessageIdField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DialogId {
-            get {
-                return this.DialogIdField;
-            }
-            set {
-                if ((this.DialogIdField.Equals(value) != true)) {
-                    this.DialogIdField = value;
-                    this.RaisePropertyChanged("DialogId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<long> LastMessageId {
-            get {
-                return this.LastMessageIdField;
-            }
-            set {
-                if ((this.LastMessageIdField.Equals(value) != true)) {
-                    this.LastMessageIdField = value;
-                    this.RaisePropertyChanged("LastMessageId");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoadDialogsRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
-    [System.SerializableAttribute()]
-    public partial class LoadDialogsRequest : Client.ServiceReference.Request {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> LastDialogIdField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> LastDialogId {
-            get {
-                return this.LastDialogIdField;
-            }
-            set {
-                if ((this.LastDialogIdField.Equals(value) != true)) {
-                    this.LastDialogIdField = value;
-                    this.RaisePropertyChanged("LastDialogId");
                 }
             }
         }
@@ -299,7 +238,7 @@ namespace Client.ServiceReference {
         private int DialogIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long MessageIdField;
+        private long[] MessagesIdsField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int DialogId {
@@ -315,14 +254,14 @@ namespace Client.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long MessageId {
+        public long[] MessagesIds {
             get {
-                return this.MessageIdField;
+                return this.MessagesIdsField;
             }
             set {
-                if ((this.MessageIdField.Equals(value) != true)) {
-                    this.MessageIdField = value;
-                    this.RaisePropertyChanged("MessageId");
+                if ((object.ReferenceEquals(this.MessagesIdsField, value) != true)) {
+                    this.MessagesIdsField = value;
+                    this.RaisePropertyChanged("MessagesIds");
                 }
             }
         }
@@ -525,6 +464,91 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadMessagesRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
+    [System.SerializableAttribute()]
+    public partial class LoadMessagesRequest : Client.ServiceReference.Request {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DialogIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<long> LastMessageIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DialogId {
+            get {
+                return this.DialogIdField;
+            }
+            set {
+                if ((this.DialogIdField.Equals(value) != true)) {
+                    this.DialogIdField = value;
+                    this.RaisePropertyChanged("DialogId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<long> LastMessageId {
+            get {
+                return this.LastMessageIdField;
+            }
+            set {
+                if ((this.LastMessageIdField.Equals(value) != true)) {
+                    this.LastMessageIdField = value;
+                    this.RaisePropertyChanged("LastMessageId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadDialogsRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
+    [System.SerializableAttribute()]
+    public partial class LoadDialogsRequest : Client.ServiceReference.Request {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> LastDialogIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> LastDialogId {
+            get {
+                return this.LastDialogIdField;
+            }
+            set {
+                if ((this.LastDialogIdField.Equals(value) != true)) {
+                    this.LastDialogIdField = value;
+                    this.RaisePropertyChanged("LastDialogId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadDialogUsersRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
+    [System.SerializableAttribute()]
+    public partial class LoadDialogUsersRequest : Client.ServiceReference.Request {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int DialogIdField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int DialogId {
+            get {
+                return this.DialogIdField;
+            }
+            set {
+                if ((this.DialogIdField.Equals(value) != true)) {
+                    this.DialogIdField = value;
+                    this.RaisePropertyChanged("DialogId");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="AuthRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth")]
     [System.SerializableAttribute()]
     public partial class AuthRequest : Client.ServiceReference.Request {
@@ -566,11 +590,12 @@ namespace Client.ServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Response", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadMessagesResponse))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogsResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.SendMessageResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.CreateDialogResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.ConnectToDialogResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadMessagesResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogsResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogUsersResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.AuthResponse))]
     public partial class Response : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -609,52 +634,6 @@ namespace Client.ServiceReference {
             System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
             if ((propertyChanged != null)) {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoadMessagesResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
-    [System.SerializableAttribute()]
-    public partial class LoadMessagesResponse : Client.ServiceReference.Response {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Client.ServiceReference.MessageDto[] MessagesField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Client.ServiceReference.MessageDto[] Messages {
-            get {
-                return this.MessagesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
-                    this.MessagesField = value;
-                    this.RaisePropertyChanged("Messages");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoadDialogsResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
-    [System.SerializableAttribute()]
-    public partial class LoadDialogsResponse : Client.ServiceReference.Response {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Client.ServiceReference.DialogDto[] DialgosField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public Client.ServiceReference.DialogDto[] Dialgos {
-            get {
-                return this.DialgosField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DialgosField, value) != true)) {
-                    this.DialgosField = value;
-                    this.RaisePropertyChanged("Dialgos");
-                }
             }
         }
     }
@@ -730,6 +709,75 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadMessagesResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
+    [System.SerializableAttribute()]
+    public partial class LoadMessagesResponse : Client.ServiceReference.Response {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.ServiceReference.MessageDto[] MessagesField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.ServiceReference.MessageDto[] Messages {
+            get {
+                return this.MessagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
+                    this.MessagesField = value;
+                    this.RaisePropertyChanged("Messages");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadDialogsResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
+    [System.SerializableAttribute()]
+    public partial class LoadDialogsResponse : Client.ServiceReference.Response {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.ServiceReference.DialogDto[] DialogsField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.ServiceReference.DialogDto[] Dialogs {
+            get {
+                return this.DialogsField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DialogsField, value) != true)) {
+                    this.DialogsField = value;
+                    this.RaisePropertyChanged("Dialogs");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadDialogUsersResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
+    [System.SerializableAttribute()]
+    public partial class LoadDialogUsersResponse : Client.ServiceReference.Response {
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.ServiceReference.UserDto[] UsersField;
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.ServiceReference.UserDto[] Users {
+            get {
+                return this.UsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
+                }
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="AuthResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth")]
     [System.SerializableAttribute()]
     public partial class AuthResponse : Client.ServiceReference.Response {
@@ -792,7 +840,119 @@ namespace Client.ServiceReference {
         InvalidPassword = 2048,
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
+        AllLoad = 4096,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
         ServerException = 65536,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DialogDto", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO")]
+    [System.SerializableAttribute()]
+    public partial class DialogDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.ServiceReference.MessageDto[] MessagesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid OwnerIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private Client.ServiceReference.UserDto[] UsersField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.ServiceReference.MessageDto[] Messages {
+            get {
+                return this.MessagesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
+                    this.MessagesField = value;
+                    this.RaisePropertyChanged("Messages");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid OwnerId {
+            get {
+                return this.OwnerIdField;
+            }
+            set {
+                if ((this.OwnerIdField.Equals(value) != true)) {
+                    this.OwnerIdField = value;
+                    this.RaisePropertyChanged("OwnerId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public Client.ServiceReference.UserDto[] Users {
+            get {
+                return this.UsersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -951,115 +1111,6 @@ namespace Client.ServiceReference {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DialogDto", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO")]
-    [System.SerializableAttribute()]
-    public partial class DialogDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.Dictionary<long, Client.ServiceReference.MessageDto> MessagesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid OwnerIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Collections.Generic.Dictionary<System.Guid, Client.ServiceReference.UserDto> UsersField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.Dictionary<long, Client.ServiceReference.MessageDto> Messages {
-            get {
-                return this.MessagesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessagesField, value) != true)) {
-                    this.MessagesField = value;
-                    this.RaisePropertyChanged("Messages");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid OwnerId {
-            get {
-                return this.OwnerIdField;
-            }
-            set {
-                if ((this.OwnerIdField.Equals(value) != true)) {
-                    this.OwnerIdField = value;
-                    this.RaisePropertyChanged("OwnerId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Collections.Generic.Dictionary<System.Guid, Client.ServiceReference.UserDto> Users {
-            get {
-                return this.UsersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
-                    this.UsersField = value;
-                    this.RaisePropertyChanged("Users");
                 }
             }
         }
@@ -1240,7 +1291,7 @@ namespace Client.ServiceReference {
         private int DialogIdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long MessageIdField;
+        private long[] MessagesIdsField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
         public int DialogId {
@@ -1256,14 +1307,14 @@ namespace Client.ServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public long MessageId {
+        public long[] MessagesIds {
             get {
-                return this.MessageIdField;
+                return this.MessagesIdsField;
             }
             set {
-                if ((this.MessageIdField.Equals(value) != true)) {
-                    this.MessageIdField = value;
-                    this.RaisePropertyChanged("MessageId");
+                if ((object.ReferenceEquals(this.MessagesIdsField, value) != true)) {
+                    this.MessagesIdsField = value;
+                    this.RaisePropertyChanged("MessagesIds");
                 }
             }
         }
@@ -1481,6 +1532,12 @@ namespace Client.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoadDialogs", ReplyAction="http://tempuri.org/IService/LoadDialogsResponse")]
         System.Threading.Tasks.Task<Client.ServiceReference.LoadDialogsResponse> LoadDialogsAsync(Client.ServiceReference.LoadDialogsRequest request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoadDialogUsers", ReplyAction="http://tempuri.org/IService/LoadDialogUsersResponse")]
+        Client.ServiceReference.LoadDialogUsersResponse LoadDialogUsers(Client.ServiceReference.LoadDialogUsersRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoadDialogUsers", ReplyAction="http://tempuri.org/IService/LoadDialogUsersResponse")]
+        System.Threading.Tasks.Task<Client.ServiceReference.LoadDialogUsersResponse> LoadDialogUsersAsync(Client.ServiceReference.LoadDialogUsersRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendMessage", ReplyAction="http://tempuri.org/IService/SendMessageResponse")]
         Client.ServiceReference.SendMessageResponse SendMessage(Client.ServiceReference.SendMessageRequest request);
         
@@ -1665,6 +1722,14 @@ namespace Client.ServiceReference {
         
         public System.Threading.Tasks.Task<Client.ServiceReference.LoadDialogsResponse> LoadDialogsAsync(Client.ServiceReference.LoadDialogsRequest request) {
             return base.Channel.LoadDialogsAsync(request);
+        }
+        
+        public Client.ServiceReference.LoadDialogUsersResponse LoadDialogUsers(Client.ServiceReference.LoadDialogUsersRequest request) {
+            return base.Channel.LoadDialogUsers(request);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ServiceReference.LoadDialogUsersResponse> LoadDialogUsersAsync(Client.ServiceReference.LoadDialogUsersRequest request) {
+            return base.Channel.LoadDialogUsersAsync(request);
         }
         
         public Client.ServiceReference.SendMessageResponse SendMessage(Client.ServiceReference.SendMessageRequest request) {

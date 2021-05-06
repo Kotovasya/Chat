@@ -3,8 +3,8 @@
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth" />
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" />
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts" />
-  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" />
-  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" />
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.User" />
   <xs:element name="Registration">
@@ -133,45 +133,59 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="LoadDialogUsers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" minOccurs="0" name="request" nillable="true" type="q19:LoadDialogUsersRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadDialogUsersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" minOccurs="0" name="LoadDialogUsersResult" nillable="true" type="q20:LoadDialogUsersResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SendMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="request" nillable="true" type="q19:SendMessageRequest" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="request" nillable="true" type="q21:SendMessageRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SendMessageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="SendMessageResult" nillable="true" type="q20:SendMessageResponse" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="SendMessageResult" nillable="true" type="q22:SendMessageResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="request" nillable="true" type="q21:EditMessageRequest" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="request" nillable="true" type="q23:EditMessageRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="EditMessageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Library.Contracts" minOccurs="0" name="EditMessageResult" nillable="true" type="q22:Response" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Library.Contracts" minOccurs="0" name="EditMessageResult" nillable="true" type="q24:Response" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="request" nillable="true" type="q23:RemoveMessageRequest" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="request" nillable="true" type="q25:RemoveMessageRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="RemoveMessageResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Library.Contracts" minOccurs="0" name="RemoveMessageResult" nillable="true" type="q24:Response" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Library.Contracts" minOccurs="0" name="RemoveMessageResult" nillable="true" type="q26:Response" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -183,14 +197,14 @@
   <xs:element name="ConnectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ConnectResult" type="q25:guid" />
+        <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="ConnectResult" type="q27:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="Disconnect">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q26:guid" />
+        <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q28:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -202,119 +216,119 @@
   <xs:element name="LogOut">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q27:guid" />
+        <xs:element xmlns:q29="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q29:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="LogOutResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="LogOutResult" type="q28:guid" />
+        <xs:element xmlns:q30="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="LogOutResult" type="q30:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ChangePassword">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/Library.Contracts.User" minOccurs="0" name="request" nillable="true" type="q29:ChangePasswordRequest" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Library.Contracts.User" minOccurs="0" name="request" nillable="true" type="q31:ChangePasswordRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ChangePasswordResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/Library.Contracts" minOccurs="0" name="ChangePasswordResult" nillable="true" type="q30:Response" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Library.Contracts" minOccurs="0" name="ChangePasswordResult" nillable="true" type="q32:Response" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ChangeUsername">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/Library.Contracts.User" minOccurs="0" name="request" nillable="true" type="q31:ChangeUsernameRequest" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Library.Contracts.User" minOccurs="0" name="request" nillable="true" type="q33:ChangeUsernameRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ChangeUsernameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/Library.Contracts" minOccurs="0" name="ChangeUsernameResult" nillable="true" type="q32:Response" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Library.Contracts" minOccurs="0" name="ChangeUsernameResult" nillable="true" type="q34:Response" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnUserConnected">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth" minOccurs="0" name="args" nillable="true" type="q33:UserConnectedEventArgs" />
+        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth" minOccurs="0" name="args" nillable="true" type="q35:UserConnectedEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnCreatedDialog">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" minOccurs="0" name="args" nillable="true" type="q34:CreateDialogEventArgs" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" minOccurs="0" name="args" nillable="true" type="q36:CreateDialogEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnAddedUserToDialog">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" minOccurs="0" name="args" nillable="true" type="q35:AddedUserToDialogEventArgs" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" minOccurs="0" name="args" nillable="true" type="q37:AddedUserToDialogEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnChangedDialog">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" minOccurs="0" name="args" nillable="true" type="q36:ChangeDialogEventArgs" />
+        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" minOccurs="0" name="args" nillable="true" type="q38:ChangeDialogEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnUserLeavedFromDialog">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" minOccurs="0" name="args" nillable="true" type="q37:UserLeaveFromDialogEventArgs" />
+        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" minOccurs="0" name="args" nillable="true" type="q39:UserLeaveFromDialogEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnDialogRemoved">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" minOccurs="0" name="args" nillable="true" type="q38:DialogRemovedEventArgs" />
+        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" minOccurs="0" name="args" nillable="true" type="q40:DialogRemovedEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnMessageSend">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="args" nillable="true" type="q39:MessageSendEventArgs" />
+        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="args" nillable="true" type="q41:MessageSendEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnMessageEdited">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="args" nillable="true" type="q40:MessageEditedEventArgs" />
+        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="args" nillable="true" type="q42:MessageEditedEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnMessageRemoved">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="args" nillable="true" type="q41:MessageRemovedEventArgs" />
+        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" minOccurs="0" name="args" nillable="true" type="q43:MessageRemovedEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnUserDiconnected">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q42="http://schemas.datacontract.org/2004/07/Library.Contracts" minOccurs="0" name="args" nillable="true" type="q42:ServerEventArgs" />
+        <xs:element xmlns:q44="http://schemas.datacontract.org/2004/07/Library.Contracts" minOccurs="0" name="args" nillable="true" type="q44:ServerEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="OnUsernameChanged">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q43="http://schemas.datacontract.org/2004/07/Library.Contracts.User" minOccurs="0" name="args" nillable="true" type="q43:UsernameChangedEventArgs" />
+        <xs:element xmlns:q45="http://schemas.datacontract.org/2004/07/Library.Contracts.User" minOccurs="0" name="args" nillable="true" type="q45:UsernameChangedEventArgs" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

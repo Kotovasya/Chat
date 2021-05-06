@@ -37,7 +37,13 @@ namespace Client.View.Controls
                 OldPassword = oldPasswordTextbox.Text, 
                 NewPassword = newPasswordTextbox.Text 
             });
-            if (response.Result == Result.WrongPassword)
+            if (response.Result == Result.Succesfully)
+            {
+                oldPasswordTextbox.Text = string.Empty;
+                newPasswordTextbox.Text = string.Empty;
+            }
+
+            else if (response.Result == Result.WrongPassword)
             {
                 oldPasswordLabel.Text = "Неверный пароль";
                 oldPasswordLabel.ForeColor = Color.Red;
@@ -51,7 +57,13 @@ namespace Client.View.Controls
                 Id = model.Id,
                 NewName = changeUsernameTextbox.Text,
             });
-            if (response.Result == Result.AlreadyRegister)
+            if (response.Result == Result.Succesfully)
+            {
+                model.Name = changeUsernameTextbox.Text;
+                changeUsernameTextbox.Text = string.Empty;
+            }
+
+            else if (response.Result == Result.AlreadyRegister)
             {
                 changeUsernameLabel.Text = "Данное имя уже занято";
                 changeUsernameLabel.ForeColor = Color.Red;

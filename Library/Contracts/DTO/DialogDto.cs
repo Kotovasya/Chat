@@ -20,30 +20,18 @@ namespace Library.Contracts.DTO
         public Guid OwnerId { get; set; }
 
         [DataMember]
-        public Dictionary<long, MessageDto> Messages { get; set; }
+        public IEnumerable<MessageDto> Messages { get; set; }
 
-        [DataMember]
-        public Dictionary<Guid, UserDto> Users { get; set; }
-
-        public DialogDto()
-        {
-            Messages = new Dictionary<long, MessageDto>();
-            Users = new Dictionary<Guid, UserDto>();
-        }
+        [DataMember]    
+        public IEnumerable<UserDto> Users { get; set; }
 
         public DialogDto(Data.Entities.Dialog dialog)
-            : this()
         {
             Id = dialog.Id;
             Name = dialog.Name;
             OwnerId = dialog.Owner_Id;
-        }
-
-        public DialogDto AddInfo(Data.Entities.Dialog dialog)
-        {
-            Users = dialog.Users.ToDictionary(u => u.Id, u => u.ToDto());
-            Messages = dialog.Messages.Reverse().Take(50).ToDictionary(m => m.Id, m => m.ToDto());
-            return this;
+            Users = dialog.Users.Select(u => u.ToDto());
+            Messages = dialog.Messages.Reverse().Take(50).Reverse().Select(m => m.ToDto());
         }
     }
 }

@@ -26,7 +26,6 @@ namespace Library.Services
                 dialog.Users.Add(context.Users.Find(request.Id));
                 context.SaveChanges();
                 DialogDto dialogDto = dialog.ToDto();
-                SendBroadcastEvent(new CreateDialogEventArgs(request.Id, dialogDto));
                 return new CreateDialogResponse() { Result = Result.Succesfully, Dialog = dialogDto };                    
             });
         }
@@ -68,7 +67,7 @@ namespace Library.Services
                 context.Entry(dialog).State = System.Data.Entity.EntityState.Modified;
                 context.SaveChanges();
                 SendEvent(dialog.Users.Select(u => u.Id), new AddedUserToDialogEventArgs(request.Id, dialog.Id, user.ToDto()));
-                return new ConnectToDialogResponse() { Result = Result.Succesfully, DialogInfo = dialog.ToDto().AddInfo(dialog) };
+                return new ConnectToDialogResponse() { Result = Result.Succesfully, DialogInfo = dialog.ToDto() };
             });
         }
 

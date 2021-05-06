@@ -29,17 +29,21 @@ namespace Client.View
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.topPanel = new System.Windows.Forms.Panel();
+            this.userNameLabel = new System.Windows.Forms.Label();
+            this.appLogoImage = new System.Windows.Forms.PictureBox();
             this.minimizeImage = new System.Windows.Forms.PictureBox();
             this.restoreImage = new System.Windows.Forms.PictureBox();
             this.closeImage = new System.Windows.Forms.PictureBox();
             this.menuPanel = new System.Windows.Forms.Panel();
-            this.mainPanel = new System.Windows.Forms.Panel();
-            this.dialogsButton = new Client.View.Controls.ButtonControl();
-            this.createDialogButton = new Client.View.Controls.ButtonControl();
-            this.settingsButton = new Client.View.Controls.ButtonControl();
             this.logoutButton = new Client.View.Controls.ButtonControl();
+            this.settingsButton = new Client.View.Controls.ButtonControl();
+            this.createDialogButton = new Client.View.Controls.ButtonControl();
+            this.dialogsButton = new Client.View.Controls.ButtonControl();
+            this.mainPanel = new System.Windows.Forms.Panel();
             this.topPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.appLogoImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.restoreImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeImage)).BeginInit();
@@ -50,6 +54,8 @@ namespace Client.View
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.topPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.topPanel.Controls.Add(this.userNameLabel);
+            this.topPanel.Controls.Add(this.appLogoImage);
             this.topPanel.Controls.Add(this.minimizeImage);
             this.topPanel.Controls.Add(this.restoreImage);
             this.topPanel.Controls.Add(this.closeImage);
@@ -60,6 +66,29 @@ namespace Client.View
             this.topPanel.TabIndex = 0;
             this.topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseDown);
             this.topPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseMove);
+            // 
+            // userNameLabel
+            // 
+            this.userNameLabel.AutoSize = true;
+            this.userNameLabel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.userNameLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 15F);
+            this.userNameLabel.Location = new System.Drawing.Point(32, 0);
+            this.userNameLabel.Name = "userNameLabel";
+            this.userNameLabel.Size = new System.Drawing.Size(175, 28);
+            this.userNameLabel.TabIndex = 27;
+            this.userNameLabel.Text = "Имя пользователя";
+            // 
+            // appLogoImage
+            // 
+            this.appLogoImage.Dock = System.Windows.Forms.DockStyle.Left;
+            this.appLogoImage.Image = global::Client.Properties.Resources.Chat_App_Icon;
+            this.appLogoImage.InitialImage = global::Client.Properties.Resources.minimize_window;
+            this.appLogoImage.Location = new System.Drawing.Point(0, 0);
+            this.appLogoImage.Name = "appLogoImage";
+            this.appLogoImage.Size = new System.Drawing.Size(32, 30);
+            this.appLogoImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.appLogoImage.TabIndex = 26;
+            this.appLogoImage.TabStop = false;
             // 
             // minimizeImage
             // 
@@ -123,39 +152,19 @@ namespace Client.View
             this.menuPanel.Size = new System.Drawing.Size(250, 708);
             this.menuPanel.TabIndex = 1;
             // 
-            // mainPanel
+            // logoutButton
             // 
-            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(250, 32);
-            this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1000, 708);
-            this.mainPanel.TabIndex = 2;
-            // 
-            // dialogsButton
-            // 
-            this.dialogsButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dialogsButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.dialogsButton.Image = global::Client.Properties.Resources.dialogs;
-            this.dialogsButton.Location = new System.Drawing.Point(0, 0);
-            this.dialogsButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dialogsButton.Name = "dialogsButton";
-            this.dialogsButton.Size = new System.Drawing.Size(248, 64);
-            this.dialogsButton.TabIndex = 0;
-            this.dialogsButton.Title = "Диалоги";
-            this.dialogsButton.Click += new System.EventHandler(this.DialogsButton_Click);
-            // 
-            // createDialogButton
-            // 
-            this.createDialogButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.createDialogButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.createDialogButton.Image = global::Client.Properties.Resources.create_dialog;
-            this.createDialogButton.Location = new System.Drawing.Point(0, 64);
-            this.createDialogButton.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.createDialogButton.Name = "createDialogButton";
-            this.createDialogButton.Size = new System.Drawing.Size(248, 64);
-            this.createDialogButton.TabIndex = 1;
-            this.createDialogButton.Title = "Создать диалог";
-            this.createDialogButton.Click += new System.EventHandler(this.CreateDialogButton_Click);
+            this.logoutButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.logoutButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.logoutButton.Image = global::Client.Properties.Resources.logout;
+            this.logoutButton.Location = new System.Drawing.Point(0, 192);
+            this.logoutButton.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Separator = true;
+            this.logoutButton.Size = new System.Drawing.Size(248, 64);
+            this.logoutButton.TabIndex = 3;
+            this.logoutButton.Title = "Выход";
+            this.logoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
             // settingsButton
             // 
@@ -165,39 +174,66 @@ namespace Client.View
             this.settingsButton.Location = new System.Drawing.Point(0, 128);
             this.settingsButton.Margin = new System.Windows.Forms.Padding(3, 7, 3, 7);
             this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Separator = true;
             this.settingsButton.Size = new System.Drawing.Size(248, 64);
             this.settingsButton.TabIndex = 2;
             this.settingsButton.Title = "Настройки";
             this.settingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
-            // logoutButton
+            // createDialogButton
             // 
-            this.logoutButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.logoutButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.logoutButton.Image = global::Client.Properties.Resources.logout;
-            this.logoutButton.Location = new System.Drawing.Point(0, 192);
-            this.logoutButton.Margin = new System.Windows.Forms.Padding(3, 9, 3, 9);
-            this.logoutButton.Name = "logoutButton";
-            this.logoutButton.Size = new System.Drawing.Size(248, 64);
-            this.logoutButton.TabIndex = 3;
-            this.logoutButton.Title = "Выход";
-            this.logoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
+            this.createDialogButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.createDialogButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.createDialogButton.Image = global::Client.Properties.Resources.create_dialog;
+            this.createDialogButton.Location = new System.Drawing.Point(0, 64);
+            this.createDialogButton.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.createDialogButton.Name = "createDialogButton";
+            this.createDialogButton.Separator = true;
+            this.createDialogButton.Size = new System.Drawing.Size(248, 64);
+            this.createDialogButton.TabIndex = 1;
+            this.createDialogButton.Title = "Создать диалог";
+            this.createDialogButton.Click += new System.EventHandler(this.CreateDialogButton_Click);
+            // 
+            // dialogsButton
+            // 
+            this.dialogsButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dialogsButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dialogsButton.Image = global::Client.Properties.Resources.dialogs;
+            this.dialogsButton.Location = new System.Drawing.Point(0, 0);
+            this.dialogsButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dialogsButton.Name = "dialogsButton";
+            this.dialogsButton.Separator = true;
+            this.dialogsButton.Size = new System.Drawing.Size(248, 64);
+            this.dialogsButton.TabIndex = 0;
+            this.dialogsButton.Title = "Диалоги";
+            this.dialogsButton.Click += new System.EventHandler(this.DialogsButton_Click);
+            // 
+            // mainPanel
+            // 
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainPanel.Location = new System.Drawing.Point(250, 32);
+            this.mainPanel.Name = "mainPanel";
+            this.mainPanel.Size = new System.Drawing.Size(1000, 708);
+            this.mainPanel.TabIndex = 2;
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1250, 740);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuPanel);
             this.Controls.Add(this.topPanel);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainWindow";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.topPanel.ResumeLayout(false);
+            this.topPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.appLogoImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.restoreImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeImage)).EndInit();
@@ -218,5 +254,7 @@ namespace Client.View
         private Controls.ButtonControl createDialogButton;
         private Controls.ButtonControl dialogsButton;
         private Controls.ButtonControl logoutButton;
+        private System.Windows.Forms.Label userNameLabel;
+        private System.Windows.Forms.PictureBox appLogoImage;
     }
 }

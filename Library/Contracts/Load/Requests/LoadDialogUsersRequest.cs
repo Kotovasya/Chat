@@ -5,15 +5,12 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Library.Contracts.Messaging
+namespace Library.Contracts.Load
 {
     [DataContract]
-    public class RemoveMessageRequest : Request
+    public class LoadDialogUsersRequest : Request
     {
         [DataMember]
         public int DialogId { get; set; }
-
-        [DataMember]
-        public long[] MessagesIds { get; set; }
     }
 }

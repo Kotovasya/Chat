@@ -20,15 +20,12 @@ namespace Client.Binding
         private readonly Dictionary<TKey, TValue> entites;
         private Control.ControlCollection collection;
 
+        public EventHandler<TValue> ElementAdding;
         public EventHandler<TValue> ControlAdding;
         /// <summary>
         /// Событие, возникающее при удалении UI Control'a сущности
         /// </summary>
         public EventHandler<ControlEventArgs> ControlRemoving;
-        /// <summary>
-        /// Событие, возникающее при изменении размеров UI Control'a сущности
-        /// </summary>
-        public EventHandler<ControlEventArgs> ControlSizeChanged;
 
         /// <summary>
         /// Коллекция, хранящая UI Controls сущностей. При наличии сущностей в словаре, добавляет их UI Control в установленную коллекцию
@@ -53,6 +50,7 @@ namespace Client.Binding
         public TValue this[TKey key]
         {
             get => entites[key];
+            set => entites[key] = value;
         }
 
         /// <summary>
@@ -80,6 +78,7 @@ namespace Client.Binding
         {
             if (collection != null)
                 AddControl(value);
+            ElementAdding?.Invoke(this, value);
             entites.Add(key, value);
         }
 
@@ -90,7 +89,6 @@ namespace Client.Binding
         private void AddControl(TValue value)
         {
             UserControl control = value.ToControl();
-            control.SizeChanged += Control_SizeChanged;
             if (Collection != null)
             {
                 Collection.Add(control);
@@ -120,16 +118,6 @@ namespace Client.Binding
             return entites.Any() ? entites.Last().Value : default;
         }
 
-        /// <summary>
-        /// Обработчик события, вызывающийся при изменении размеров одного из UI Control в коллекции
-        /// </summary>
-        /// <param name="sender">UI Control, вызвавший изменения</param>
-        /// <param name="e">Аргументы события</param>
-        private void Control_SizeChanged(object sender, EventArgs e)
-        {
-            ControlSizeChanged?.Invoke(sender, new ControlEventArgs((Control)sender));
-        }
-
         #region IDictionary realization
 
         TValue IDictionary<TKey, TValue>.this[TKey key]
@@ -148,7 +136,7 @@ namespace Client.Binding
 
         public bool ContainsKey(TKey key)
         {
-            throw new NotImplementedException();
+            return entites.ContainsKey(key);
         }
 
         public bool TryGetValue(TKey key, out TValue value)

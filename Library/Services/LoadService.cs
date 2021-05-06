@@ -1,4 +1,5 @@
-﻿using Library.Contracts.Load;
+﻿using Library.Contracts;
+using Library.Contracts.Load;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,15 @@ namespace Library.Services
         {
             return Preform(() =>
             {
-                var orderedMessages = context.Dialogs.Find(request.DialogId).Messages.OrderByDescending(m => m.Id);
+                var dialog = context.Dialogs.Find(request.DialogId);
+                if (dialog.Messages.Count == 0 || dialog.Messages.First().Id == request.LastMessageId)
+                    return new LoadMessagesResponse() { Result = Contracts.Result.AllLoad };
+
+                var orderedMessages = dialog.Messages.OrderByDescending(m => m.Id);
                 var messages = request.LastMessageId == null ? 
                 orderedMessages.Take(50) : 
                 orderedMessages.SkipWhile(m => m.Id > request.LastMessageId).Take(50);
-                return new LoadMessagesResponse() { Result = Contracts.Result.Succesfully, Messages = messages.Select(m => m.ToDto()) };
+                return new LoadMessagesResponse() { Result = Result.Succesfully, Messages = messages.Reverse().Select(m => m.ToDto()) };
             });
         }
 
@@ -35,11 +40,29 @@ namespace Library.Services
         {
             return Preform(() =>
             {
-                var orderedDialogs = context.Users.Find(request.Id).Dialogs.OrderBy(d => d.Messages.Last().Date);
-                var dialogs = request.LastDialogId == null ?
-                orderedDialogs.Take(50) :
-                orderedDialogs.SkipWhile(d => d.Id != request.LastDialogId).Take(50);
-                return new LoadDialogsResponse() { Result = Contracts.Result.Succesfully, Dialgos = dialogs.Select(d => d.ToDto()) };
+                var user = context.Users.Find(request.Id);
+                return new LoadDialogsResponse() 
+                { 
+                    Result = Result.Succesfully, 
+                    Dialogs = user.Dialogs.Select(d => d.ToDto()) 
+                };
+            });
+        }
+
+        public LoadDialogUsersResponse LoadDialogUsers(LoadDialogUsersRequest request)
+        {
+            return Preform(() =>
+            {
+                var user = context.Users.Find(request.Id);
+                var dialog = context.Dialogs.Find(request.DialogId);
+                if (!dialog.Users.Contains(user))
+                    return new LoadDialogUsersResponse() { Result = Result.NotPremissions };
+
+                return new LoadDialogUsersResponse()
+                {
+                    Result = Result.Succesfully,
+                    Users = dialog.Users.Select(u => u.ToDto())
+                };
             });
         }
     }

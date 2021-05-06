@@ -22,7 +22,7 @@ namespace Client.View
 
         private readonly AuthWindow authWindow;
         private readonly ClientModel model;
-        private readonly SourceList<int, Dialog.DialogPreview> favouriteDialogs;
+        private readonly SourceList<int, DialogPreview> favouriteDialogs;
         private readonly CreateDialogControl createDialogControl;
         private readonly SettingsControl settingsControl;
         private readonly DialogsControl dialogsControl;
@@ -34,17 +34,39 @@ namespace Client.View
             this.authWindow = authWindow;
             this.model = model;
             InitializeComponent();
-            favouriteDialogs = new SourceList<int, Dialog.DialogPreview>();
+
+            userNameLabel.CreateBinding("Text", model, "Name");
+
+            favouriteDialogs = new SourceList<int, DialogPreview>();
             settingsControl = new SettingsControl(model);
             dialogsControl = new DialogsControl(model);
             createDialogControl = new CreateDialogControl(model);
             dialogsControl.DialogOpen += DialogOpen_Click;
             createDialogControl.DialogCreate += DialogOpen_Click;
+
+            var response = model.LoadDialogs(new LoadDialogsRequest() { Id = model.Id });
+            foreach (var dialogDto in response.Dialogs)
+            {
+                var dialog = new Dialog(dialogDto);
+                model.Dialogs.Add(dialogDto.Id, dialog);
+                List<Guid> ids = new List<Guid>();
+                foreach (var user in dialog.Users)
+                {
+                    if (model.Users.ContainsKey(user.Key))
+                        ids.Add(user.Key);
+                    else
+                        model.Users.Add(user.Key, dialog.Users[user.Key]);
+                }
+                foreach (var id in ids)
+                    dialog.Users[id] = model.Users[id];
+            }
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
         {
-            model.Disconnect(model.Id);
+            if (e.CloseReason == CloseReason.ApplicationExitCall)
+                if (model.State != System.ServiceModel.CommunicationState.Faulted && model.Id != Guid.Empty)
+                    model.Disconnect(model.Id);
         }
 
         #region Menu Buttons Events
@@ -55,7 +77,9 @@ namespace Client.View
 
         private void DialogOpen_Click(object sender, Dialog openedDialog)
         {
-            openedDialog.Control.Model = model;
+            if (openedDialog.Control == null)
+                openedDialog.ToControl(model);
+           
             SetControl(openedDialog.Control);
         }
 
@@ -88,7 +112,7 @@ namespace Client.View
 
         private void closeImage_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            Application.Exit();
         }
 
         private void restoreImage_Click(object sender, EventArgs e)

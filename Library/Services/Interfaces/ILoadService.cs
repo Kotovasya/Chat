@@ -1,4 +1,5 @@
-﻿using Library.Contracts.Load;
+﻿using Library.Contracts;
+using Library.Contracts.Load;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,8 @@ namespace Library.Services.Interfaces
 
         [OperationContract]
         LoadDialogsResponse LoadDialogs(LoadDialogsRequest request);
+
+        [OperationContract]
+        LoadDialogUsersResponse LoadDialogUsers(LoadDialogUsersRequest request);
     }
 }

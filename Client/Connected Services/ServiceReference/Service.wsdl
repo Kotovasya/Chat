@@ -37,9 +37,9 @@
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.DTO" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd8" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.User" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd10" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
@@ -97,6 +97,12 @@
   </wsdl:message>
   <wsdl:message name="IService_LoadDialogs_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoadDialogsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_LoadDialogUsers_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoadDialogUsers" />
+  </wsdl:message>
+  <wsdl:message name="IService_LoadDialogUsers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoadDialogUsersResponse" />
   </wsdl:message>
   <wsdl:message name="IService_SendMessage_InputMessage">
     <wsdl:part name="parameters" element="tns:SendMessage" />
@@ -218,6 +224,10 @@
     <wsdl:operation name="LoadDialogs">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/LoadDialogs" message="tns:IService_LoadDialogs_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService/LoadDialogsResponse" message="tns:IService_LoadDialogs_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoadDialogUsers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/LoadDialogUsers" message="tns:IService_LoadDialogUsers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/LoadDialogUsersResponse" message="tns:IService_LoadDialogUsers_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SendMessage">
       <wsdl:input wsaw:Action="http://tempuri.org/IService/SendMessage" message="tns:IService_SendMessage_InputMessage" />
@@ -363,6 +373,15 @@
     </wsdl:operation>
     <wsdl:operation name="LoadDialogs">
       <soap12:operation soapAction="http://tempuri.org/IService/LoadDialogs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoadDialogUsers">
+      <soap12:operation soapAction="http://tempuri.org/IService/LoadDialogUsers" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

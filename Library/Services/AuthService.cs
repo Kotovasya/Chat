@@ -39,6 +39,8 @@ namespace Library.Services
                     return new AuthResponse() { Result = Contracts.Result.WrongLogin };
                 if (user.Password != request.Password)
                     return new AuthResponse() { Result = Contracts.Result.WrongPassword };
+                if (connections.ContainsKey(user.Id))
+                    return new AuthResponse() { Result = Contracts.Result.AlreadyLogged };
                 else
                     return CreateResponse(request.Id, user);
             });
