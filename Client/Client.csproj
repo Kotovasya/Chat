@@ -161,10 +161,10 @@
     <None Include="Connected Services\ServiceReference\Client.ServiceReference.LoadDialogsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ServiceReference\Client.ServiceReference.LoadDialogUsersResponse.datasource">
+    <None Include="Connected Services\ServiceReference\Client.ServiceReference.LoadMessagesResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\ServiceReference\Client.ServiceReference.LoadMessagesResponse.datasource">
+    <None Include="Connected Services\ServiceReference\Client.ServiceReference.LoadOnlineUsersResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServiceReference\Client.ServiceReference.Response.datasource">

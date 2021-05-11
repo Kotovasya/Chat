@@ -75,10 +75,9 @@
     <Compile Include="Contracts\DTO\MessageDto.cs" />
     <Compile Include="Contracts\DTO\UserDto.cs" />
     <Compile Include="Contracts\Load\Requests\LoadDialogsRequest.cs" />
-    <Compile Include="Contracts\Load\Requests\LoadDialogUsersRequest.cs" />
     <Compile Include="Contracts\Load\Requests\LoadMessagesRequest.cs" />
     <Compile Include="Contracts\Load\Responses\LoadDialogsResponse.cs" />
-    <Compile Include="Contracts\Load\Responses\LoadDialogUsersResponse.cs" />
+    <Compile Include="Contracts\Load\Responses\LoadOnlineUsersResponse.cs" />
     <Compile Include="Contracts\Load\Responses\LoadMessagesResponse.cs" />
     <Compile Include="Contracts\Messaging\Events\MessageEditedEventArgs.cs" />
     <Compile Include="Contracts\Messaging\Events\MessageRemovedEventArgs.cs" />
@@ -99,6 +98,10 @@
     <Compile Include="Migrations\202104231935365_MessageDateAdded.cs" />
     <Compile Include="Migrations\202104231935365_MessageDateAdded.designer.cs">
       <DependentUpon>202104231935365_MessageDateAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105061724502_UserLastActivityAdded.cs" />
+    <Compile Include="Migrations\202105061724502_UserLastActivityAdded.designer.cs">
+      <DependentUpon>202105061724502_UserLastActivityAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +130,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202104231935365_MessageDateAdded.resx">
       <DependentUpon>202104231935365_MessageDateAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105061724502_UserLastActivityAdded.resx">
+      <DependentUpon>202105061724502_UserLastActivityAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

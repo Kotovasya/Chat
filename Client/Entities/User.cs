@@ -18,6 +18,7 @@ namespace Client.Entities
         private Guid id;
         private string name;
         private bool online;
+        private DateTime lastActivity;
 
         /// <summary>
         /// ID пользователя
@@ -58,12 +59,22 @@ namespace Client.Entities
             }
         }
 
+        public DateTime LastActivity
+        {
+            get { return lastActivity; }
+            set
+            {
+                lastActivity = value;
+                OnPropertyChanged("LastACtivity");
+            }
+        }
+
         /// <summary>
         /// Иницилизурет экземпляр пользователя из DTO, полученный от сервера
         /// </summary>
         /// <param name="user">Data Transfer Object пользователя</param>
         public User(ServiceReference.UserDto user)
-            : this(user.Id, user.Name, true)
+            : this(user.Id, user.Name, user.IsOnline, user.LastActivity)
         { }
 
         /// <summary>
@@ -72,11 +83,12 @@ namespace Client.Entities
         /// <param name="id">ID пользователя</param>
         /// <param name="name">Имя пользователя</param>
         /// <param name="isOnline">Флаг, определяющий находится ли пользователь в сети</param>
-        public User(Guid id, string name, bool isOnline)
+        public User(Guid id, string name, bool isOnline, DateTime lastActivity)
         {
             this.id = id;
             this.name = name;
             online = isOnline;
+            this.LastActivity = lastActivity;
         }
 
         public override ClientControl ToControl()

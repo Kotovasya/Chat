@@ -45,7 +45,7 @@ namespace Client.View.Controls
             this.textLabel.AutoSize = true;
             this.textLabel.BackColor = System.Drawing.Color.Transparent;
             this.textLabel.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textLabel.Location = new System.Drawing.Point(3, 26);
+            this.textLabel.Location = new System.Drawing.Point(3, 27);
             this.textLabel.MaximumSize = new System.Drawing.Size(600, 0);
             this.textLabel.Name = "textLabel";
             this.textLabel.Size = new System.Drawing.Size(33, 20);
@@ -64,6 +64,7 @@ namespace Client.View.Controls
             this.authorLabel.Size = new System.Drawing.Size(79, 20);
             this.authorLabel.TabIndex = 3;
             this.authorLabel.Text = "Kotovasya";
+            this.authorLabel.SizeChanged += new System.EventHandler(this.authorLabel_SizeChanged);
             this.authorLabel.Click += new System.EventHandler(this.MessageControl_Click);
             // 
             // dateLabel
@@ -76,6 +77,8 @@ namespace Client.View.Controls
             this.dateLabel.Size = new System.Drawing.Size(90, 20);
             this.dateLabel.TabIndex = 0;
             this.dateLabel.Text = "Вчера 15:38";
+            this.dateLabel.LocationChanged += new System.EventHandler(this.dateLabel_LocationChanged);
+            this.dateLabel.SizeChanged += new System.EventHandler(this.dateLabel_LocationChanged);
             this.dateLabel.Click += new System.EventHandler(this.MessageControl_Click);
             // 
             // editMessageImage
@@ -120,7 +123,7 @@ namespace Client.View.Controls
             this.Controls.Add(this.dateLabel);
             this.Controls.Add(this.textLabel);
             this.Name = "MessageControl";
-            this.Size = new System.Drawing.Size(240, 48);
+            this.Size = new System.Drawing.Size(240, 51);
             this.Click += new System.EventHandler(this.MessageControl_Click);
             ((System.ComponentModel.ISupportInitialize)(this.editMessageImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.removeMessageImage)).EndInit();

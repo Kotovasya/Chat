@@ -54,10 +54,8 @@ namespace Client.View.Controls
 
         private void textLabel_SizeChanged(object sender, EventArgs e)
         {
-            if (textLabel.Width < 170)
-                this.Size = new Size(240, textLabel.Height + 35);
-            else
-                this.Size = new Size(textLabel.Width + 70, textLabel.Height + 35);
+            if (textLabel.Width > this.Width)
+                this.Size = new Size(textLabel.Width + 30, textLabel.Height + 35);
             TextEdited?.Invoke(this, this);
         }
 
@@ -95,8 +93,7 @@ namespace Client.View.Controls
 
         private void removeMessageImage_Click(object sender, EventArgs e)
         {
-            if (IsClientAuthor && IsSelected)
-                RemoveMessage?.Invoke(this, this);
+
         }
 
         private void editMessageImage_MouseEnter(object sender, EventArgs e)
@@ -114,6 +111,18 @@ namespace Client.View.Controls
         public override string ToString()
         {
             return "X = " + Location.X + "; Y = " + Location.Y;
+        }
+
+        private void authorLabel_SizeChanged(object sender, EventArgs e)
+        {
+            dateLabel.Location = new Point(authorLabel.Location.X + authorLabel.Width + 2, dateLabel.Location.Y);
+        }
+
+        private void dateLabel_LocationChanged(object sender, EventArgs e)
+        {
+            int newWidth = dateLabel.Location.X + dateLabel.Width + 60;
+            if (newWidth > this.Width)
+                this.Width = newWidth;
         }
     }
 }

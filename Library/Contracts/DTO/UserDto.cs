@@ -17,16 +17,22 @@ namespace Library.Contracts.DTO
         public Guid Id { get; set; }
         [DataMember]
         public string Name { get; set; }
+        [DataMember]
+        public bool IsOnline { get; set; }
+        [DataMember]
+        public DateTime LastActivity { get; set; }
 
         /// <summary>
         /// Инициализирует новый экземпляр класса данных о пользователе, служащего для передачи данных пользователя клиенту сервиса
         /// </summary>
         /// <param name="id">ID пользователя</param>
         /// <param name="name">Логин (имя) пользователя</param>
-        public UserDto(Guid id, string name)
+        public UserDto(Data.Entities.User user)
         {
-            Id = id;
-            Name = name;
+            Id = user.Id;
+            Name = user.Login;
+            IsOnline = false;
+            LastActivity = user.LastActivity;
         }
     }
 }

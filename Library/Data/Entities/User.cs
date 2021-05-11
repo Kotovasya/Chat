@@ -32,6 +32,7 @@ namespace Library.Data.Entities
         {
             Login = login;
             Password = password;
+            LastActivity = DateTime.UtcNow;
         }
 
         public Guid Id { get; set; }
@@ -42,6 +43,9 @@ namespace Library.Data.Entities
 
         [Required]
         public string Password { get; set; }
+
+        [Column(TypeName = "datetime2")]
+        public DateTime LastActivity { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dialog> Dialogs { get; set; }
@@ -54,7 +58,7 @@ namespace Library.Data.Entities
 
         public UserDto ToDto()
         {
-            return new UserDto(Id, Login);
+            return new UserDto(this);
         }
     }
 }

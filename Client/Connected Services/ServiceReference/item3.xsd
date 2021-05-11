@@ -4,8 +4,8 @@
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Dialog" />
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts" />
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" />
-  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" />
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Messaging" />
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.User" />
   <xs:element name="Registration">
     <xs:complexType>
@@ -133,17 +133,17 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="LoadDialogUsers">
+  <xs:element name="LoadOnlineUsers">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" minOccurs="0" name="request" nillable="true" type="q19:LoadDialogUsersRequest" />
+        <xs:element xmlns:q19="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="id" type="q19:guid" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="LoadDialogUsersResponse">
+  <xs:element name="LoadOnlineUsersResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" minOccurs="0" name="LoadDialogUsersResult" nillable="true" type="q20:LoadDialogUsersResponse" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Library.Contracts.Load" minOccurs="0" name="LoadOnlineUsersResult" nillable="true" type="q20:LoadOnlineUsersResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

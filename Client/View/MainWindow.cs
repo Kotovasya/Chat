@@ -44,8 +44,13 @@ namespace Client.View
             dialogsControl.DialogOpen += DialogOpen_Click;
             createDialogControl.DialogCreate += DialogOpen_Click;
 
-            var response = model.LoadDialogs(new LoadDialogsRequest() { Id = model.Id });
-            foreach (var dialogDto in response.Dialogs)
+            var loadOnlineUsers = model.LoadOnlineUsers(model.Id);
+
+            foreach (var user in loadOnlineUsers.Users)
+                model.Users.Add(user.Id, new User(user));
+
+            var loadDialogsResponse = model.LoadDialogs(new LoadDialogsRequest() { Id = model.Id });
+            foreach (var dialogDto in loadDialogsResponse.Dialogs)
             {
                 var dialog = new Dialog(dialogDto);
                 model.Dialogs.Add(dialogDto.Id, dialog);

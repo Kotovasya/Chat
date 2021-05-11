@@ -18,6 +18,6 @@ namespace Library.Services.Interfaces
         LoadDialogsResponse LoadDialogs(LoadDialogsRequest request);
 
         [OperationContract]
-        LoadDialogUsersResponse LoadDialogUsers(LoadDialogUsersRequest request);
+        LoadOnlineUsersResponse LoadOnlineUsers(Guid id);
     }
 }

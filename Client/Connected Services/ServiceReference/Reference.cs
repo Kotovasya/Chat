@@ -29,7 +29,6 @@ namespace Client.ServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LeaveFromDialogRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadMessagesRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogsRequest))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogUsersRequest))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.AuthRequest))]
     public partial class Request : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -526,29 +525,6 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoadDialogUsersRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
-    [System.SerializableAttribute()]
-    public partial class LoadDialogUsersRequest : Client.ServiceReference.Request {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int DialogIdField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int DialogId {
-            get {
-                return this.DialogIdField;
-            }
-            set {
-                if ((this.DialogIdField.Equals(value) != true)) {
-                    this.DialogIdField = value;
-                    this.RaisePropertyChanged("DialogId");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="AuthRequest", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Auth")]
     [System.SerializableAttribute()]
     public partial class AuthRequest : Client.ServiceReference.Request {
@@ -595,7 +571,7 @@ namespace Client.ServiceReference {
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.ConnectToDialogResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadMessagesResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogsResponse))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadDialogUsersResponse))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.LoadOnlineUsersResponse))]
     [System.Runtime.Serialization.KnownTypeAttribute(typeof(Client.ServiceReference.AuthResponse))]
     public partial class Response : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -755,9 +731,9 @@ namespace Client.ServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoadDialogUsersResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoadOnlineUsersResponse", Namespace="http://schemas.datacontract.org/2004/07/Library.Contracts.Load")]
     [System.SerializableAttribute()]
-    public partial class LoadDialogUsersResponse : Client.ServiceReference.Response {
+    public partial class LoadOnlineUsersResponse : Client.ServiceReference.Response {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private Client.ServiceReference.UserDto[] UsersField;
@@ -1077,6 +1053,12 @@ namespace Client.ServiceReference {
         private System.Guid IdField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool IsOnlineField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime LastActivityField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -1098,6 +1080,32 @@ namespace Client.ServiceReference {
                 if ((this.IdField.Equals(value) != true)) {
                     this.IdField = value;
                     this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool IsOnline {
+            get {
+                return this.IsOnlineField;
+            }
+            set {
+                if ((this.IsOnlineField.Equals(value) != true)) {
+                    this.IsOnlineField = value;
+                    this.RaisePropertyChanged("IsOnline");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime LastActivity {
+            get {
+                return this.LastActivityField;
+            }
+            set {
+                if ((this.LastActivityField.Equals(value) != true)) {
+                    this.LastActivityField = value;
+                    this.RaisePropertyChanged("LastActivity");
                 }
             }
         }
@@ -1532,11 +1540,11 @@ namespace Client.ServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoadDialogs", ReplyAction="http://tempuri.org/IService/LoadDialogsResponse")]
         System.Threading.Tasks.Task<Client.ServiceReference.LoadDialogsResponse> LoadDialogsAsync(Client.ServiceReference.LoadDialogsRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoadDialogUsers", ReplyAction="http://tempuri.org/IService/LoadDialogUsersResponse")]
-        Client.ServiceReference.LoadDialogUsersResponse LoadDialogUsers(Client.ServiceReference.LoadDialogUsersRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoadOnlineUsers", ReplyAction="http://tempuri.org/IService/LoadOnlineUsersResponse")]
+        Client.ServiceReference.LoadOnlineUsersResponse LoadOnlineUsers(System.Guid id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoadDialogUsers", ReplyAction="http://tempuri.org/IService/LoadDialogUsersResponse")]
-        System.Threading.Tasks.Task<Client.ServiceReference.LoadDialogUsersResponse> LoadDialogUsersAsync(Client.ServiceReference.LoadDialogUsersRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/LoadOnlineUsers", ReplyAction="http://tempuri.org/IService/LoadOnlineUsersResponse")]
+        System.Threading.Tasks.Task<Client.ServiceReference.LoadOnlineUsersResponse> LoadOnlineUsersAsync(System.Guid id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/SendMessage", ReplyAction="http://tempuri.org/IService/SendMessageResponse")]
         Client.ServiceReference.SendMessageResponse SendMessage(Client.ServiceReference.SendMessageRequest request);
@@ -1724,12 +1732,12 @@ namespace Client.ServiceReference {
             return base.Channel.LoadDialogsAsync(request);
         }
         
-        public Client.ServiceReference.LoadDialogUsersResponse LoadDialogUsers(Client.ServiceReference.LoadDialogUsersRequest request) {
-            return base.Channel.LoadDialogUsers(request);
+        public Client.ServiceReference.LoadOnlineUsersResponse LoadOnlineUsers(System.Guid id) {
+            return base.Channel.LoadOnlineUsers(id);
         }
         
-        public System.Threading.Tasks.Task<Client.ServiceReference.LoadDialogUsersResponse> LoadDialogUsersAsync(Client.ServiceReference.LoadDialogUsersRequest request) {
-            return base.Channel.LoadDialogUsersAsync(request);
+        public System.Threading.Tasks.Task<Client.ServiceReference.LoadOnlineUsersResponse> LoadOnlineUsersAsync(System.Guid id) {
+            return base.Channel.LoadOnlineUsersAsync(id);
         }
         
         public Client.ServiceReference.SendMessageResponse SendMessage(Client.ServiceReference.SendMessageRequest request) {

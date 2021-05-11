@@ -91,7 +91,10 @@ namespace Client.Binding
             UserControl control = value.ToControl();
             if (Collection != null)
             {
-                Collection.Add(control);
+                if (Collection.Owner.IsHandleCreated)
+                    Collection.Owner.BeginInvoke((Action)delegate { collection.Add(control); });
+                else
+                    collection.Add(control);
                 ControlAdding?.Invoke(control, value);
             }
         }
@@ -105,7 +108,10 @@ namespace Client.Binding
         {
             ControlRemoving?.Invoke(this, new ControlEventArgs(entites[key].Control));
             if (Collection != null && Collection.Contains(entites[key].Control))
-                Collection.Remove(entites[key].Control);
+                if (Collection.Owner.IsHandleCreated)
+                    Collection.Owner.BeginInvoke((Action)delegate { collection.Remove(entites[key].Control); });
+                else
+                    collection.Remove(entites[key].Control);
             return entites.Remove(key);
         }
 

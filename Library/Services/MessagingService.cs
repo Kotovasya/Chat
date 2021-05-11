@@ -1,10 +1,7 @@
 ﻿using Library.Data.Entities;
 using Library.Contracts.Messaging;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Library.Contracts;
 
 namespace Library.Services
@@ -42,6 +39,11 @@ namespace Library.Services
             });
         }
 
+        /// <summary>
+        /// Редактирует сообщение, изменяя его в базе данных и возвращает результат редактирования
+        /// </summary>
+        /// <param name="request">Запрос на редактирование</param>
+        /// <returns>Результат редактирования</returns>
         public Response EditMessage(EditMessageRequest request)
         {
             if (string.IsNullOrWhiteSpace(request.NewText) || request.NewText == string.Empty)
@@ -63,6 +65,11 @@ namespace Library.Services
             return new Response() { Result = Result.Succesfully };
         }
 
+        /// <summary>
+        /// Удаляет сообщение из базы данных и возвращает результат удаления
+        /// </summary>
+        /// <param name="request">Запрос на удаление</param>
+        /// <returns>Результат удаления</returns>
         public Response RemoveMessage(RemoveMessageRequest request)
         {
             var user = context.Users.Find(request.Id);

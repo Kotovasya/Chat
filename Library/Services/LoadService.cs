@@ -1,10 +1,9 @@
 ﻿using Library.Contracts;
+using Library.Contracts.DTO;
 using Library.Contracts.Load;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Services
 {
@@ -40,28 +39,45 @@ namespace Library.Services
         {
             return Preform(() =>
             {
-                var user = context.Users.Find(request.Id);
-                return new LoadDialogsResponse() 
-                { 
-                    Result = Result.Succesfully, 
-                    Dialogs = user.Dialogs.Select(d => d.ToDto()) 
+                var dialogs = context.Dialogs
+                    .Where(d => d.Users.Any(u => u.Id == request.Id))
+                    .ToArray()
+                    .Select(d => d.ToDto());
+                var response = new LoadDialogsResponse()
+                {
+                    Result = Result.Succesfully,
+                    Dialogs = dialogs
                 };
+                return response;
             });
         }
 
-        public LoadDialogUsersResponse LoadDialogUsers(LoadDialogUsersRequest request)
+        /// <summary>
+        /// Запрашивает пользователей онлайн и возвращает результат запроса
+        /// </summary>
+        /// <param name="requestId">ID пользователя, отправляющего запрос</param>
+        /// <returns>Ответ на загрузку</returns>
+        public LoadOnlineUsersResponse LoadOnlineUsers(Guid requestId)
         {
             return Preform(() =>
             {
-                var user = context.Users.Find(request.Id);
-                var dialog = context.Dialogs.Find(request.DialogId);
-                if (!dialog.Users.Contains(user))
-                    return new LoadDialogUsersResponse() { Result = Result.NotPremissions };
+                var user = context.Users.Find(requestId);
 
-                return new LoadDialogUsersResponse()
+                List<UserDto> users = new List<UserDto>();
+                foreach(var id in connections.Keys)
+                {
+                    if (id != requestId)
+                    {
+                        var userDto = context.Users.Find(id).ToDto();
+                        userDto.IsOnline = true;
+                        users.Add(userDto);
+                    }
+                }
+
+                return new LoadOnlineUsersResponse()
                 {
                     Result = Result.Succesfully,
-                    Users = dialog.Users.Select(u => u.ToDto())
+                    Users = users
                 };
             });
         }

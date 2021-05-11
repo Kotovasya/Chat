@@ -20,7 +20,7 @@ namespace Client.Model
             if (Model.Dialogs.ContainsKey(args.DialogId))
             {
                 if (!Model.Users.ContainsKey(args.AddedUser.Id))
-                    Model.Users.Add(args.Id, new User(args.Id, args.AddedUser.Name, false));
+                    Model.Users.Add(args.Id, new User(args.Id, args.AddedUser.Name, true, args.AddedUser.LastActivity));
 
                 Model.Dialogs[args.DialogId].Users.Add(args.AddedUser.Id, Model.Users[args.AddedUser.Id]);
             }     
@@ -70,7 +70,7 @@ namespace Client.Model
         {
             Message message = new Message(args.Message);
             if (!Model.Users.ContainsKey(args.Id))
-                Model.Users.Add(args.Id, new User(args.Id, args.Message.Author.Name, false));
+                Model.Users.Add(args.Id, new User(args.Id, args.Message.Author.Name, true, args.Message.Author.LastActivity));
 
             message.Author = Model.Users[args.Id];
             Model.Dialogs[message.DialogId].Messages.Add(message.Id, message);

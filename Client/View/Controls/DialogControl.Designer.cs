@@ -53,6 +53,8 @@ namespace Client.View.Controls
             this.dialogSettingImage = new System.Windows.Forms.PictureBox();
             this.usersCountLabel = new System.Windows.Forms.Label();
             this.dialogNameLabel = new System.Windows.Forms.Label();
+            this.searchImage = new System.Windows.Forms.PictureBox();
+            this.searchTextbox = new System.Windows.Forms.TextBox();
             this.messagesContainer.SuspendLayout();
             this.dialogSettingsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nameImage)).BeginInit();
@@ -61,6 +63,7 @@ namespace Client.View.Controls
             ((System.ComponentModel.ISupportInitialize)(this.buttomPanelImage)).BeginInit();
             this.topPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dialogSettingImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchImage)).BeginInit();
             this.SuspendLayout();
             // 
             // messagesContainer
@@ -293,6 +296,8 @@ namespace Client.View.Controls
             // topPanel
             // 
             this.topPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.topPanel.Controls.Add(this.searchImage);
+            this.topPanel.Controls.Add(this.searchTextbox);
             this.topPanel.Controls.Add(this.removeSelectedMessagesButton);
             this.topPanel.Controls.Add(this.dialogSettingImage);
             this.topPanel.Controls.Add(this.usersCountLabel);
@@ -305,12 +310,13 @@ namespace Client.View.Controls
             // 
             // removeSelectedMessagesButton
             // 
+            this.removeSelectedMessagesButton.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.removeSelectedMessagesButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(87)))), ((int)(((byte)(197)))));
             this.removeSelectedMessagesButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.removeSelectedMessagesButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeSelectedMessagesButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.removeSelectedMessagesButton.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.removeSelectedMessagesButton.Location = new System.Drawing.Point(110, 38);
+            this.removeSelectedMessagesButton.Location = new System.Drawing.Point(621, 41);
             this.removeSelectedMessagesButton.Name = "removeSelectedMessagesButton";
             this.removeSelectedMessagesButton.Size = new System.Drawing.Size(104, 35);
             this.removeSelectedMessagesButton.TabIndex = 34;
@@ -361,6 +367,27 @@ namespace Client.View.Controls
             this.dialogNameLabel.Text = "Название диалога";
             this.dialogNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // searchImage
+            // 
+            this.searchImage.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.searchImage.Image = global::Client.Properties.Resources.search;
+            this.searchImage.Location = new System.Drawing.Point(110, 38);
+            this.searchImage.Name = "searchImage";
+            this.searchImage.Size = new System.Drawing.Size(36, 36);
+            this.searchImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.searchImage.TabIndex = 36;
+            this.searchImage.TabStop = false;
+            // 
+            // searchTextbox
+            // 
+            this.searchTextbox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.searchTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
+            this.searchTextbox.Location = new System.Drawing.Point(151, 37);
+            this.searchTextbox.Name = "searchTextbox";
+            this.searchTextbox.Size = new System.Drawing.Size(257, 36);
+            this.searchTextbox.TabIndex = 35;
+            this.searchTextbox.TextChanged += new System.EventHandler(this.searchTextbox_TextChanged);
+            // 
             // DialogControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -380,7 +407,9 @@ namespace Client.View.Controls
             this.bottomPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.buttomPanelImage)).EndInit();
             this.topPanel.ResumeLayout(false);
+            this.topPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dialogSettingImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -411,5 +440,7 @@ namespace Client.View.Controls
         private System.Windows.Forms.Button removeSelectedMessagesButton;
         private System.Windows.Forms.Label changeNameLabel;
         private System.Windows.Forms.Label changePasswordLabel;
+        private System.Windows.Forms.PictureBox searchImage;
+        private System.Windows.Forms.TextBox searchTextbox;
     }
 }

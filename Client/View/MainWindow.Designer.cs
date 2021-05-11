@@ -210,6 +210,7 @@ namespace Client.View
             // 
             // mainPanel
             // 
+            this.mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(250, 32);
             this.mainPanel.Name = "mainPanel";

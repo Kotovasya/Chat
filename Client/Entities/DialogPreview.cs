@@ -49,7 +49,7 @@ namespace Client.Entities
 
         private void OnMessageAdded(object sender, Message message)
         {
-            if (message.Id > lastMessage.Id)
+            if (message.Id > lastMessage?.Id)
                 lastMessage = message;
         }
     }

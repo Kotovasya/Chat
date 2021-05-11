@@ -17,7 +17,6 @@ namespace Client.Entities
     public class Dialog : Entity<DialogControl>
     {
         private string name;
-        private int usersCount;
 
         public int Id { get; set; }
         public Guid OwnerId { get; private set; }
@@ -69,13 +68,6 @@ namespace Client.Entities
                 AllMessagesLoad = true;
             foreach (var message in response.Messages)
                 Messages.Add(message.Id, new Message(message.Id, message.DialogId, message.Text, Users[message.Author.Id], message.Date));            
-        }
-
-        public void LoadUsers(LoadDialogUsersResponse response)
-        {
-            if (response.Result == Result.Succesfully)
-                foreach (var user in response.Users)
-                    Users.Add(user.Id, new User(user));
         }
     }
 }

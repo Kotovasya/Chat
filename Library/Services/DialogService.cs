@@ -2,16 +2,17 @@
 using Library.Contracts.Dialog;
 using Library.Contracts.DTO;
 using Library.Data.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Services
 {
     public partial class Service
     {
+        /// <summary>
+        /// Создает диалог и возвращает информацию о нем в случае успеха
+        /// </summary>
+        /// <param name="request">Запрос на создание диалога</param>
+        /// <returns>Результат выполнения операции</returns>
         public CreateDialogResponse CreateDialog(CreateDialogRequest request)
         {
             return Preform(() =>
@@ -30,6 +31,11 @@ namespace Library.Services
             });
         }
 
+        /// <summary>
+        /// Удаляет диалог и озвращает результат выполнения операции
+        /// </summary>
+        /// <param name="request">Запрос на удаление</param>
+        /// <returns>Результат выполнения операции</returns>
         public Response RemoveDialog(RemoveDialogRequest request)
         {
             return Preform(() =>
@@ -48,6 +54,11 @@ namespace Library.Services
             });
         }
 
+        /// <summary>
+        /// Добавляет пользователя в диалог, указанный в запросе
+        /// </summary>
+        /// <param name="request">Запрос на добавление</param>
+        /// <returns>Результат выполнения операции</returns>
         public ConnectToDialogResponse ConnectToDialog(ConnectToDialogRequest request)
         {
             return Preform(() =>
@@ -71,6 +82,11 @@ namespace Library.Services
             });
         }
 
+        /// <summary>
+        /// Удаляет пользователя из диалога, указанного в запросе
+        /// </summary>
+        /// <param name="request">Запрос на выход из диалога</param>
+        /// <returns>Результат выполнения операции</returns>
         public Response LeaveFromDialog(LeaveFromDialogRequest request)
         {
             return Preform(() =>
@@ -88,6 +104,11 @@ namespace Library.Services
             });
         }
 
+        /// <summary>
+        /// Изменяет название или пароль диалога и возвращает результат выполнения операции
+        /// </summary>
+        /// <param name="request">Запрос на изменение</param>
+        /// <returns>Результат выполнения операции</returns>
         public Response ChangeDialog(ChangeDialogRequest request)
         {
             return Preform(() =>

@@ -1,13 +1,9 @@
-﻿using Library.Data;
-using Library.Contracts;
+﻿using Library.Contracts;
 using Library.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Services
 {
@@ -57,6 +53,7 @@ namespace Library.Services
         /// <param name="id">ID отключившегося клиента</param>
         public void Disconnect(Guid id)
         {
+            SetActivity(id);
             connections.Remove(id);
         }
 
@@ -102,6 +99,7 @@ namespace Library.Services
         /// <param name="args">Аргументы события, передаваемые в один из методов интерфейса</param>
         private void SendEvent(Guid id, ServerEventArgs args)
         {
+            SetActivity(args.Id);
             if (args.Id != id && connections.ContainsKey(id))
             {
                 var service = connections[id].Context.GetCallbackChannel<IServiceCallback>();
@@ -158,6 +156,18 @@ namespace Library.Services
         private bool CheckValidPassword(string password)
         {
             return !string.IsNullOrWhiteSpace(password) && password.Length > 3;
+        }
+
+        /// <summary>
+        /// Устанавливает последнюю активность пользователю
+        /// </summary>
+        /// <param name="id">ID пользователя</param>
+        private void SetActivity(Guid id)
+        {
+            var user = context.Users.Find(id);
+            user.LastActivity = DateTime.UtcNow;
+            context.Entry(user).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
         }
     }
 }

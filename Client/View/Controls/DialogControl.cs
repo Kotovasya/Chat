@@ -72,16 +72,22 @@ namespace Client.View.Controls
         {
             MessageControls.Add(message.Id, message.Control);
             int newMessageIndex = MessageControls.IndexOfKey(message.Id);
-            for(int i = newMessageIndex; i < MessageControls.Count; i++)
+            for (int i = newMessageIndex; i < MessageControls.Count; i++)
             {
-                if (i - 1 != -1)         
+                if (i - 1 != -1)
                 {
                     var control = MessageControls.ElementAt(i).Value;
                     var prevControl = MessageControls.ElementAt(i - 1).Value;
                     var newPoint = new Point(control.Location.X, prevControl.Location.Y + control.Height + 2);
-                    control.Location = newPoint;
+                    if (control.Location != newPoint)
+                    {
+                        if (control.InvokeRequired)
+                            control.BeginInvoke((Action)delegate { control.Location = newPoint; });
+                        else
+                            control.Location = newPoint;
+                    }
                 }
-            }
+            }       
             message.Control.IsClientAuthor = message.Control.Message.Author.Id == model.Id;
             message.Control.MessageSelected += OnSelectMessage;
             message.Control.TextEdited += messageContainer_ControlSizeChanged;
@@ -368,6 +374,28 @@ namespace Client.View.Controls
         private void usersCountLabel_MouseLeave(object sender, EventArgs e)
         {
             usersCountLabel.Font = new Font("Segoe UI", 12);
-        }    
+        }
+
+        private void searchTextbox_TextChanged(object sender, EventArgs e)
+        {
+            var text = searchTextbox.Text;
+            var result = Dialog.Messages.Values
+                .Where(m => m.Author.Name.Contains(text) || m.Text.Contains(text))
+                .OrderBy(m => m.Id)
+                .Select(m => m.Control);
+            foreach (var control in MessageControls.Values)
+                control.Visible = false;
+            Control prevControl = null;
+
+            foreach (var control in result)
+            {
+                control.Visible = true;
+                if (prevControl == null)
+                    control.Location = new Point(0, 0);
+                else
+                    control.Location = new Point(control.Location.X, prevControl.Location.Y + prevControl.Height + 2);
+                prevControl = control;
+            }
+        }
     }
 }

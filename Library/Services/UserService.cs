@@ -1,15 +1,16 @@
 ﻿using Library.Contracts;
 using Library.Contracts.User;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library.Services
 {
     public partial class Service
     {
+        /// <summary>
+        /// Изменяет пароль пользователя и возвращает результат выполнения операции
+        /// </summary>
+        /// <param name="request">Запрос на изменение</param>
+        /// <returns>Результат операции</returns>
         public Response ChangePassword(ChangePasswordRequest request)
         {
             return Preform(() =>
@@ -27,6 +28,12 @@ namespace Library.Services
             });
         }
 
+
+        /// <summary>
+        /// Изменяет имя пользователя и возвращает результат выполнения операции
+        /// </summary>
+        /// <param name="request">Запрос на изменение</param>
+        /// <returns>Результат операции</returns>
         public Response ChangeUsername(ChangeUsernameRequest request)
         {
             return Preform(() =>

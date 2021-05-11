@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library.Contracts.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,9 +9,9 @@ using System.Threading.Tasks;
 namespace Library.Contracts.Load
 {
     [DataContract]
-    public class LoadDialogUsersRequest : Request
+    public class LoadOnlineUsersResponse : Response
     {
         [DataMember]
-        public int DialogId { get; set; }
+        public IEnumerable<UserDto> Users { get; set; }
     }
 }
