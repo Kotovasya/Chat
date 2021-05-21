@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Client.Entities
 {
-    public abstract class Entity<T> : IToControl<T>, INotifyPropertyChanged
+    public abstract class Entity<T> : IToControl<T>, INotifyPropertyChanged, IDisposable
         where T : UserControl
     {
         public T Control { get; set;}
@@ -22,6 +22,11 @@ namespace Client.Entities
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public virtual void Dispose()
+        {
+            Control?.Dispose();
         }
     }
 }

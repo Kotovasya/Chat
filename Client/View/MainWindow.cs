@@ -22,7 +22,6 @@ namespace Client.View
 
         private readonly AuthWindow authWindow;
         private readonly ClientModel model;
-        private readonly SourceList<int, DialogPreview> favouriteDialogs;
         private readonly CreateDialogControl createDialogControl;
         private readonly SettingsControl settingsControl;
         private readonly DialogsControl dialogsControl;
@@ -35,9 +34,8 @@ namespace Client.View
             this.model = model;
             InitializeComponent();
 
-            userNameLabel.CreateBinding("Text", model, "Name");
+            userNameLabel.CreateBinding("Text", model.Users.First().Value, "Name");
 
-            favouriteDialogs = new SourceList<int, DialogPreview>();
             settingsControl = new SettingsControl(model);
             dialogsControl = new DialogsControl(model);
             createDialogControl = new CreateDialogControl(model);
@@ -101,7 +99,14 @@ namespace Client.View
         private void LogoutButton_Click(object sender, EventArgs e)
         {
             model.Id = model.LogOut(model.Id);
+            model.Dialogs.Clear();
+            model.Users.Clear();
             authWindow.Show();
+
+            settingsControl.Dispose();
+            dialogsControl.Dispose();
+            createDialogControl.Dispose();
+
             Close();
         }
         #endregion

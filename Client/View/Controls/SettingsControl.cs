@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Client.ServiceReference;
+using System.Threading;
 
 namespace Client.View.Controls
 {
@@ -41,6 +42,12 @@ namespace Client.View.Controls
             {
                 oldPasswordTextbox.Text = string.Empty;
                 newPasswordTextbox.Text = string.Empty;
+                new Thread(new ThreadStart(() =>
+                {
+                    SetVisible(passwordSuccesfullyChangedLabel, true);
+                    Thread.Sleep(1500);
+                    SetVisible(passwordSuccesfullyChangedLabel, false);
+                })).Start();
             }
 
             else if (response.Result == Result.WrongPassword)
@@ -59,8 +66,14 @@ namespace Client.View.Controls
             });
             if (response.Result == Result.Succesfully)
             {
-                model.Name = changeUsernameTextbox.Text;
+                model.Users[model.Id].Name = changeUsernameTextbox.Text;
                 changeUsernameTextbox.Text = string.Empty;
+                new Thread(new ThreadStart(() =>
+                {
+                    SetVisible(nameSuccesfullyChangedLabel, true);
+                    Thread.Sleep(1500);
+                    SetVisible(nameSuccesfullyChangedLabel, false);
+                })).Start();
             }
 
             else if (response.Result == Result.AlreadyRegister)
@@ -80,6 +93,14 @@ namespace Client.View.Controls
         {
             changeUsernameLabel.Text = "Введите новое имя";
             changeUsernameLabel.ForeColor = Color.Black;
+        }
+
+        private void SetVisible(Control control, bool visible)
+        {
+            if (control.InvokeRequired)
+                control.BeginInvoke(new Action(delegate { control.Visible = visible; }));
+            else
+                control.Visible = visible;
         }
     }
 }

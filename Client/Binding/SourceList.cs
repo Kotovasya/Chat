@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using Client.Extensions;
 
 namespace Client.Binding
 {
@@ -15,18 +16,15 @@ namespace Client.Binding
     /// <typeparam name="TKey">Ключ (ID) сущности</typeparam>
     /// <typeparam name="TValue">Сущность</typeparam>
     public class SourceList<TKey, TValue> : IDictionary<TKey, TValue>
-        where TValue : IToControl<UserControl>, INotifyPropertyChanged
+        where TValue : IToControl<UserControl>, INotifyPropertyChanged, IDisposable
     {
         private readonly Dictionary<TKey, TValue> entites;
         private Control.ControlCollection collection;
 
         public EventHandler<TValue> ElementAdding;
         public EventHandler<TValue> ControlAdding;
-        /// <summary>
-        /// Событие, возникающее при удалении UI Control'a сущности
-        /// </summary>
-        public EventHandler<ControlEventArgs> ControlRemoving;
 
+        public EventHandler<TValue> ElementRemoving;
         /// <summary>
         /// Коллекция, хранящая UI Controls сущностей. При наличии сущностей в словаре, добавляет их UI Control в установленную коллекцию
         /// </summary>
@@ -106,13 +104,19 @@ namespace Client.Binding
         /// <returns>Результат удаления сущности</returns>
         public bool Remove(TKey key)
         {
-            ControlRemoving?.Invoke(this, new ControlEventArgs(entites[key].Control));
+            bool result = false;
             if (Collection != null && Collection.Contains(entites[key].Control))
-                if (Collection.Owner.IsHandleCreated)
-                    Collection.Owner.BeginInvoke((Action)delegate { collection.Remove(entites[key].Control); });
+            {
+                ElementRemoving?.Invoke(this, entites[key]);
+                if (Collection.Owner.InvokeRequired)
+                    Collection.Owner.BeginInvoke((Action)delegate { collection.ControlRemove(entites[key].Control); result = entites.Remove(key); });
                 else
-                    collection.Remove(entites[key].Control);
-            return entites.Remove(key);
+                {
+                    collection.ControlRemove(entites[key].Control);
+                    result = entites.Remove(key);
+                }
+            }
+            return result;
         }
 
         /// <summary>
@@ -157,6 +161,8 @@ namespace Client.Binding
 
         public void Clear()
         {
+            foreach (var e in entites.Values)
+                e.Dispose();
             entites.Clear();
         }
 

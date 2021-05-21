@@ -69,5 +69,11 @@ namespace Client.Entities
             foreach (var message in response.Messages)
                 Messages.Add(message.Id, new Message(message.Id, message.DialogId, message.Text, Users[message.Author.Id], message.Date));            
         }
+
+        public override void Dispose()
+        {
+            Messages.Clear();
+            Users.Clear();
+        }
     }
 }

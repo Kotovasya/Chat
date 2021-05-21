@@ -42,12 +42,16 @@ namespace Client.View
             this.createDialogButton = new Client.View.Controls.ButtonControl();
             this.dialogsButton = new Client.View.Controls.ButtonControl();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.bottomPanel = new System.Windows.Forms.Panel();
+            this.rightPanel = new System.Windows.Forms.Panel();
+            this.menuButtomPanel = new System.Windows.Forms.Panel();
             this.topPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.appLogoImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimizeImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.restoreImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeImage)).BeginInit();
             this.menuPanel.SuspendLayout();
+            this.mainPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // topPanel
@@ -142,6 +146,7 @@ namespace Client.View
             // 
             this.menuPanel.BackColor = System.Drawing.SystemColors.ControlLight;
             this.menuPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.menuPanel.Controls.Add(this.menuButtomPanel);
             this.menuPanel.Controls.Add(this.logoutButton);
             this.menuPanel.Controls.Add(this.settingsButton);
             this.menuPanel.Controls.Add(this.createDialogButton);
@@ -211,11 +216,40 @@ namespace Client.View
             // mainPanel
             // 
             this.mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.mainPanel.Controls.Add(this.rightPanel);
+            this.mainPanel.Controls.Add(this.bottomPanel);
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(250, 32);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1000, 708);
             this.mainPanel.TabIndex = 2;
+            // 
+            // bottomPanel
+            // 
+            this.bottomPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bottomPanel.Location = new System.Drawing.Point(0, 705);
+            this.bottomPanel.Name = "bottomPanel";
+            this.bottomPanel.Size = new System.Drawing.Size(998, 1);
+            this.bottomPanel.TabIndex = 36;
+            // 
+            // rightPanel
+            // 
+            this.rightPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.rightPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rightPanel.Location = new System.Drawing.Point(997, 0);
+            this.rightPanel.Name = "rightPanel";
+            this.rightPanel.Size = new System.Drawing.Size(1, 705);
+            this.rightPanel.TabIndex = 37;
+            // 
+            // menuButtomPanel
+            // 
+            this.menuButtomPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.menuButtomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.menuButtomPanel.Location = new System.Drawing.Point(0, 705);
+            this.menuButtomPanel.Name = "menuButtomPanel";
+            this.menuButtomPanel.Size = new System.Drawing.Size(248, 1);
+            this.menuButtomPanel.TabIndex = 36;
             // 
             // MainWindow
             // 
@@ -239,6 +273,7 @@ namespace Client.View
             ((System.ComponentModel.ISupportInitialize)(this.restoreImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.closeImage)).EndInit();
             this.menuPanel.ResumeLayout(false);
+            this.mainPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -257,5 +292,8 @@ namespace Client.View
         private Controls.ButtonControl logoutButton;
         private System.Windows.Forms.Label userNameLabel;
         private System.Windows.Forms.PictureBox appLogoImage;
+        private System.Windows.Forms.Panel menuButtomPanel;
+        private System.Windows.Forms.Panel rightPanel;
+        private System.Windows.Forms.Panel bottomPanel;
     }
 }

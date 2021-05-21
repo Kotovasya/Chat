@@ -103,6 +103,14 @@
     <Compile Include="Migrations\202105061724502_UserLastActivityAdded.designer.cs">
       <DependentUpon>202105061724502_UserLastActivityAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105160752210_UpdateMessageIdGeneration.cs" />
+    <Compile Include="Migrations\202105160752210_UpdateMessageIdGeneration.designer.cs">
+      <DependentUpon>202105160752210_UpdateMessageIdGeneration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202105160806235_RangeLastMigration.cs" />
+    <Compile Include="Migrations\202105160806235_RangeLastMigration.designer.cs">
+      <DependentUpon>202105160806235_RangeLastMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Contracts\Auth\Requests\AuthRequest.cs" />
@@ -133,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105061724502_UserLastActivityAdded.resx">
       <DependentUpon>202105061724502_UserLastActivityAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105160752210_UpdateMessageIdGeneration.resx">
+      <DependentUpon>202105160752210_UpdateMessageIdGeneration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105160806235_RangeLastMigration.resx">
+      <DependentUpon>202105160806235_RangeLastMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

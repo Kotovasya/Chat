@@ -21,7 +21,6 @@ namespace Client.Model
         /// Экземпляр объекта, принимающий данные с сервера
         /// </summary>
         private static readonly ClientCallbacks instance = new ClientCallbacks();
-        private string name;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -38,18 +37,6 @@ namespace Client.Model
         /// ID пользователя
         /// </summary>
         public Guid Id { get; set; }
-        /// <summary>
-        /// Имя пользователя
-        /// </summary>
-        public string Name
-        {
-            get { return name; }
-            set
-            {
-                name = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
-            }
-        }
 
         public ClientModel() 
             : base(new InstanceContext(instance))

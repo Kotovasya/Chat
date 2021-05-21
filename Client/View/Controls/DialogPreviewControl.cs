@@ -36,8 +36,9 @@ namespace Client.View.Controls
                 {
                     var message = (Entities.Message)e.Value;
                     e.Value = message.Text;
-                }
+                }                
             });
+            
             authorLabel.CreateBinding("Text", dialog.Preview, "LastMessage", (sender, e) =>
             {
                 if (e.Value == null)
@@ -63,9 +64,9 @@ namespace Client.View.Controls
                 var message = (Entities.Message)e.Value;
                 DateTime localTime = message.Date.ToLocalTime();
                 if (localTime.Day == DateTime.Now.Day)
-                    e.Value = localTime.ToString("hh:mm:ss");
+                    e.Value = localTime.ToString("HH:mm:ss");
                 else if (localTime.AddDays(1).Day == DateTime.Now.Day)
-                    e.Value = "Вчера " + localTime.ToString("mm:ss");
+                    e.Value = "Вчера " + localTime.ToString("HH:mm");
                 else
                     e.Value = localTime.ToString("dd:MM:yyyy");
             }

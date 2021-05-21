@@ -38,6 +38,10 @@ namespace Client.View
             this.warningLabel = new System.Windows.Forms.Label();
             this.mameLabel = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
+            this.bottomPanel = new System.Windows.Forms.Panel();
+            this.rightPanel = new System.Windows.Forms.Panel();
+            this.leftPanel = new System.Windows.Forms.Panel();
+            this.topPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.passwordImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nameImage)).BeginInit();
             this.SuspendLayout();
@@ -135,12 +139,52 @@ namespace Client.View
             this.passwordLabel.TabIndex = 36;
             this.passwordLabel.Text = "Введите пароль";
             // 
+            // bottomPanel
+            // 
+            this.bottomPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bottomPanel.Location = new System.Drawing.Point(0, 179);
+            this.bottomPanel.Name = "bottomPanel";
+            this.bottomPanel.Size = new System.Drawing.Size(289, 1);
+            this.bottomPanel.TabIndex = 38;
+            // 
+            // rightPanel
+            // 
+            this.rightPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.rightPanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.rightPanel.Location = new System.Drawing.Point(288, 0);
+            this.rightPanel.Name = "rightPanel";
+            this.rightPanel.Size = new System.Drawing.Size(1, 179);
+            this.rightPanel.TabIndex = 39;
+            // 
+            // leftPanel
+            // 
+            this.leftPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.leftPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.leftPanel.Location = new System.Drawing.Point(0, 0);
+            this.leftPanel.Name = "leftPanel";
+            this.leftPanel.Size = new System.Drawing.Size(1, 179);
+            this.leftPanel.TabIndex = 40;
+            // 
+            // topPanel
+            // 
+            this.topPanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.topPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.topPanel.Location = new System.Drawing.Point(1, 0);
+            this.topPanel.Name = "topPanel";
+            this.topPanel.Size = new System.Drawing.Size(287, 1);
+            this.topPanel.TabIndex = 41;
+            // 
             // ConnectToDialogWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(289, 180);
             this.ControlBox = false;
+            this.Controls.Add(this.topPanel);
+            this.Controls.Add(this.leftPanel);
+            this.Controls.Add(this.rightPanel);
+            this.Controls.Add(this.bottomPanel);
             this.Controls.Add(this.mameLabel);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.warningLabel);
@@ -175,5 +219,9 @@ namespace Client.View
         private System.Windows.Forms.Label warningLabel;
         private System.Windows.Forms.Label mameLabel;
         private System.Windows.Forms.Label passwordLabel;
+        private System.Windows.Forms.Panel bottomPanel;
+        private System.Windows.Forms.Panel rightPanel;
+        private System.Windows.Forms.Panel leftPanel;
+        private System.Windows.Forms.Panel topPanel;
     }
 }

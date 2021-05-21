@@ -1,6 +1,7 @@
 ﻿using Client.View.Controls;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,8 @@ namespace Client.Entities
             Owner = dialog;
             LastMessage = dialog.Messages.Last();
             dialog.Messages.ElementAdding += OnMessageAdded;
+            dialog.Messages.ElementRemoving += OnMessageRemoved;
+            CreateEditBind();
         }
 
         public override DialogPreviewControl ToControl()
@@ -50,7 +53,30 @@ namespace Client.Entities
         private void OnMessageAdded(object sender, Message message)
         {
             if (message.Id > lastMessage?.Id)
-                lastMessage = message;
+            {
+                LastMessage = message;
+                CreateEditBind();
+            }
+        }
+
+        private void OnMessageRemoved(object sender, Message message)
+        {
+            if (message.Id == lastMessage.Id)
+            {
+                LastMessage = Owner.Messages
+                    .Skip(Owner.Messages.Count - 2)
+                    .First().Value;
+                CreateEditBind();
+            }
+        }
+
+        private void CreateEditBind()
+        {
+            if (lastMessage != null)
+                lastMessage.PropertyChanged += (object sender, PropertyChangedEventArgs e) =>
+                {
+                    OnPropertyChanged("LastMessage");
+                };
         }
     }
 }

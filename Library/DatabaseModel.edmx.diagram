@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="924a9f11622f4f529180e2d8f31681d2" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="TestChatDatabaseModel.Dialog" Width="1.5" PointX="4.625" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestChatDatabaseModel.Message" Width="1.5" PointX="6.375" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestChatDatabaseModel.User" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="TestChatDatabaseModel.FK_Dialogs_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="TestChatDatabaseModel.FK_Messages_Dialogs1" ManuallyRouted="false" />
+        <AssociationConnector Association="TestChatDatabaseModel.FK_Messages_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="TestChatDatabaseModel.UsersDialogs" ManuallyRouted="false" >
+        </AssociationConnector>
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

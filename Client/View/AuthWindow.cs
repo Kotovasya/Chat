@@ -71,10 +71,11 @@ namespace Client.View
             if (response.Result == Result.Succesfully)
             {
                 model.Id = response.Id;
-                model.Name = loginTextbox.Text;
-                model.Users.Add(model.Id, new Entities.User(model.Id, model.Name, true, DateTime.UtcNow));
+                model.Users.Add(model.Id, new Entities.User(model.Id, loginTextbox.Text, true, DateTime.UtcNow));
                 var mainWindow = new MainWindow(this, model);
                 mainWindow.Show();
+                loginTextbox.Text = string.Empty;
+                passwordTextbox.Text = string.Empty;
                 Hide();
             }
             else
@@ -101,7 +102,7 @@ namespace Client.View
         private void AuthWindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (e.CloseReason == CloseReason.ApplicationExitCall)
-                if (model.State != System.ServiceModel.CommunicationState.Opened && model.Id != Guid.Empty)
+                if (model.State != System.ServiceModel.CommunicationState.Faulted && model.Id != Guid.Empty)
                     model.Disconnect(model.Id);
         }
 
@@ -117,7 +118,11 @@ namespace Client.View
 
         private void topPanel_MouseMove(object sender, MouseEventArgs e)
         {
-
+            if (e.Button == MouseButtons.Left)
+            {
+                Left += e.X - MouseDownLocation.X;
+                Top += e.Y - MouseDownLocation.Y;
+            }
         }
 
         private void topPanel_MouseDown(object sender, MouseEventArgs e)

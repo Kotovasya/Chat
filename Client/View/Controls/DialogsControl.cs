@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Client.View.Controls
 {
-    public partial class DialogsControl : UserControl
+    public partial class DialogsControl : UserControl, IDisposable
     {
         private readonly SourceList<int, DialogPreview> dialogPreviews;
         private readonly ClientModel model;
@@ -28,6 +28,7 @@ namespace Client.View.Controls
             this.dialogPreviews = new SourceList<int, DialogPreview>();
             dialogPreviews.Collection = dialogsContainer.Controls;
             model.Dialogs.ElementAdding += OnDialogAdded;
+            model.Dialogs.ElementRemoving += (object sender, Dialog dialog) => { dialogPreviews.Remove(dialog.Id); };
         }
 
         private void searchTextbox_TextChanged(object sender, EventArgs e)
@@ -72,6 +73,11 @@ namespace Client.View.Controls
                 DialogOpen?.Invoke(obj, dialog); 
             };
             window.Show();
+        }
+
+        public new void Dispose()
+        {
+            dialogPreviews.Clear();
         }
     }
 }

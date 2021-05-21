@@ -165,9 +165,12 @@ namespace Library.Services
         private void SetActivity(Guid id)
         {
             var user = context.Users.Find(id);
-            user.LastActivity = DateTime.UtcNow;
-            context.Entry(user).State = System.Data.Entity.EntityState.Modified;
-            context.SaveChanges();
+            if (user != null)
+            {
+                user.LastActivity = DateTime.UtcNow;
+                context.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                context.SaveChanges();
+            }
         }
     }
 }

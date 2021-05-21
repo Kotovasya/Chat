@@ -46,8 +46,20 @@ namespace Client.View.Controls
         {
             Message = message;
 
-            textLabel.CreateBinding("Text", message, "Text");
-            authorLabel.CreateBinding("Text", message.Author, "Name");
+            textLabel.CreateBinding("Text", message, "Text", (object sender, ConvertEventArgs e) =>
+            {
+                if (textLabel.InvokeRequired)
+                    textLabel.BeginInvoke((Action)delegate { textLabel.Text = e.Value.ToString(); });
+                else
+                    textLabel.Text = e.Value.ToString();
+            });
+            authorLabel.CreateBinding("Text", message.Author, "Name", (object sender, ConvertEventArgs e) =>
+            {
+                if (textLabel.InvokeRequired)
+                    textLabel.BeginInvoke((Action)delegate { authorLabel.Text = e.Value.ToString(); });
+                else
+                    textLabel.Text = e.Value.ToString();
+            });
             dateLabel.CreateBinding("Text", message, "Date", ConvertDateToString);
             //this.Dock = DockStyle.Top;
         }
@@ -66,16 +78,16 @@ namespace Client.View.Controls
                 var date = (DateTime)e.Value;
                 DateTime localTime = date.ToLocalTime();
                 if (localTime.Day == DateTime.Now.Day)
-                    e.Value = localTime.ToString("hh:mm:ss");
+                    e.Value = localTime.ToString("HH:mm:ss");
                 else if (localTime.AddDays(1).Day == DateTime.Now.Day)
-                    e.Value = "Вчера " + localTime.ToString("mm:ss");
+                    e.Value = "Вчера " + localTime.ToString("HH:mm");
                 else
-                    e.Value = localTime.ToString("dd:MM:yyyy");
+                    e.Value = localTime.ToString("dd.MM.yyyy");
             }
             else e.Value = string.Empty;
         }
 
-        private void MessageControl_Click(object sender, EventArgs e)
+        public void MessageControl_Click(object sender, EventArgs e)
         {
             if (IsClientAuthor)
             {
@@ -93,7 +105,8 @@ namespace Client.View.Controls
 
         private void removeMessageImage_Click(object sender, EventArgs e)
         {
-
+            if (IsClientAuthor && IsSelected)
+                RemoveMessage?.Invoke(this, this);
         }
 
         private void editMessageImage_MouseEnter(object sender, EventArgs e)

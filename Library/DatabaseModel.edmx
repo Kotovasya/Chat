@@ -1,0 +1,300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TestChatDatabaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Dialogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Owner_Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="Author_Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Dialog_Id" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastActivity" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersDialogs">
+          <Key>
+            <PropertyRef Name="Dialog_Id" />
+            <PropertyRef Name="User_Id" />
+          </Key>
+          <Property Name="Dialog_Id" Type="int" Nullable="false" />
+          <Property Name="User_Id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Dialogs_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Dialogs" Type="Self.Dialogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dialogs">
+              <PropertyRef Name="Owner_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Dialogs1">
+          <End Role="Dialogs" Type="Self.Dialogs" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dialogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Dialog_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Author_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersDialogs_Dialogs1">
+          <End Role="Dialogs" Type="Self.Dialogs" Multiplicity="1" />
+          <End Role="UsersDialogs" Type="Self.UsersDialogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dialogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersDialogs">
+              <PropertyRef Name="Dialog_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsersDialogs_Users1">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersDialogs" Type="Self.UsersDialogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UsersDialogs">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TestChatDatabaseModelContainer">
+          <EntitySet Name="Dialogs" EntityType="Self.Dialogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersDialogs" EntityType="Self.UsersDialogs" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Dialogs_Users1" Association="Self.FK_Dialogs_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Dialogs" EntitySet="Dialogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Dialogs1" Association="Self.FK_Messages_Dialogs1">
+            <End Role="Dialogs" EntitySet="Dialogs" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Users1" Association="Self.FK_Messages_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersDialogs_Dialogs1" Association="Self.FK_UsersDialogs_Dialogs1">
+            <End Role="Dialogs" EntitySet="Dialogs" />
+            <End Role="UsersDialogs" EntitySet="UsersDialogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsersDialogs_Users1" Association="Self.FK_UsersDialogs_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersDialogs" EntitySet="UsersDialogs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestChatDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Dialog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Owner_Id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Dialogs_Users1" FromRole="Dialogs" ToRole="Users" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_Dialogs1" FromRole="Dialogs" ToRole="Messages" />
+          <NavigationProperty Name="Users" Relationship="Self.UsersDialogs" FromRole="Dialogs" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Message">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Author_Id" Type="Guid" Nullable="false" />
+          <Property Name="Dialog_Id" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Dialog" Relationship="Self.FK_Messages_Dialogs1" FromRole="Messages" ToRole="Dialogs" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Messages_Users1" FromRole="Messages" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastActivity" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Dialogs" Relationship="Self.FK_Dialogs_Users1" FromRole="Users" ToRole="Dialogs" />
+          <NavigationProperty Name="Messages" Relationship="Self.FK_Messages_Users1" FromRole="Users" ToRole="Messages" />
+          <NavigationProperty Name="Dialogs1" Relationship="Self.UsersDialogs" FromRole="Users" ToRole="Dialogs" />
+        </EntityType>
+        <Association Name="FK_Dialogs_Users1">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Dialogs" Type="Self.Dialog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Dialogs">
+              <PropertyRef Name="Owner_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Dialogs1">
+          <End Role="Dialogs" Type="Self.Dialog" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dialogs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Dialog_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Users1">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Author_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UsersDialogs">
+          <End Role="Dialogs" Type="Self.Dialog" Multiplicity="*" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Dialogs" EntityType="Self.Dialog" />
+          <EntitySet Name="Messages" EntityType="Self.Message" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Dialogs_Users1" Association="Self.FK_Dialogs_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Dialogs" EntitySet="Dialogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Dialogs1" Association="Self.FK_Messages_Dialogs1">
+            <End Role="Dialogs" EntitySet="Dialogs" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Users1" Association="Self.FK_Messages_Users1">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="UsersDialogs" Association="Self.UsersDialogs">
+            <End Role="Dialogs" EntitySet="Dialogs" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TestChatDatabaseModelContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Dialogs">
+            <EntityTypeMapping TypeName="TestChatDatabaseModel.Dialog">
+              <MappingFragment StoreEntitySet="Dialogs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Owner_Id" ColumnName="Owner_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="TestChatDatabaseModel.Message">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Author_Id" ColumnName="Author_Id" />
+                <ScalarProperty Name="Dialog_Id" ColumnName="Dialog_Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TestChatDatabaseModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastActivity" ColumnName="LastActivity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UsersDialogs" TypeName="TestChatDatabaseModel.UsersDialogs" StoreEntitySet="UsersDialogs">
+            <EndProperty Name="Dialogs">
+              <ScalarProperty Name="Id" ColumnName="Dialog_Id" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

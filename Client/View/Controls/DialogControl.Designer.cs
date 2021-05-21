@@ -32,6 +32,7 @@ namespace Client.View.Controls
             this.messagesContainer = new System.Windows.Forms.Panel();
             this.usersContainer = new System.Windows.Forms.Panel();
             this.dialogSettingsPanel = new System.Windows.Forms.Panel();
+            this.settingsSuccesfullyChangedLabel = new System.Windows.Forms.Label();
             this.changeNameLabel = new System.Windows.Forms.Label();
             this.changePasswordLabel = new System.Windows.Forms.Label();
             this.saveSettiingsButton = new System.Windows.Forms.Button();
@@ -49,12 +50,12 @@ namespace Client.View.Controls
             this.rightPanel = new System.Windows.Forms.Panel();
             this.leftPanel = new System.Windows.Forms.Panel();
             this.topPanel = new System.Windows.Forms.Panel();
+            this.searchImage = new System.Windows.Forms.PictureBox();
+            this.searchTextbox = new System.Windows.Forms.TextBox();
             this.removeSelectedMessagesButton = new System.Windows.Forms.Button();
             this.dialogSettingImage = new System.Windows.Forms.PictureBox();
             this.usersCountLabel = new System.Windows.Forms.Label();
             this.dialogNameLabel = new System.Windows.Forms.Label();
-            this.searchImage = new System.Windows.Forms.PictureBox();
-            this.searchTextbox = new System.Windows.Forms.TextBox();
             this.messagesContainer.SuspendLayout();
             this.dialogSettingsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nameImage)).BeginInit();
@@ -62,8 +63,8 @@ namespace Client.View.Controls
             this.bottomPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.buttomPanelImage)).BeginInit();
             this.topPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dialogSettingImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dialogSettingImage)).BeginInit();
             this.SuspendLayout();
             // 
             // messagesContainer
@@ -94,6 +95,7 @@ namespace Client.View.Controls
             // 
             this.dialogSettingsPanel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dialogSettingsPanel.BackColor = System.Drawing.SystemColors.Menu;
+            this.dialogSettingsPanel.Controls.Add(this.settingsSuccesfullyChangedLabel);
             this.dialogSettingsPanel.Controls.Add(this.changeNameLabel);
             this.dialogSettingsPanel.Controls.Add(this.changePasswordLabel);
             this.dialogSettingsPanel.Controls.Add(this.saveSettiingsButton);
@@ -104,9 +106,23 @@ namespace Client.View.Controls
             this.dialogSettingsPanel.Controls.Add(this.passwordImage);
             this.dialogSettingsPanel.Location = new System.Drawing.Point(411, 5);
             this.dialogSettingsPanel.Name = "dialogSettingsPanel";
-            this.dialogSettingsPanel.Size = new System.Drawing.Size(308, 192);
+            this.dialogSettingsPanel.Size = new System.Drawing.Size(308, 202);
             this.dialogSettingsPanel.TabIndex = 0;
             this.dialogSettingsPanel.Visible = false;
+            // 
+            // settingsSuccesfullyChangedLabel
+            // 
+            this.settingsSuccesfullyChangedLabel.AutoSize = true;
+            this.settingsSuccesfullyChangedLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
+            this.settingsSuccesfullyChangedLabel.ForeColor = System.Drawing.Color.Green;
+            this.settingsSuccesfullyChangedLabel.Location = new System.Drawing.Point(47, 117);
+            this.settingsSuccesfullyChangedLabel.MaximumSize = new System.Drawing.Size(400, 0);
+            this.settingsSuccesfullyChangedLabel.Name = "settingsSuccesfullyChangedLabel";
+            this.settingsSuccesfullyChangedLabel.Size = new System.Drawing.Size(222, 20);
+            this.settingsSuccesfullyChangedLabel.TabIndex = 36;
+            this.settingsSuccesfullyChangedLabel.Text = "Настройки успешно сохранены";
+            this.settingsSuccesfullyChangedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.settingsSuccesfullyChangedLabel.Visible = false;
             // 
             // changeNameLabel
             // 
@@ -122,7 +138,7 @@ namespace Client.View.Controls
             // 
             this.changePasswordLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
             this.changePasswordLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.changePasswordLabel.Location = new System.Drawing.Point(42, 55);
+            this.changePasswordLabel.Location = new System.Drawing.Point(42, 60);
             this.changePasswordLabel.Name = "changePasswordLabel";
             this.changePasswordLabel.Size = new System.Drawing.Size(215, 23);
             this.changePasswordLabel.TabIndex = 34;
@@ -132,7 +148,7 @@ namespace Client.View.Controls
             // 
             this.saveSettiingsButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.saveSettiingsButton.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.saveSettiingsButton.Location = new System.Drawing.Point(99, 154);
+            this.saveSettiingsButton.Location = new System.Drawing.Point(99, 164);
             this.saveSettiingsButton.Name = "saveSettiingsButton";
             this.saveSettiingsButton.Size = new System.Drawing.Size(104, 35);
             this.saveSettiingsButton.TabIndex = 33;
@@ -144,9 +160,9 @@ namespace Client.View.Controls
             // 
             this.warningLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
             this.warningLabel.ForeColor = System.Drawing.Color.Red;
-            this.warningLabel.Location = new System.Drawing.Point(3, 106);
+            this.warningLabel.Location = new System.Drawing.Point(3, 119);
             this.warningLabel.Name = "warningLabel";
-            this.warningLabel.Size = new System.Drawing.Size(302, 45);
+            this.warningLabel.Size = new System.Drawing.Size(302, 40);
             this.warningLabel.TabIndex = 32;
             this.warningLabel.Text = "Изменение настроек диалога доступно только его создателю";
             this.warningLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -155,7 +171,7 @@ namespace Client.View.Controls
             // nameTextbox
             // 
             this.nameTextbox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameTextbox.Location = new System.Drawing.Point(76, 28);
+            this.nameTextbox.Location = new System.Drawing.Point(76, 30);
             this.nameTextbox.Name = "nameTextbox";
             this.nameTextbox.Size = new System.Drawing.Size(193, 27);
             this.nameTextbox.TabIndex = 31;
@@ -164,7 +180,7 @@ namespace Client.View.Controls
             // nameImage
             // 
             this.nameImage.Image = global::Client.Properties.Resources.create_dialog;
-            this.nameImage.Location = new System.Drawing.Point(46, 29);
+            this.nameImage.Location = new System.Drawing.Point(46, 31);
             this.nameImage.Name = "nameImage";
             this.nameImage.Size = new System.Drawing.Size(24, 24);
             this.nameImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -174,7 +190,7 @@ namespace Client.View.Controls
             // passwordTextbox
             // 
             this.passwordTextbox.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.passwordTextbox.Location = new System.Drawing.Point(76, 79);
+            this.passwordTextbox.Location = new System.Drawing.Point(76, 87);
             this.passwordTextbox.Name = "passwordTextbox";
             this.passwordTextbox.Size = new System.Drawing.Size(193, 27);
             this.passwordTextbox.TabIndex = 29;
@@ -183,7 +199,7 @@ namespace Client.View.Controls
             // passwordImage
             // 
             this.passwordImage.Image = global::Client.Properties.Resources.password;
-            this.passwordImage.Location = new System.Drawing.Point(46, 81);
+            this.passwordImage.Location = new System.Drawing.Point(46, 89);
             this.passwordImage.Name = "passwordImage";
             this.passwordImage.Size = new System.Drawing.Size(24, 24);
             this.passwordImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -213,7 +229,7 @@ namespace Client.View.Controls
             this.buttomWarningLabel.ForeColor = System.Drawing.Color.Red;
             this.buttomWarningLabel.Location = new System.Drawing.Point(412, 0);
             this.buttomWarningLabel.Name = "buttomWarningLabel";
-            this.buttomWarningLabel.Size = new System.Drawing.Size(285, 23);
+            this.buttomWarningLabel.Size = new System.Drawing.Size(285, 20);
             this.buttomWarningLabel.TabIndex = 22;
             this.buttomWarningLabel.Text = "Не удалось отправить собщение";
             this.buttomWarningLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -224,9 +240,9 @@ namespace Client.View.Controls
             this.cancelEditMessageLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cancelEditMessageLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
             this.cancelEditMessageLabel.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.cancelEditMessageLabel.Location = new System.Drawing.Point(257, 2);
+            this.cancelEditMessageLabel.Location = new System.Drawing.Point(257, 0);
             this.cancelEditMessageLabel.Name = "cancelEditMessageLabel";
-            this.cancelEditMessageLabel.Size = new System.Drawing.Size(85, 23);
+            this.cancelEditMessageLabel.Size = new System.Drawing.Size(85, 20);
             this.cancelEditMessageLabel.TabIndex = 21;
             this.cancelEditMessageLabel.Text = "Отменить";
             this.cancelEditMessageLabel.Visible = false;
@@ -238,9 +254,9 @@ namespace Client.View.Controls
             // 
             this.editMessageLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 12F);
             this.editMessageLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.editMessageLabel.Location = new System.Drawing.Point(36, -1);
+            this.editMessageLabel.Location = new System.Drawing.Point(36, 0);
             this.editMessageLabel.Name = "editMessageLabel";
-            this.editMessageLabel.Size = new System.Drawing.Size(215, 23);
+            this.editMessageLabel.Size = new System.Drawing.Size(215, 20);
             this.editMessageLabel.TabIndex = 20;
             this.editMessageLabel.Text = "Редактирование сообщения";
             this.editMessageLabel.Visible = false;
@@ -250,13 +266,15 @@ namespace Client.View.Controls
             this.buttomPanelImage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.buttomPanelImage.Cursor = System.Windows.Forms.Cursors.Hand;
             this.buttomPanelImage.Image = global::Client.Properties.Resources.send;
-            this.buttomPanelImage.Location = new System.Drawing.Point(718, 17);
+            this.buttomPanelImage.Location = new System.Drawing.Point(718, 23);
             this.buttomPanelImage.Name = "buttomPanelImage";
-            this.buttomPanelImage.Size = new System.Drawing.Size(40, 40);
+            this.buttomPanelImage.Size = new System.Drawing.Size(32, 32);
             this.buttomPanelImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.buttomPanelImage.TabIndex = 10;
             this.buttomPanelImage.TabStop = false;
             this.buttomPanelImage.Click += new System.EventHandler(this.buttomPanelImage_Click);
+            this.buttomPanelImage.MouseEnter += new System.EventHandler(this.buttomPanelImage_MouseEnter);
+            this.buttomPanelImage.MouseLeave += new System.EventHandler(this.buttomPanelImage_MouseLeave);
             // 
             // messageTextbox
             // 
@@ -266,11 +284,12 @@ namespace Client.View.Controls
             this.messageTextbox.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.messageTextbox.Location = new System.Drawing.Point(40, 25);
             this.messageTextbox.Name = "messageTextbox";
-            this.messageTextbox.Size = new System.Drawing.Size(657, 25);
+            this.messageTextbox.Size = new System.Drawing.Size(657, 18);
             this.messageTextbox.TabIndex = 9;
             this.messageTextbox.Text = "";
             this.messageTextbox.ContentsResized += new System.Windows.Forms.ContentsResizedEventHandler(this.messageTextbox_ContentsResized);
             this.messageTextbox.Click += new System.EventHandler(this.messageTextbox_Click);
+            this.messageTextbox.TextChanged += new System.EventHandler(this.messageTextbox_TextChanged);
             this.messageTextbox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.messageTextbox_KeyDown);
             // 
             // rightPanel
@@ -307,6 +326,27 @@ namespace Client.View.Controls
             this.topPanel.Name = "topPanel";
             this.topPanel.Size = new System.Drawing.Size(1000, 79);
             this.topPanel.TabIndex = 11;
+            // 
+            // searchImage
+            // 
+            this.searchImage.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.searchImage.Image = global::Client.Properties.Resources.search;
+            this.searchImage.Location = new System.Drawing.Point(110, 38);
+            this.searchImage.Name = "searchImage";
+            this.searchImage.Size = new System.Drawing.Size(36, 36);
+            this.searchImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.searchImage.TabIndex = 36;
+            this.searchImage.TabStop = false;
+            // 
+            // searchTextbox
+            // 
+            this.searchTextbox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.searchTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
+            this.searchTextbox.Location = new System.Drawing.Point(151, 37);
+            this.searchTextbox.Name = "searchTextbox";
+            this.searchTextbox.Size = new System.Drawing.Size(257, 36);
+            this.searchTextbox.TabIndex = 35;
+            this.searchTextbox.TextChanged += new System.EventHandler(this.searchTextbox_TextChanged);
             // 
             // removeSelectedMessagesButton
             // 
@@ -367,27 +407,6 @@ namespace Client.View.Controls
             this.dialogNameLabel.Text = "Название диалога";
             this.dialogNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // searchImage
-            // 
-            this.searchImage.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.searchImage.Image = global::Client.Properties.Resources.search;
-            this.searchImage.Location = new System.Drawing.Point(110, 38);
-            this.searchImage.Name = "searchImage";
-            this.searchImage.Size = new System.Drawing.Size(36, 36);
-            this.searchImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.searchImage.TabIndex = 36;
-            this.searchImage.TabStop = false;
-            // 
-            // searchTextbox
-            // 
-            this.searchTextbox.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.searchTextbox.Font = new System.Drawing.Font("Segoe UI Semilight", 16F);
-            this.searchTextbox.Location = new System.Drawing.Point(151, 37);
-            this.searchTextbox.Name = "searchTextbox";
-            this.searchTextbox.Size = new System.Drawing.Size(257, 36);
-            this.searchTextbox.TabIndex = 35;
-            this.searchTextbox.TextChanged += new System.EventHandler(this.searchTextbox_TextChanged);
-            // 
             // DialogControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -408,8 +427,8 @@ namespace Client.View.Controls
             ((System.ComponentModel.ISupportInitialize)(this.buttomPanelImage)).EndInit();
             this.topPanel.ResumeLayout(false);
             this.topPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dialogSettingImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dialogSettingImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -442,5 +461,6 @@ namespace Client.View.Controls
         private System.Windows.Forms.Label changePasswordLabel;
         private System.Windows.Forms.PictureBox searchImage;
         private System.Windows.Forms.TextBox searchTextbox;
+        private System.Windows.Forms.Label settingsSuccesfullyChangedLabel;
     }
 }

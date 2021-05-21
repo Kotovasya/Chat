@@ -43,6 +43,8 @@ namespace Client.View.Controls
             this.changeUsernameLabel = new System.Windows.Forms.Label();
             this.changeUsernameButton = new Client.View.Controls.ButtonControl();
             this.changePasswordButton = new Client.View.Controls.ButtonControl();
+            this.nameSuccesfullyChangedLabel = new System.Windows.Forms.Label();
+            this.passwordSuccesfullyChangedLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.changeUsernameImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.newPasswordImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oldPasswordImage)).BeginInit();
@@ -201,11 +203,43 @@ namespace Client.View.Controls
             this.changePasswordButton.Title = "Сменить пароль";
             this.changePasswordButton.Click += new System.EventHandler(this.changePassword_Click);
             // 
+            // nameSuccesfullyChangedLabel
+            // 
+            this.nameSuccesfullyChangedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.nameSuccesfullyChangedLabel.AutoSize = true;
+            this.nameSuccesfullyChangedLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
+            this.nameSuccesfullyChangedLabel.ForeColor = System.Drawing.Color.Green;
+            this.nameSuccesfullyChangedLabel.Location = new System.Drawing.Point(507, 132);
+            this.nameSuccesfullyChangedLabel.MaximumSize = new System.Drawing.Size(400, 0);
+            this.nameSuccesfullyChangedLabel.Name = "nameSuccesfullyChangedLabel";
+            this.nameSuccesfullyChangedLabel.Size = new System.Drawing.Size(170, 20);
+            this.nameSuccesfullyChangedLabel.TabIndex = 29;
+            this.nameSuccesfullyChangedLabel.Text = "Имя успешно изменено";
+            this.nameSuccesfullyChangedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.nameSuccesfullyChangedLabel.Visible = false;
+            // 
+            // passwordSuccesfullyChangedLabel
+            // 
+            this.passwordSuccesfullyChangedLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.passwordSuccesfullyChangedLabel.AutoSize = true;
+            this.passwordSuccesfullyChangedLabel.Font = new System.Drawing.Font("Segoe UI Semilight", 11F);
+            this.passwordSuccesfullyChangedLabel.ForeColor = System.Drawing.Color.Green;
+            this.passwordSuccesfullyChangedLabel.Location = new System.Drawing.Point(143, 222);
+            this.passwordSuccesfullyChangedLabel.MaximumSize = new System.Drawing.Size(400, 0);
+            this.passwordSuccesfullyChangedLabel.Name = "passwordSuccesfullyChangedLabel";
+            this.passwordSuccesfullyChangedLabel.Size = new System.Drawing.Size(184, 20);
+            this.passwordSuccesfullyChangedLabel.TabIndex = 30;
+            this.passwordSuccesfullyChangedLabel.Text = "Пароль успешно изменен";
+            this.passwordSuccesfullyChangedLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.passwordSuccesfullyChangedLabel.Visible = false;
+            // 
             // SettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.passwordSuccesfullyChangedLabel);
+            this.Controls.Add(this.nameSuccesfullyChangedLabel);
             this.Controls.Add(this.changeUsernameButton);
             this.Controls.Add(this.changePasswordButton);
             this.Controls.Add(this.changeUsernameLabel);
@@ -245,5 +279,7 @@ namespace Client.View.Controls
         private System.Windows.Forms.Label changeUsernameLabel;
         private ButtonControl changePasswordButton;
         private ButtonControl changeUsernameButton;
+        private System.Windows.Forms.Label nameSuccesfullyChangedLabel;
+        private System.Windows.Forms.Label passwordSuccesfullyChangedLabel;
     }
 }
